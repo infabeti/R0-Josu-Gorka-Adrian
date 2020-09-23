@@ -2,12 +2,12 @@ package reto;
 
 import java.util.Scanner;
 
-public class LectorTeclado {
+public class Lector {
 	
-	public LectorTeclado() {
+	public Lector() {
 	}
 	
-	public String leer() {
+	public String leerTeclado() {
 		String entrada = "";
 		Scanner sc = new Scanner(System.in);
 		entrada = sc.next();
