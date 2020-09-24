@@ -6,6 +6,9 @@ import org.apache.poi.hwpf.HWPFDocument;
 import org.apache.poi.xwpf.extractor.*;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.apache.poi.xwpf.usermodel.XWPFParagraph;
+
+import com.qoppa.pdfText.PDFText;
+
 import org.apache.poi.hwpf.extractor.WordExtractor;
 
 public class Lector {
@@ -58,5 +61,29 @@ public class Lector {
 		System.out.println(entrada);
 		
 		return entrada;
+	}
+	
+	public String leerPDF() {
+		Scanner sc = new Scanner(System.in);
+		try {
+			
+			System.out.println("Escribe la ruta del archivo que quieres leer");
+			String URL = sc.next();
+			PDFText pdfText = new PDFText (URL, null);
+			
+			String docText = pdfText.getText();
+			
+			
+			
+			System.out.printf(docText);
+			
+			return(docText);
+			
+		} catch (Throwable t) {
+			// TODO Auto-generated catch block
+			t.printStackTrace();
+		}
+		return null;
+		
 	}
 }

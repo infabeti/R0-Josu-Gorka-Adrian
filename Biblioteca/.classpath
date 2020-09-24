@@ -32,13 +32,15 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.buildship.core.gradleclasspathcontainer"/>
-	<classpathentry kind="lib" path="C:/Users/IN2DAM/Desktop/poi-4.1.2/poi-4.1.2.jar"/>
-	<classpathentry kind="lib" path="C:/Users/IN2DAM/Desktop/poi-4.1.2/poi-examples-4.1.2.jar"/>
-	<classpathentry kind="lib" path="C:/Users/IN2DAM/Desktop/poi-4.1.2/poi-excelant-4.1.2.jar"/>
-	<classpathentry kind="lib" path="C:/Users/IN2DAM/Desktop/poi-4.1.2/poi-ooxml-4.1.2.jar"/>
-	<classpathentry kind="lib" path="C:/Users/IN2DAM/Desktop/poi-4.1.2/poi-ooxml-schemas-4.1.2.jar"/>
-	<classpathentry kind="lib" path="C:/Users/IN2DAM/Desktop/poi-4.1.2/poi-scratchpad-4.1.2.jar"/>
-	<classpathentry kind="lib" path="C:/Users/IN2DAM/Desktop/poi-4.1.2/ooxml-lib/curvesapi-1.06.jar"/>
-	<classpathentry kind="lib" path="C:/Users/IN2DAM/Desktop/poi-4.1.2/ooxml-lib/xmlbeans-3.1.0.jar"/>
+	<classpathentry kind="lib" path="C:/eclipse-workspace/R0-Josu-Gorka-Adrian/Librerias/poi-4.1.2/poi-4.1.2.jar"/>
+	<classpathentry kind="lib" path="C:/eclipse-workspace/R0-Josu-Gorka-Adrian/Librerias/poi-4.1.2/poi-examples-4.1.2.jar"/>
+	<classpathentry kind="lib" path="C:/eclipse-workspace/R0-Josu-Gorka-Adrian/Librerias/poi-4.1.2/poi-excelant-4.1.2.jar"/>
+	<classpathentry kind="lib" path="C:/eclipse-workspace/R0-Josu-Gorka-Adrian/Librerias/poi-4.1.2/poi-ooxml-4.1.2.jar"/>
+	<classpathentry kind="lib" path="C:/eclipse-workspace/R0-Josu-Gorka-Adrian/Librerias/poi-4.1.2/poi-ooxml-schemas-4.1.2.jar"/>
+	<classpathentry kind="lib" path="C:/eclipse-workspace/R0-Josu-Gorka-Adrian/Librerias/poi-4.1.2/poi-scratchpad-4.1.2.jar"/>
+	<classpathentry kind="lib" path="C:/eclipse-workspace/R0-Josu-Gorka-Adrian/Librerias/poi-4.1.2/ooxml-lib/curvesapi-1.06.jar"/>
+	<classpathentry kind="lib" path="C:/eclipse-workspace/R0-Josu-Gorka-Adrian/Librerias/poi-4.1.2/ooxml-lib/xmlbeans-3.1.0.jar"/>
+	<classpathentry kind="lib" path="C:/eclipse-workspace/R0-Josu-Gorka-Adrian/Librerias/poi-bin-4.1.2-20200217.zip"/>
+	<classpathentry kind="lib" path="C:/eclipse-workspace/R0-Josu-Gorka-Adrian/Librerias/jPDFText.jar"/>
 	<classpathentry kind="output" path="bin/default"/>
 </classpath>
