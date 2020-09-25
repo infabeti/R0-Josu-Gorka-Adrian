@@ -5,7 +5,10 @@ import java.util.*;
 import org.apache.poi.hwpf.HWPFDocument;
 import org.apache.poi.xwpf.extractor.*;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
-import org.apache.poi.xwpf.usermodel.XWPFParagraph;
+import org.w3c.dom.*;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
 
 import com.qoppa.pdfText.PDFText;
 
@@ -86,4 +89,40 @@ public class Lector {
 		return null;
 		
 	}
+	
+	public String leerXML() {
+		Scanner sc = new Scanner(System.in);
+		String entrada = "";
+		String ruta;
+		Document doc;
+		Node node;
+		String datos_nodo[] = null;
+		Node ntemp;
+		
+		System.out.println("Introduce la ruta del archivo que quieras leer");
+		ruta = sc.next();
+		File fichero = new File(ruta);
+		try {
+			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+			factory.setIgnoringComments(true);
+			factory.setIgnoringElementContentWhitespace(true);
+			DocumentBuilder builder = factory.newDocumentBuilder();
+			doc = builder.parse(fichero);//Documento ya listo para leer
+			Node raiz = doc.getFirstChild();
+			NodeList nodeList = raiz.getChildNodes();
+			for(int i = 0; i < nodeList.getLength(); i++) {
+				ntemp = nodeList.item(i);
+				if(ntemp.getNodeType() == Node.ELEMENT_NODE) {
+					entrada += ntemp.getTextContent();
+				}
+			}
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		System.out.println(entrada);
+		return entrada;
+	}
+	
 }

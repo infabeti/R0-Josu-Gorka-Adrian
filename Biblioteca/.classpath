@@ -6,20 +6,7 @@
 			<attribute name="gradle_used_by_scope" value="main,test"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="src" output="bin/main" path="src/main/resources">
-		<attributes>
-			<attribute name="gradle_scope" value="main"/>
-			<attribute name="gradle_used_by_scope" value="main,test"/>
-		</attributes>
-	</classpathentry>
 	<classpathentry kind="src" output="bin/test" path="src/test/java">
-		<attributes>
-			<attribute name="test" value="true"/>
-			<attribute name="gradle_scope" value="test"/>
-			<attribute name="gradle_used_by_scope" value="test"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="src" output="bin/test" path="src/test/resources">
 		<attributes>
 			<attribute name="test" value="true"/>
 			<attribute name="gradle_scope" value="test"/>
@@ -32,15 +19,26 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.buildship.core.gradleclasspathcontainer"/>
-	<classpathentry kind="lib" path="C:/eclipse-workspace/R0-Josu-Gorka-Adrian/Librerias/poi-4.1.2/poi-4.1.2.jar"/>
-	<classpathentry kind="lib" path="C:/eclipse-workspace/R0-Josu-Gorka-Adrian/Librerias/poi-4.1.2/poi-examples-4.1.2.jar"/>
-	<classpathentry kind="lib" path="C:/eclipse-workspace/R0-Josu-Gorka-Adrian/Librerias/poi-4.1.2/poi-excelant-4.1.2.jar"/>
-	<classpathentry kind="lib" path="C:/eclipse-workspace/R0-Josu-Gorka-Adrian/Librerias/poi-4.1.2/poi-ooxml-4.1.2.jar"/>
-	<classpathentry kind="lib" path="C:/eclipse-workspace/R0-Josu-Gorka-Adrian/Librerias/poi-4.1.2/poi-ooxml-schemas-4.1.2.jar"/>
-	<classpathentry kind="lib" path="C:/eclipse-workspace/R0-Josu-Gorka-Adrian/Librerias/poi-4.1.2/poi-scratchpad-4.1.2.jar"/>
-	<classpathentry kind="lib" path="C:/eclipse-workspace/R0-Josu-Gorka-Adrian/Librerias/poi-4.1.2/ooxml-lib/curvesapi-1.06.jar"/>
-	<classpathentry kind="lib" path="C:/eclipse-workspace/R0-Josu-Gorka-Adrian/Librerias/poi-4.1.2/ooxml-lib/xmlbeans-3.1.0.jar"/>
-	<classpathentry kind="lib" path="C:/eclipse-workspace/R0-Josu-Gorka-Adrian/Librerias/poi-bin-4.1.2-20200217.zip"/>
-	<classpathentry kind="lib" path="C:/eclipse-workspace/R0-Josu-Gorka-Adrian/Librerias/jPDFText.jar"/>
+	<classpathentry kind="lib" path="C:/Users/IN2DAM/Desktop/poi-4.1.2/poi-4.1.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/IN2DAM/Desktop/poi-4.1.2/poi-examples-4.1.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/IN2DAM/Desktop/poi-4.1.2/poi-excelant-4.1.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/IN2DAM/Desktop/poi-4.1.2/poi-ooxml-4.1.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/IN2DAM/Desktop/poi-4.1.2/poi-ooxml-schemas-4.1.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/IN2DAM/Desktop/poi-4.1.2/poi-scratchpad-4.1.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/IN2DAM/Desktop/poi-4.1.2/ooxml-lib/curvesapi-1.06.jar"/>
+	<classpathentry kind="lib" path="C:/Users/IN2DAM/Desktop/poi-4.1.2/ooxml-lib/xmlbeans-3.1.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/IN2DAM/eclipse-workspace/R0-Josu-Gorka-Adrian/Librerias/jPDFText.jar"/>
+	<classpathentry kind="lib" path="C:/Users/IN2DAM/Desktop/poi-4.1.2/lib/activation-1.1.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/IN2DAM/Desktop/poi-4.1.2/lib/commons-codec-1.13.jar"/>
+	<classpathentry kind="lib" path="C:/Users/IN2DAM/Desktop/poi-4.1.2/lib/commons-collections4-4.4.jar"/>
+	<classpathentry kind="lib" path="C:/Users/IN2DAM/Desktop/poi-4.1.2/lib/commons-compress-1.19.jar"/>
+	<classpathentry kind="lib" path="C:/Users/IN2DAM/Desktop/poi-4.1.2/lib/commons-logging-1.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/IN2DAM/Desktop/poi-4.1.2/lib/commons-math3-3.6.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/IN2DAM/Desktop/poi-4.1.2/lib/jaxb-api-2.3.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/IN2DAM/Desktop/poi-4.1.2/lib/jaxb-core-2.3.0.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/IN2DAM/Desktop/poi-4.1.2/lib/jaxb-impl-2.3.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/IN2DAM/Desktop/poi-4.1.2/lib/junit-4.12.jar"/>
+	<classpathentry kind="lib" path="C:/Users/IN2DAM/Desktop/poi-4.1.2/lib/log4j-1.2.17.jar"/>
+	<classpathentry kind="lib" path="C:/Users/IN2DAM/Desktop/poi-4.1.2/lib/SparseBitSet-1.2.jar"/>
 	<classpathentry kind="output" path="bin/default"/>
 </classpath>
