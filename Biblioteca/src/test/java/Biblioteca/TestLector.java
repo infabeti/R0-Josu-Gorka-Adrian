@@ -14,9 +14,9 @@ public class TestLector {
 	
 	@Test
 	public void testMainIncorrecto() {
-		String ruta = "C:\\Prueba\\prueba7.doc";
+		String ruta = "src\\Almacen\\prueba7.doc";
 		String resultado = lector.main(ruta);
-		String resultadoEsperado = "Hola";
+		String resultadoEsperado = "Prueba incorrecto";
 		assertNotEquals(resultadoEsperado.trim(), resultado.trim());
 	}
 	
@@ -31,31 +31,31 @@ public class TestLector {
 	
 	@Test
 	public void testLeerDOC() {
-		String ruta = "C:\\Prueba\\prueba1.doc";
+		String ruta = "src\\Almacen\\prueba1.doc";
 		String resultado = lector.main(ruta);
-		String resultadoEsperado = "Hola";
+		String resultadoEsperado = "Prueba DOC";
 		assertEquals(resultadoEsperado.trim(), resultado.trim());
 	}
 	
 	@Test
 	public void testLeerDOCX() {
-		String ruta = "C:\\Prueba\\prueba2.docx";
+		String ruta = "src\\Almacen\\prueba2.docx";
 		String resultado = lector.main(ruta);
-		String resultadoEsperado = "Prueba Test";
+		String resultadoEsperado = "Prueba DOCX";
 		assertEquals(resultadoEsperado.trim(), resultado.trim());
 	}
 	
 	@Test
 	public void testLeerPDF() {
-		String ruta = "C:\\Prueba\\prueba4.pdf";
+		String ruta = "src/Almacen/prueba4.pdf";
 		String resultado = lector.main(ruta);
-		String resultadoEsperado = "Hola";
+		String resultadoEsperado = "Prueba PDF";
 		assertEquals(resultadoEsperado.trim(), resultado.trim());
 	}
 	
 	@Test
 	public void testLeerXML() {
-		String ruta = "C:\\Prueba\\prueba3.xml";
+		String ruta = "src\\Almacen\\prueba3.xml";
 		String resultado = lector.main(ruta);
 		String resultadoEsperado = "Convert number to string\r\n"
 				+ "    Examp1.EXE\r\n"
