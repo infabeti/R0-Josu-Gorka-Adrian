@@ -100,10 +100,10 @@ public class Lector {
 		File fichero = new File(ruta);
 		try {
 			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-			factory.setIgnoringComments(true);
+			factory.setIgnoringComments(true);	
 			factory.setIgnoringElementContentWhitespace(true);
 			DocumentBuilder builder = factory.newDocumentBuilder();
-			doc = builder.parse(fichero);//Documento ya listo para leer
+			doc = builder.parse(fichero);
 			Node raiz = doc.getFirstChild();
 			NodeList nodeList = raiz.getChildNodes();
 			for(int i = 0; i < nodeList.getLength(); i++) {
