@@ -19,6 +19,25 @@ public class Lector {
 	public Lector() {
 	}
 	
+	public String main(String Ruta) {
+		String salida = "";
+		if (Encontrar(Ruta)==true) {
+			if(Ruta.endsWith(".doc")) {
+				salida = leerDOC(Ruta);
+			}else if(Ruta.endsWith(".docx")) {
+				salida = leerDOCX(Ruta);
+			}else if(Ruta.endsWith(".pdf")) {
+				salida = leerPDF(Ruta);
+			}else if(Ruta.endsWith(".xml")) {
+				salida = leerXML(Ruta);
+			}
+		}else {
+			System.out.println("Archivo No encontrado");
+		}
+		
+		return salida;
+	}
+	
 	public String leerTeclado() {
 		String entrada = "";
 		Scanner sc = new Scanner(System.in);
@@ -48,7 +67,6 @@ public class Lector {
 					entrada = we.getText();		
 			} catch (FileNotFoundException e) {
 				System.out.println("La ruta no corresponde a ningun archivo");
-				e.printStackTrace();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -68,7 +86,6 @@ public class Lector {
 		
 			} catch (FileNotFoundException e) {
 				System.out.println("La ruta no corresponde a ningun archivo");
-				e.printStackTrace();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}		
