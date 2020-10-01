@@ -32,7 +32,7 @@ public class TestLector {
 	
 	@Test
 	public void testLeerDOC() throws IOException {
-		String ruta = "src\\Almacen\\prueba1.doc";
+		String ruta = "src/Almacen/prueba1.doc";
 		String resultado = lector.LeerExtension(ruta);
 		String resultadoEsperado = "Prueba DOC";
 		assertEquals(resultadoEsperado.trim(), resultado.trim());
@@ -40,7 +40,7 @@ public class TestLector {
 	
 	@Test
 	public void testLeerDOCX() throws IOException {
-		String ruta = "src\\Almacen\\prueba2.docx";
+		String ruta = "src/Almacen/prueba2.docx";
 		String resultado = lector.LeerExtension(ruta);
 		String resultadoEsperado = "Prueba DOCX";
 		assertEquals(resultadoEsperado.trim(), resultado.trim());
@@ -56,7 +56,7 @@ public class TestLector {
 	
 	@Test
 	public void testLeerXML() throws IOException {
-		String ruta = "src\\Almacen\\prueba3.xml";
+		String ruta = "src/Almacen/prueba3.xml";
 		String resultado = lector.LeerExtension(ruta);
 		String resultadoEsperado = "Convert number to string\r\n"
 				+ "    Examp1.EXE\r\n"
