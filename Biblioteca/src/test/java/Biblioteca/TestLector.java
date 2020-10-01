@@ -3,6 +3,7 @@ package Biblioteca;
 import static org.junit.Assert.*;
 
 import java.io.ByteArrayInputStream;
+import java.io.IOException;
 
 import org.junit.Test;
 
@@ -13,9 +14,9 @@ public class TestLector {
 	Lector lector = new Lector();
 	
 	@Test
-	public void testMainIncorrecto() {
+	public void testMainIncorrecto() throws IOException {
 		String ruta = "src\\Almacen\\prueba7.doc";
-		String resultado = lector.main(ruta);
+		String resultado = lector.LeerExtension(ruta);
 		String resultadoEsperado = "Prueba incorrecto";
 		assertNotEquals(resultadoEsperado.trim(), resultado.trim());
 	}
@@ -30,33 +31,33 @@ public class TestLector {
 	}
 	
 	@Test
-	public void testLeerDOC() {
+	public void testLeerDOC() throws IOException {
 		String ruta = "src\\Almacen\\prueba1.doc";
-		String resultado = lector.main(ruta);
+		String resultado = lector.LeerExtension(ruta);
 		String resultadoEsperado = "Prueba DOC";
 		assertEquals(resultadoEsperado.trim(), resultado.trim());
 	}
 	
 	@Test
-	public void testLeerDOCX() {
+	public void testLeerDOCX() throws IOException {
 		String ruta = "src\\Almacen\\prueba2.docx";
-		String resultado = lector.main(ruta);
+		String resultado = lector.LeerExtension(ruta);
 		String resultadoEsperado = "Prueba DOCX";
 		assertEquals(resultadoEsperado.trim(), resultado.trim());
 	}
 	
 	@Test
-	public void testLeerPDF() {
+	public void testLeerPDF() throws IOException {
 		String ruta = "src/Almacen/prueba4.pdf";
-		String resultado = lector.main(ruta);
+		String resultado = lector.LeerExtension(ruta);
 		String resultadoEsperado = "Prueba PDF";
 		assertEquals(resultadoEsperado.trim(), resultado.trim());
 	}
 	
 	@Test
-	public void testLeerXML() {
+	public void testLeerXML() throws IOException {
 		String ruta = "src\\Almacen\\prueba3.xml";
-		String resultado = lector.main(ruta);
+		String resultado = lector.LeerExtension(ruta);
 		String resultadoEsperado = "Convert number to string\r\n"
 				+ "    Examp1.EXE\r\n"
 				+ "    1\r\n"

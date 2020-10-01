@@ -12,6 +12,7 @@ import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.IOException;
 
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
@@ -21,78 +22,69 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
+import javax.swing.ScrollPaneConstants;
 
 public class VentanaSeleccionArchivo extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
 	private JTextField textFieldBorde;
+	private JScrollPane scrollPane;
 
 	
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					VentanaSeleccionArchivo frame = new VentanaSeleccionArchivo();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
 	public VentanaSeleccionArchivo() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 452, 467);
-		contentPane = new JPanel();
-		contentPane.setLayout(null);
-		setContentPane(contentPane);
-		
-		textField = new JTextField();
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setBounds(100, 100, 582, 570);
+        contentPane = new JPanel();
+        contentPane.setLayout(null);
+        setContentPane(contentPane);
+        
+        textField = new JTextField();
         textField.setToolTipText("Inserta la ruta del fichero");
-        textField.setBounds(45, 26, 220, 20);
+        textField.setBounds(45, 26, 356, 20);
         contentPane.add(textField);
         textField.setColumns(10);
  
         JButton btnSeleccionar = new JButton("Abrir");
-        btnSeleccionar.setBounds(288, 25, 119, 23);
+        btnSeleccionar.setBounds(423, 25, 119, 23);
         contentPane.add(btnSeleccionar);
         
-        JTextArea textArea = new JTextArea();
-        textArea.setBounds(52, 75, 209, 338);
-        contentPane.add(textArea);
+        JScrollPane scrollPane = new JScrollPane();
+        scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+        scrollPane.setBounds(45, 68, 497, 437);
+        contentPane.add(scrollPane);
         
-        textFieldBorde = new JTextField();
-        textFieldBorde.setToolTipText("Inserta la ruta del fichero");
-        textFieldBorde.setColumns(10);
-        textFieldBorde.setBounds(45, 70, 220, 347);
-        contentPane.add(textFieldBorde);
+        JTextArea textArea = new JTextArea();
+        scrollPane.setViewportView(textArea);
+        textArea.setEditable(false);
+        textArea.setLineWrap(true);
  
        btnSeleccionar.addActionListener(new ActionListener() {
-    	   public void actionPerformed(ActionEvent e) {
-    		   File ruta = new File("src/Almacen");
-    		   JFileChooser jf = new JFileChooser();
-    		   jf.setCurrentDirectory(ruta);
-    		   jf.showOpenDialog(null);
-    		   File archivo = jf.getSelectedFile();
-    		   if(archivo != null) {
-    			   textField.setText(archivo.getAbsolutePath());
-    			   Lector leer = new Lector();
-    			   textArea.setText(leer.LeerExtension(archivo.getAbsolutePath()));;
-    		   }
-    		   
-    	   }
-    	   
+           public void actionPerformed(ActionEvent e) {
+               File ruta = new File("src/Almacen");
+               JFileChooser jf = new JFileChooser();
+               jf.setCurrentDirectory(ruta);
+               jf.showOpenDialog(null);
+               File archivo = jf.getSelectedFile();
+               if(archivo != null) {
+                   textField.setText(archivo.getAbsolutePath());
+                   Lector leer = new Lector();
+                   try {
+					textArea.setText(leer.LeerExtension(archivo.getAbsolutePath()));
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				};
+               }
+               
+           
+           }
        });
- 
-            
 	}
 }
+
+            
+    
+
+

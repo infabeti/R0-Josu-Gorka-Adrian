@@ -2,6 +2,10 @@ package reto;
 
 import java.io.*;
 import java.util.*;
+
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.text.PDFTextStripper;
+import org.apache.pdfbox.text.PDFTextStripperByArea;
 import org.apache.poi.hwpf.HWPFDocument;
 import org.apache.poi.xwpf.extractor.*;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
@@ -10,8 +14,6 @@ import org.w3c.dom.*;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
-import com.qoppa.pdfText.PDFText;
-
 import org.apache.poi.hwpf.extractor.WordExtractor;
 
 public class Lector {
@@ -19,7 +21,7 @@ public class Lector {
 	public Lector() {
 	}
 	
-	public String LeerExtension(String Ruta) {
+	public String LeerExtension(String Ruta) throws IOException {
 		String salida = "";
 		if (Encontrar(Ruta)==true) {
 			if(Ruta.endsWith(".doc")) {
@@ -69,9 +71,7 @@ public class Lector {
 				System.out.println("La ruta no corresponde a ningun archivo");
 			} catch (IOException e) {
 				e.printStackTrace();
-			}
-
-		System.out.println(entrada);	
+			}	
 		return entrada;
 	}
 	
@@ -89,23 +89,31 @@ public class Lector {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}		
-		System.out.println(entrada);
 		
 		return entrada;
 	}
 	
-	public String leerPDF(String ruta) {
-		try {
-			PDFText pdfText = new PDFText (ruta, null);			
-			String docText = pdfText.getText();				
-			System.out.printf(docText);			
-			return(docText);
-			
-		} catch (Throwable t) {
-			
-			t.printStackTrace();
+	public String leerPDF(String ruta) throws IOException {
+		
+		String entrada ="";
+		
+		try (PDDocument document = PDDocument.load(new File(ruta))) {
+
+
+            if (!document.isEncrypted()) {
+
+                PDFTextStripperByArea stripper = new PDFTextStripperByArea();
+              
+
+                PDFTextStripper tStripper = new PDFTextStripper();
+
+                entrada = tStripper.getText(document);
+
+
+            }
+
 		}
-		return null;
+		return entrada;
 		
 	}
 	
@@ -134,7 +142,6 @@ public class Lector {
 			e.printStackTrace();
 		}
 		
-		System.out.println(entrada);
 		return entrada;
 	}
 	
