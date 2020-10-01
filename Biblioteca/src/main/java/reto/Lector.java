@@ -19,7 +19,7 @@ public class Lector {
 	public Lector() {
 	}
 	
-	public String main(String Ruta) {
+	public String LeerExtension(String Ruta) {
 		String salida = "";
 		if (Encontrar(Ruta)==true) {
 			if(Ruta.endsWith(".doc")) {
