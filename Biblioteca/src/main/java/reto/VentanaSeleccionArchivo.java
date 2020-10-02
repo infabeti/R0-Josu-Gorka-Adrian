@@ -55,8 +55,8 @@ public class VentanaSeleccionArchivo extends JFrame {
         textArea.setEditable(false);
         textArea.setLineWrap(true);
  
-       btnSeleccionar.addActionListener(new ActionListener() {
-           public void actionPerformed(ActionEvent e) {
+        btnSeleccionar.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
                File ruta = new File("src/Almacen");
                JFileChooser jf = new JFileChooser();
                jf.setCurrentDirectory(ruta);
@@ -65,11 +65,7 @@ public class VentanaSeleccionArchivo extends JFrame {
                if(archivo != null) {
                    textField.setText(archivo.getAbsolutePath());
                    Lector leer = new Lector();
-                   try {
-					textArea.setText(leer.LeerExtension(archivo.getAbsolutePath()));
-				} catch (IOException e1) {
-					e1.printStackTrace();
-				};
+                   textArea.setText(leer.LeerExtension(archivo.getAbsolutePath()));;
                }
                
            

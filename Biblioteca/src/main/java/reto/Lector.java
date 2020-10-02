@@ -21,7 +21,7 @@ public class Lector {
 	public Lector() {
 	}
 	
-	public String LeerExtension(String Ruta) throws IOException {
+	public String LeerExtension(String Ruta){
 		String salida = "";
 		if (Encontrar(Ruta)==true) {
 			if(Ruta.endsWith(".doc")) {
@@ -36,7 +36,6 @@ public class Lector {
 		}else {
 			System.out.println("Archivo No encontrado");
 		}
-		
 		return salida;
 	}
 	
@@ -49,72 +48,63 @@ public class Lector {
 	}
 	
 	public boolean Encontrar(String ruta) {
-			
 		File archivo = new File(ruta);
 		if (!archivo.exists()) {
+			return false;
+		}else {
 			return true;
-		}
-		else {
-		return true;
 		}
 	}
 	
 	public String leerDOC(String ruta){
 		String entrada = "";	
-			try {
-				File fichero = new File(ruta);
-				FileInputStream fis = new FileInputStream(fichero);
-					HWPFDocument hwpfd = new HWPFDocument(fis);
-					WordExtractor we = new WordExtractor(hwpfd);
-					entrada = we.getText();		
-			} catch (FileNotFoundException e) {
-				System.out.println("La ruta no corresponde a ningun archivo");
-			} catch (IOException e) {
-				e.printStackTrace();
-			}	
+		try {
+			File fichero = new File(ruta);
+			FileInputStream fis = new FileInputStream(fichero);
+			HWPFDocument hwpfd = new HWPFDocument(fis);
+			WordExtractor we = new WordExtractor(hwpfd);
+			entrada = we.getText();		
+		} catch (FileNotFoundException e) {
+			System.out.println("La ruta no corresponde a ningun archivo");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}	
 		return entrada;
 	}
 	
 	public String leerDOCX(String ruta){
 		String entrada = "";
-			try {
-				File fichero = new File(ruta);
-				FileInputStream fis = new FileInputStream(fichero);
-					XWPFDocument documentX = new XWPFDocument(fis);         
-					XWPFWordExtractor ex = new XWPFWordExtractor(documentX);
-					entrada = ex.getText();
+		try {
+			File fichero = new File(ruta);
+			FileInputStream fis = new FileInputStream(fichero);
+			XWPFDocument documentX = new XWPFDocument(fis);         
+			XWPFWordExtractor ex = new XWPFWordExtractor(documentX);
+			entrada = ex.getText();
 		
-			} catch (FileNotFoundException e) {
-				System.out.println("La ruta no corresponde a ningun archivo");
-			} catch (IOException e) {
-				e.printStackTrace();
-			}		
+		} catch (FileNotFoundException e) {
+			System.out.println("La ruta no corresponde a ningun archivo");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}		
 		
 		return entrada;
 	}
 	
-	public String leerPDF(String ruta) throws IOException {
-		
+	public String leerPDF(String ruta){
 		String entrada ="";
-		
-		try (PDDocument document = PDDocument.load(new File(ruta))) {
-
-
-            if (!document.isEncrypted()) {
-
-                PDFTextStripperByArea stripper = new PDFTextStripperByArea();
-              
-
-                PDFTextStripper tStripper = new PDFTextStripper();
-
-                entrada = tStripper.getText(document);
-
-
-            }
-
-		}
+		try {
+			try (PDDocument document = PDDocument.load(new File(ruta))) {
+            	if (!document.isEncrypted()) {
+            		PDFTextStripperByArea stripper = new PDFTextStripperByArea();
+            		PDFTextStripper tStripper = new PDFTextStripper();
+            		entrada = tStripper.getText(document);
+				}
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+        }
 		return entrada;
-		
 	}
 	
 	public String leerXML(String ruta) {
@@ -137,7 +127,6 @@ public class Lector {
 					entrada += ntemp.getTextContent();
 				}
 			}
-			
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
