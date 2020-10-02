@@ -1,14 +1,10 @@
 package reto;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
+
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -16,12 +12,11 @@ import java.io.IOException;
 
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import javax.swing.border.EmptyBorder;
+
 import javax.swing.ScrollPaneConstants;
 
 public class VentanaSeleccionArchivo extends JFrame {
@@ -73,7 +68,6 @@ public class VentanaSeleccionArchivo extends JFrame {
                    try {
 					textArea.setText(leer.LeerExtension(archivo.getAbsolutePath()));
 				} catch (IOException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				};
                }
