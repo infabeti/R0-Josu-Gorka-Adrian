@@ -8,8 +8,6 @@ import javax.swing.JPanel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
-import java.io.IOException;
-
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 
@@ -22,12 +20,16 @@ import javax.swing.ScrollPaneConstants;
 public class VentanaSeleccionArchivo extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textFieldBorde;
-	private JScrollPane scrollPane;
-
+	JTextField textField;
+	private JButton btnSeleccionar;
+	JTextArea textArea; 
+	public static void main(String[] args) {
+		VentanaSeleccionArchivo iniciar = new VentanaSeleccionArchivo();
+		iniciar.setVisible(true);
+	}
 	
 	public VentanaSeleccionArchivo() {
+		setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 582, 570);
         contentPane = new JPanel();
@@ -40,7 +42,7 @@ public class VentanaSeleccionArchivo extends JFrame {
         contentPane.add(textField);
         textField.setColumns(10);
  
-        JButton btnSeleccionar = new JButton("Abrir");
+        btnSeleccionar = new JButton("Abrir");
         btnSeleccionar.setBounds(423, 25, 119, 23);
         contentPane.add(btnSeleccionar);
         
@@ -50,7 +52,7 @@ public class VentanaSeleccionArchivo extends JFrame {
         scrollPane.setBounds(45, 68, 497, 437);
         contentPane.add(scrollPane);
         
-        JTextArea textArea = new JTextArea();
+        textArea = new JTextArea();
         scrollPane.setViewportView(textArea);
         textArea.setEditable(false);
         textArea.setLineWrap(true);
@@ -67,10 +69,7 @@ public class VentanaSeleccionArchivo extends JFrame {
                    Lector leer = new Lector();
                    textArea.setText(leer.LeerExtension(archivo.getAbsolutePath()));;
                }
-               
-           
-           }
-       });
+           }});
 	}
 }
 

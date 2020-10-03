@@ -1,25 +1,24 @@
 package reto;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.*;
 import java.util.*;
 
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
-import org.apache.pdfbox.text.PDFTextStripperByArea;
 import org.apache.poi.hwpf.HWPFDocument;
 import org.apache.poi.xwpf.extractor.*;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.w3c.dom.*;
 
+import javax.swing.JFileChooser;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
 import org.apache.poi.hwpf.extractor.WordExtractor;
 
 public class Lector {
-	
-	public Lector() {
-	}
 	
 	public String LeerExtension(String Ruta){
 		String salida = "";
@@ -80,13 +79,11 @@ public class Lector {
 			XWPFDocument documentX = new XWPFDocument(fis);         
 			XWPFWordExtractor ex = new XWPFWordExtractor(documentX);
 			entrada = ex.getText();
-		
 		} catch (FileNotFoundException e) {
 			System.out.println("La ruta no corresponde a ningun archivo");
 		} catch (IOException e) {
 			e.printStackTrace();
-		}		
-		
+		}			
 		return entrada;
 	}
 	
@@ -95,13 +92,11 @@ public class Lector {
 		try {
 			try (PDDocument document = PDDocument.load(new File(ruta))) {
             	if (!document.isEncrypted()) {
-            		PDFTextStripperByArea stripper = new PDFTextStripperByArea();
             		PDFTextStripper tStripper = new PDFTextStripper();
             		entrada = tStripper.getText(document);
 				}
 			}
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
         }
 		return entrada;
@@ -111,7 +106,6 @@ public class Lector {
 		String entrada = "";
 		Document doc;
 		Node ntemp;
-
 		File fichero = new File(ruta);
 		try {
 			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
@@ -130,8 +124,6 @@ public class Lector {
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
-		
 		return entrada;
 	}
-	
 }
