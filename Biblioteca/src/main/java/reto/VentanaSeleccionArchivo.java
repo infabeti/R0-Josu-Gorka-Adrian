@@ -1,20 +1,14 @@
 package reto;
-
-
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
-
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-
 import javax.swing.ScrollPaneConstants;
 
 public class VentanaSeleccionArchivo extends JFrame {
@@ -31,25 +25,25 @@ public class VentanaSeleccionArchivo extends JFrame {
 	public VentanaSeleccionArchivo() {
 		setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(100, 100, 582, 570);
+        setBounds(100, 100, 658, 570);
         contentPane = new JPanel();
         contentPane.setLayout(null);
         setContentPane(contentPane);
         
         textField = new JTextField();
         textField.setToolTipText("Inserta la ruta del fichero");
-        textField.setBounds(45, 26, 356, 20);
+        textField.setBounds(45, 26, 437, 20);
         contentPane.add(textField);
         textField.setColumns(10);
  
         btnSeleccionar = new JButton("Abrir");
-        btnSeleccionar.setBounds(423, 25, 119, 23);
+        btnSeleccionar.setBounds(493, 25, 119, 23);
         contentPane.add(btnSeleccionar);
         
         JScrollPane scrollPane = new JScrollPane();
         scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-        scrollPane.setBounds(45, 68, 497, 437);
+        scrollPane.setBounds(45, 68, 567, 451);
         contentPane.add(scrollPane);
         
         textArea = new JTextArea();

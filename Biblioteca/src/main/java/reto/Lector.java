@@ -1,7 +1,5 @@
 package reto;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.*;
 import java.util.*;
 
@@ -11,11 +9,8 @@ import org.apache.poi.hwpf.HWPFDocument;
 import org.apache.poi.xwpf.extractor.*;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.w3c.dom.*;
-
-import javax.swing.JFileChooser;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-
 import org.apache.poi.hwpf.extractor.WordExtractor;
 
 public class Lector {
@@ -33,7 +28,7 @@ public class Lector {
 				salida = leerXML(Ruta);
 			}
 		}else {
-			System.out.println("Archivo No encontrado");
+			System.out.println("Archivo No encontrado, revise la extension");
 		}
 		return salida;
 	}
@@ -63,10 +58,8 @@ public class Lector {
 			HWPFDocument hwpfd = new HWPFDocument(fis);
 			WordExtractor we = new WordExtractor(hwpfd);
 			entrada = we.getText();		
-		} catch (FileNotFoundException e) {
-			System.out.println("La ruta no corresponde a ningun archivo");
-		} catch (IOException e) {
-			e.printStackTrace();
+		}  catch (IOException e) {
+			System.out.println("Error, Ruta del fichero DOC mal definida");
 		}	
 		return entrada;
 	}
@@ -79,10 +72,8 @@ public class Lector {
 			XWPFDocument documentX = new XWPFDocument(fis);         
 			XWPFWordExtractor ex = new XWPFWordExtractor(documentX);
 			entrada = ex.getText();
-		} catch (FileNotFoundException e) {
-			System.out.println("La ruta no corresponde a ningun archivo");
 		} catch (IOException e) {
-			e.printStackTrace();
+			System.out.println("Error, Ruta del fichero DOCX mal definida");
 		}			
 		return entrada;
 	}
@@ -97,7 +88,7 @@ public class Lector {
 				}
 			}
 		} catch (IOException e) {
-			e.printStackTrace();
+			System.out.println("Error, Ruta del fichero PDF mal definida");
         }
 		return entrada;
 	}
@@ -122,7 +113,7 @@ public class Lector {
 				}
 			}
 		}catch(Exception e) {
-			e.printStackTrace();
+			System.out.println("Error, Ruta del fichero XML mal definida");
 		}
 		return entrada;
 	}
