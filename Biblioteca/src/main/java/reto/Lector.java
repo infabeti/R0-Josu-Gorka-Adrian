@@ -61,7 +61,7 @@ public class Lector {
 		}  catch (IOException e) {
 			System.out.println("Error, Ruta del fichero DOC mal definida");
 		}	
-		return entrada;
+		return entrada.trim();
 	}
 	
 	public String leerDOCX(String ruta){
@@ -75,7 +75,7 @@ public class Lector {
 		} catch (IOException e) {
 			System.out.println("Error, Ruta del fichero DOCX mal definida");
 		}			
-		return entrada;
+		return entrada.trim();
 	}
 	
 	public String leerPDF(String ruta){
@@ -90,11 +90,12 @@ public class Lector {
 		} catch (IOException e) {
 			System.out.println("Error, Ruta del fichero PDF mal definida");
         }
-		return entrada;
+		return entrada.trim();
 	}
 	
 	public String leerXML(String ruta) {
 		String entrada = "";
+		int num;
 		Document doc;
 		Node ntemp;
 		File fichero = new File(ruta);
@@ -115,6 +116,17 @@ public class Lector {
 		}catch(Exception e) {
 			System.out.println("Error, Ruta del fichero XML mal definida");
 		}
-		return entrada;
+		
+		num = entrada.split("\r\n").length;
+		String[] lineas = new String[num];
+		lineas =  entrada.split("\n");
+		entrada = "";
+		
+		for (int i = 0; i < lineas.length; i++) {
+			lineas[i] = lineas[i].trim();
+			entrada = entrada + lineas[i] + "\r\n";
+		}
+		
+		return entrada.trim();
 	}
 }
