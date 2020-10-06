@@ -5,6 +5,7 @@ import java.util.*;
 
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
+import org.apache.poi.EmptyFileException;
 import org.apache.poi.hwpf.HWPFDocument;
 import org.apache.poi.xwpf.extractor.*;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
@@ -59,8 +60,10 @@ public class Lector {
 			WordExtractor we = new WordExtractor(hwpfd);
 			entrada = we.getText();		
 		}  catch (IOException e) {
-			System.out.println("Error, Ruta del fichero DOC mal definida");
-		}	
+			System.out.println("Error, no se ha encontrado el archivo seleccionado");
+		}  catch (EmptyFileException e) {
+			System.out.println("Error, El fichero esta vacio");
+		}  
 		return entrada;
 	}
 	
@@ -73,7 +76,7 @@ public class Lector {
 			XWPFWordExtractor ex = new XWPFWordExtractor(documentX);
 			entrada = ex.getText();
 		} catch (IOException e) {
-			System.out.println("Error, Ruta del fichero DOCX mal definida");
+			System.out.println("Error, no se ha encontrado el archivo seleccionado");
 		}			
 		return entrada;
 	}
@@ -88,7 +91,7 @@ public class Lector {
 				}
 			}
 		} catch (IOException e) {
-			System.out.println("Error, Ruta del fichero PDF mal definida");
+			System.out.println("Error, no se ha encontrado el archivo seleccionado");
         }
 		return entrada;
 	}
@@ -113,7 +116,7 @@ public class Lector {
 				}
 			}
 		}catch(Exception e) {
-			System.out.println("Error, Ruta del fichero XML mal definida");
+			System.out.println("Error, El archivo selccionado no existe o esta vacio");
 		}
 		return entrada;
 	}

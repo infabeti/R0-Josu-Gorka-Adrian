@@ -53,9 +53,7 @@ public class VentanaSeleccionArchivo extends JFrame {
  
         btnSeleccionar.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
-               File ruta = new File("src/Almacen");
                JFileChooser jf = new JFileChooser();
-               jf.setCurrentDirectory(ruta);
                jf.showOpenDialog(null);
                File archivo = jf.getSelectedFile();
                if(archivo != null) {
