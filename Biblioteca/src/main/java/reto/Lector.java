@@ -16,9 +16,9 @@ import org.apache.poi.hwpf.extractor.WordExtractor;
 
 public class Lector {
 	
-	public String LeerExtension(String Ruta){
+	public String leerExtension(String Ruta){
 		String salida = "";
-		if (Encontrar(Ruta)==true) {
+		if (encontrar(Ruta)==true) {
 			if(Ruta.endsWith(".doc")) {
 				salida = leerDOC(Ruta);
 			}else if(Ruta.endsWith(".docx")) {
@@ -42,7 +42,7 @@ public class Lector {
 		return entrada;
 	}
 	
-	public boolean Encontrar(String ruta) {
+	public boolean encontrar(String ruta) {
 		File archivo = new File(ruta);
 		if (!archivo.exists()) {
 			return false;

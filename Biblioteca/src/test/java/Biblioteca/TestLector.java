@@ -16,7 +16,7 @@ public class TestLector {
 	@Test
 	public void testMainIncorrecto() {
 		String ruta = "src/Almacen/prueba7.doc";
-		String resultado = lector.LeerExtension(ruta);
+		String resultado = lector.leerExtension(ruta);
 		String resultadoEsperado = "Prueba incorrecto";
 		assertNotEquals(resultadoEsperado, resultado);
 	}
@@ -33,7 +33,7 @@ public class TestLector {
 	@Test
 	public void testLeerDOC() {
 		String ruta = "src/Almacen/prueba1.doc";
-		String resultado = lector.LeerExtension(ruta);
+		String resultado = lector.leerExtension(ruta);
 		String resultadoEsperado = "Prueba DOC";
 		assertEquals(resultadoEsperado, resultado);
 	}
@@ -41,7 +41,7 @@ public class TestLector {
 	@Test
 	public void testLeerDOCX() {
 		String ruta = "src/Almacen/prueba2.docx";
-		String resultado = lector.LeerExtension(ruta);
+		String resultado = lector.leerExtension(ruta);
 		String resultadoEsperado = "Prueba DOCX";
 		assertEquals(resultadoEsperado, resultado);
 	}
@@ -49,7 +49,7 @@ public class TestLector {
 	@Test
 	public void testLeerPDF() {
 		String ruta = "src/Almacen/prueba4.pdf";
-		String resultado = lector.LeerExtension(ruta);
+		String resultado = lector.leerExtension(ruta);
 		String resultadoEsperado = "Prueba PDF";
 		assertEquals(resultadoEsperado, resultado);
 	}
@@ -57,7 +57,7 @@ public class TestLector {
 	@Test
 	public void testLeerXML() {
 		String ruta = "src/Almacen/prueba3.xml";
-		String resultado = lector.LeerExtension(ruta);
+		String resultado = lector.leerExtension(ruta);
 		String resultadoEsperado = "Convert number to string\r\n"
 				+ "Examp1.EXE\r\n"
 				+ "1\r\n"
