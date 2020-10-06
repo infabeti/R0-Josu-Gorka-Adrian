@@ -63,8 +63,9 @@ public class Lector {
 			System.out.println("Error, no se ha encontrado el archivo seleccionado");
 		}  catch (EmptyFileException e) {
 			System.out.println("Error, El fichero esta vacio");
-		}  
-		return entrada;
+		}
+		System.out.println("Error, Ruta del fichero DOC mal definida");
+		return entrada.trim();
 	}
 	
 	public String leerDOCX(String ruta){
@@ -78,7 +79,7 @@ public class Lector {
 		} catch (IOException e) {
 			System.out.println("Error, no se ha encontrado el archivo seleccionado");
 		}			
-		return entrada;
+		return entrada.trim();
 	}
 	
 	public String leerPDF(String ruta){
@@ -93,11 +94,12 @@ public class Lector {
 		} catch (IOException e) {
 			System.out.println("Error, no se ha encontrado el archivo seleccionado");
         }
-		return entrada;
+		return entrada.trim();
 	}
 	
 	public String leerXML(String ruta) {
 		String entrada = "";
+		int num;
 		Document doc;
 		Node ntemp;
 		File fichero = new File(ruta);
@@ -118,6 +120,17 @@ public class Lector {
 		}catch(Exception e) {
 			System.out.println("Error, El archivo selccionado no existe o esta vacio");
 		}
-		return entrada;
+		
+		num = entrada.split("\r\n").length;
+		String[] lineas = new String[num];
+		lineas =  entrada.split("\n");
+		entrada = "";
+		
+		for (int i = 0; i < lineas.length; i++) {
+			lineas[i] = lineas[i].trim();
+			entrada = entrada + lineas[i] + "\r\n";
+		}
+		
+		return entrada.trim();
 	}
 }
