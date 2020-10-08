@@ -9,6 +9,8 @@ import org.apache.poi.EmptyFileException;
 import org.apache.poi.hwpf.HWPFDocument;
 import org.apache.poi.xwpf.extractor.*;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
+import org.apache.poi.xwpf.usermodel.XWPFParagraph;
+import org.apache.poi.xwpf.usermodel.XWPFRun;
 import org.w3c.dom.*;
 import org.xml.sax.SAXException;
 
@@ -17,6 +19,10 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
 import org.apache.poi.hwpf.extractor.WordExtractor;
+import org.apache.poi.hwpf.usermodel.CharacterRun;
+import org.apache.poi.hwpf.usermodel.Paragraph;
+import org.apache.poi.hwpf.usermodel.Range;
+import org.apache.poi.poifs.filesystem.POIFSFileSystem;
 
 public class Lector {
 	
@@ -76,6 +82,22 @@ public class Lector {
 			System.out.println("Error, El fichero esta vacio");
 		}
 		return entrada.trim();
+	}
+	
+	public void escribirDOC(String ruta, String contenido) {
+		try {
+			FileOutputStream outStream = new FileOutputStream(ruta);
+			XWPFDocument doc = new XWPFDocument();
+			XWPFParagraph para = doc.createParagraph();
+			XWPFRun run = para.createRun();
+			doc.getParagraphs();
+			run.setText(contenido);
+			doc.write(outStream);
+			outStream.close();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public String leerDOCX(String ruta){
@@ -164,4 +186,6 @@ public class Lector {
 		
 		return entrada.trim();
 	}
+	
+	
 }
