@@ -17,6 +17,8 @@ public class VentanaSeleccionArchivo extends JFrame {
 	JTextField textField;
 	private JButton btnSeleccionar;
 	JTextArea textArea; 
+	private JButton btnEscribir;
+	
 	public static void main(String[] args) {
 		VentanaSeleccionArchivo iniciar = new VentanaSeleccionArchivo();
 		iniciar.setVisible(true);
@@ -43,13 +45,18 @@ public class VentanaSeleccionArchivo extends JFrame {
         JScrollPane scrollPane = new JScrollPane();
         scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-        scrollPane.setBounds(45, 68, 567, 451);
+        scrollPane.setBounds(45, 68, 437, 451);
         contentPane.add(scrollPane);
         
         textArea = new JTextArea();
         scrollPane.setViewportView(textArea);
-        textArea.setEditable(false);
         textArea.setLineWrap(true);
+        
+        btnEscribir = new JButton("Guardar");
+        btnEscribir.setEnabled(false);
+             
+        btnEscribir.setBounds(493, 496, 119, 23);
+        contentPane.add(btnEscribir);
  
         btnSeleccionar.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
@@ -59,9 +66,16 @@ public class VentanaSeleccionArchivo extends JFrame {
                if(archivo != null) {
                    textField.setText(archivo.getAbsolutePath());
                    Lector leer = new Lector();
-                   textArea.setText(leer.leerExtension(archivo.getAbsolutePath()));;
+                   textArea.setText(leer.leerExtension(archivo.getAbsolutePath()));
+                   btnEscribir.setEnabled(true);
                }
            }});
+        btnEscribir.addActionListener(new ActionListener() {
+           	public void actionPerformed(ActionEvent e) {
+        		//escribir(textField.getText(),textArea.getText());
+        		
+           	}
+        });
 	}
 }
 
