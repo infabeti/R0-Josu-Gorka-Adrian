@@ -19,8 +19,6 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
 import org.apache.poi.hwpf.extractor.WordExtractor;
-import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
-import org.apache.poi.openxml4j.opc.OPCPackage;
 
 public class Lector {
 	
@@ -45,7 +43,7 @@ public class Lector {
 	public void escribir(String ruta, String texto) {
 		if (encontrar(ruta)==true) {
 			if(ruta.endsWith(".doc")) {
-				
+				escribirDOC(ruta, texto);
 			}else if(ruta.endsWith(".docx")) {
 				escribirDOCX(ruta, texto);
 			}
@@ -93,6 +91,8 @@ public class Lector {
 		}
 		return entrada.trim();
 	}
+	
+	
 	
 	public String leerDOCX(String ruta){
 		String entrada = "";
@@ -181,6 +181,22 @@ public class Lector {
 		return entrada.trim();
 	}
 	
+	public void escribirDOC(String ruta, String contenido) {
+		try {
+			FileOutputStream outStream = new FileOutputStream(ruta);
+			XWPFDocument doc = new XWPFDocument();
+			XWPFParagraph para = doc.createParagraph();
+			XWPFRun run = para.createRun();
+			doc.getParagraphs();
+			run.setText(contenido);
+			doc.write(outStream);
+			outStream.close();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
 	public void escribirDOCX(String ruta, String texto) {
 		XWPFDocument document = null;
 		FileOutputStream fileOutputStream = null;

@@ -7,3 +7,27 @@ log4j:WARN See http://logging.apache.org/log4j/1.2/faq.html#noconfig for more in
 log4j:WARN No appenders could be found for logger (org.apache.pdfbox.pdfparser.PDFObjectStreamParser).
 log4j:WARN Please initialize the log4j system properly.
 log4j:WARN See http://logging.apache.org/log4j/1.2/faq.html#noconfig for more info.
+Exception in thread "main" java.lang.IllegalArgumentException: The document is really a OOXML file
+	at org.apache.poi.hwpf.HWPFDocumentCore.verifyAndBuildPOIFS(HWPFDocumentCore.java:126)
+	at org.apache.poi.hwpf.HWPFDocument.<init>(HWPFDocument.java:165)
+	at reto.Lector.leerDOC(Lector.java:76)
+	at reto.Lector.escribirDOC(Lector.java:89)
+	at reto.VentanaSeleccionArchivo.main(VentanaSeleccionArchivo.java:24)
+Exception in thread "main" java.lang.IllegalArgumentException: The document is really a OOXML file
+	at org.apache.poi.hwpf.HWPFDocumentCore.verifyAndBuildPOIFS(HWPFDocumentCore.java:126)
+	at org.apache.poi.hwpf.HWPFDocument.<init>(HWPFDocument.java:165)
+	at reto.Lector.leerDOC(Lector.java:76)
+	at reto.Lector.escribirDOC(Lector.java:89)
+	at reto.VentanaSeleccionArchivo.main(VentanaSeleccionArchivo.java:24)
+Exception in thread "main" java.lang.IllegalArgumentException: The document is really a OOXML file
+	at org.apache.poi.hwpf.HWPFDocumentCore.verifyAndBuildPOIFS(HWPFDocumentCore.java:126)
+	at org.apache.poi.hwpf.HWPFDocument.<init>(HWPFDocument.java:165)
+	at reto.Lector.leerDOC(Lector.java:76)
+	at reto.Lector.escribirDOC(Lector.java:89)
+	at reto.VentanaSeleccionArchivo.main(VentanaSeleccionArchivo.java:24)
+Exception in thread "main" java.lang.IllegalArgumentException: The document is really a OOXML file
+	at org.apache.poi.hwpf.HWPFDocumentCore.verifyAndBuildPOIFS(HWPFDocumentCore.java:126)
+	at org.apache.poi.hwpf.HWPFDocument.<init>(HWPFDocument.java:165)
+	at reto.Lector.leerDOC(Lector.java:76)
+	at reto.Lector.escribirDOC(Lector.java:89)
+	at reto.VentanaSeleccionArchivo.main(VentanaSeleccionArchivo.java:24)

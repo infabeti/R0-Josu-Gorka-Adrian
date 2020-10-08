@@ -59,7 +59,7 @@ public class VentanaSeleccionArchivo extends JFrame {
                if(archivo != null) {
                    textField.setText(archivo.getAbsolutePath());
                    Lector leer = new Lector();
-                   textArea.setText(leer.leerExtension(archivo.getAbsolutePath()));;
+                   textArea.setText(leer.leer(archivo.getAbsolutePath()));;
                }
            }});
 	}
