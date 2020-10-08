@@ -25,6 +25,8 @@ public class VentanaSeleccionArchivo extends JFrame {
 	}
 	
 	public VentanaSeleccionArchivo() {
+		Lector leer = new Lector();
+		
 		setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 658, 570);
@@ -65,14 +67,14 @@ public class VentanaSeleccionArchivo extends JFrame {
                File archivo = jf.getSelectedFile();
                if(archivo != null) {
                    textField.setText(archivo.getAbsolutePath());
-                   Lector leer = new Lector();
-                   textArea.setText(leer.leerExtension(archivo.getAbsolutePath()));
+                   
+                   textArea.setText(leer.leer(archivo.getAbsolutePath()));
                    btnEscribir.setEnabled(true);
                }
            }});
         btnEscribir.addActionListener(new ActionListener() {
            	public void actionPerformed(ActionEvent e) {
-        		escribir(textField.getText(),textArea.getText());
+        		leer.escribir(textField.getText(),textArea.getText());
         		
            	}
         });
@@ -81,5 +83,3 @@ public class VentanaSeleccionArchivo extends JFrame {
 
             
     
-
-

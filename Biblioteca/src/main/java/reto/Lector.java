@@ -9,6 +9,8 @@ import org.apache.poi.EmptyFileException;
 import org.apache.poi.hwpf.HWPFDocument;
 import org.apache.poi.xwpf.extractor.*;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
+import org.apache.poi.xwpf.usermodel.XWPFParagraph;
+import org.apache.poi.xwpf.usermodel.XWPFRun;
 import org.w3c.dom.*;
 import org.xml.sax.SAXException;
 
@@ -20,7 +22,7 @@ import org.apache.poi.hwpf.extractor.WordExtractor;
 
 public class Lector {
 	
-	public String leerExtension(String ruta){
+	public String leer(String ruta){
 		String salida = "";
 		if (encontrar(ruta)==true) {
 			if(ruta.endsWith(".doc")) {
@@ -36,6 +38,18 @@ public class Lector {
 			System.out.println("Archivo No encontrado, revise la extension");
 		}
 		return salida;
+	}
+	
+	public void escribir(String ruta, String texto) {
+		if (encontrar(ruta)==true) {
+			if(ruta.endsWith(".doc")) {
+				escribirDOC(ruta, texto);
+			}else if(ruta.endsWith(".docx")) {
+				escribirDOCX(ruta, texto);
+			}
+		}else {
+			System.out.println("Archivo No encontrado, revise la extension");
+		}
 	}
 	
 	public String leerTeclado() {
@@ -77,6 +91,8 @@ public class Lector {
 		}
 		return entrada.trim();
 	}
+	
+	
 	
 	public String leerDOCX(String ruta){
 		String entrada = "";
@@ -163,5 +179,42 @@ public class Lector {
 		}
 		
 		return entrada.trim();
+	}
+	
+	public void escribirDOC(String ruta, String contenido) {
+		try {
+			FileOutputStream outStream = new FileOutputStream(ruta);
+			XWPFDocument doc = new XWPFDocument();
+			XWPFParagraph para = doc.createParagraph();
+			XWPFRun run = para.createRun();
+			doc.getParagraphs();
+			run.setText(contenido);
+			doc.write(outStream);
+			outStream.close();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	public void escribirDOCX(String ruta, String texto) {
+		XWPFDocument document = null;
+		FileOutputStream fileOutputStream = null;
+		try {
+			document = new XWPFDocument();
+			File file = new File(ruta);
+			fileOutputStream = new FileOutputStream(file);
+ 
+			// create Paragraph
+			XWPFParagraph paragraph = document.createParagraph();
+			XWPFRun run = paragraph.createRun();
+			run.setText(texto);
+ 
+			document.write(fileOutputStream);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}  
+		
 	}
 }
