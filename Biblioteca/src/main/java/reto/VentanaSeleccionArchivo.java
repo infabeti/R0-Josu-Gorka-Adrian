@@ -72,7 +72,7 @@ public class VentanaSeleccionArchivo extends JFrame {
            }});
         btnEscribir.addActionListener(new ActionListener() {
            	public void actionPerformed(ActionEvent e) {
-        		//escribir(textField.getText(),textArea.getText());
+        		escribir(textField.getText(),textArea.getText());
         		
            	}
         });
