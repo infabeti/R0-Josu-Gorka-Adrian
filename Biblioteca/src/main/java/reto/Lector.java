@@ -18,6 +18,9 @@ import org.apache.poi.xwpf.usermodel.XWPFRun;
 import org.w3c.dom.*;
 import org.xml.sax.SAXException;
 
+import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.kernel.pdf.PdfWriter;
+
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -166,7 +169,7 @@ public class Lector {
 	public String leerXML(String ruta) {
 		String entrada = "";
 		int num;
-		Document doc;
+		org.w3c.dom.Document doc;
 		Node ntemp;
 		File fichero = new File(ruta);
 		try {
@@ -242,5 +245,19 @@ public class Lector {
 			logger.warning("Ha ocurrido al escribir en el DOCx");
 		}  
 		
+	}
+	
+	public void escribirPDF(String ruta, String contenido) {
+		try {
+			PdfWriter writer = new PdfWriter(ruta);
+			PdfDocument pdfDoc = new PdfDocument(writer);
+			com.itextpdf.layout.Document d = new com.itextpdf.layout.Document(pdfDoc);
+			com.itextpdf.layout.element.Paragraph p1 = new com.itextpdf.layout.element.Paragraph(contenido);
+			d.add(p1);
+			d.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+			logger.warning("Ha ocurrido al escribir en el PDF");
+		}
 	}
 }
