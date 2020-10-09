@@ -2,6 +2,10 @@ package reto;
 
 import java.io.*;
 import java.util.*;
+import java.util.logging.FileHandler;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
 
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
@@ -15,13 +19,30 @@ import org.w3c.dom.*;
 import org.xml.sax.SAXException;
 import org.apache.poi.hwpf.extractor.WordExtractor;
 
+import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.kernel.pdf.PdfWriter;
+
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
 
 public class Lector {
-	
+	private static Logger logger = Logger.getLogger(reto.Lector.class .getName());
+	File error = new File("src/Errores/errores.txt");
+	public void CargarLogger() {
+		logger.setLevel(Level.INFO);
+		FileHandler fileTxt = null;
+		try {
+			fileTxt = new FileHandler("src/Errores/Logging.txt");
+		} catch (IOException e) {
+			System.out.println("Fallo al cargar logger, revise la extension");
+		}
+		SimpleFormatter formatterTxt = new SimpleFormatter();
+		fileTxt.setFormatter(formatterTxt);
+		logger.addHandler(fileTxt);
+	}
+
 	public String leer(String ruta){
 		String salida = "";
 		if (encontrar(ruta)==true) {
@@ -33,9 +54,15 @@ public class Lector {
 				salida = leerPDF(ruta);
 			}else if(ruta.endsWith(".xml")) {
 				salida = leerXML(ruta);
-			}
+			}else {
+				System.out.println("Tipo de Archivo no valido");
+				logger.warning("Metodo leer fallo, Seleccionado tipo de archivo no compatible");
+				}
+			
+				;
 		}else {
 			System.out.println("Archivo No encontrado, revise la extension");
+			logger.warning("Metodo leer fallo, Archivo No encontrado, revise la extension");
 		}
 		return salida;
 	}
@@ -49,9 +76,12 @@ public class Lector {
 				escribirDOC(ruta, texto);
 			}else if(ruta.endsWith(".docx")) {
 				escribirDOCX(ruta, texto);
+			}else if(ruta.endsWith(".pdf")) {
+				escribirPDF(ruta, texto);
 			}
 		}else {
 			System.out.println("Archivo No encontrado, revise la extension");
+			logger.warning("Metodo escribir fallo, Archivo No encontrado, revise la extension");
 		}
 	}
 	
@@ -74,7 +104,6 @@ public class Lector {
 	
 	public String leerDOC(String ruta){
 		String entrada = "";	
-		File error = new File("src/Almacen/errores.txt");
 		try {
 			if(!error.exists()) {
 				error.createNewFile();
@@ -89,8 +118,10 @@ public class Lector {
 			entrada = we.getText();		
 		}  catch (IOException e) {
 			System.out.println("Error, no se ha encontrado el archivo seleccionado");
+			logger.warning("Error en el metodo leerDOC, no se ha encontrado el archivo seleccionado");
 		}  catch (EmptyFileException e) {
 			System.out.println("Error, El fichero esta vacio");
+			logger.warning("Error en el metodo leerDOC, El fichero esta vacio");
 		}
 		return entrada.trim();
 	}
@@ -99,7 +130,6 @@ public class Lector {
 	
 	public String leerDOCX(String ruta){
 		String entrada = "";
-		File error = new File("src/Almacen/errores.txt");
 		try {
 			if(!error.exists()) {
 				error.createNewFile();
@@ -114,13 +144,13 @@ public class Lector {
 			entrada = ex.getText();
 		} catch (IOException e) {
 			System.out.println("Error, no se ha encontrado el archivo seleccionado");
+			logger.warning("Fallo en el metodo leerDOCX al intentar leer el DOCX");
 		}			
 		return entrada.trim();
 	}
 	
 	public String leerPDF(String ruta){
 		String entrada ="";
-		File error = new File("src/Almacen/errores.txt");
 		try {
 			try (PDDocument document = PDDocument.load(new File(ruta))) {
 				if(!error.exists()) {
@@ -136,6 +166,7 @@ public class Lector {
 			}
 		} catch (IOException e) {
 			System.out.println("Error, no se ha encontrado el archivo seleccionado");
+			logger.warning("Fallo en el metodo leerPDF al intentar leer el PDF");
         }
 		return entrada.trim();
 	}
@@ -143,10 +174,9 @@ public class Lector {
 	public String leerXML(String ruta) {
 		String entrada = "";
 		int num;
-		Document doc;
+		org.w3c.dom.Document doc;
 		Node ntemp;
 		File fichero = new File(ruta);
-		File error = new File("src/Almacen/errores.txt");
 		try {
 			if(!error.exists()) {
 				error.createNewFile();
@@ -169,6 +199,7 @@ public class Lector {
 			}
 		}catch(SAXException | IOException | ParserConfigurationException e) {
 			System.out.println("Ha ocurrido un error al leer el XML");
+			logger.warning("Fallo en el metodo leerXML al intentar leer el XML");
 		}
 		
 		num = entrada.split("\r\n").length;
@@ -195,8 +226,8 @@ public class Lector {
 			doc.write(outStream);
 			outStream.close();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+			logger.warning("Ha ocurrido al escribir en el DOC");
 		}
 	}
 
@@ -215,9 +246,23 @@ public class Lector {
  
 			document.write(fileOutputStream);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+			logger.warning("Ha ocurrido al escribir en el DOCX");
 		}  
 		
+	}
+	
+	public void escribirPDF(String ruta, String contenido) {
+		try {
+			PdfWriter writer = new PdfWriter(ruta);
+			PdfDocument pdfDoc = new PdfDocument(writer);
+			com.itextpdf.layout.Document d = new com.itextpdf.layout.Document(pdfDoc);
+			com.itextpdf.layout.element.Paragraph p1 = new com.itextpdf.layout.element.Paragraph(contenido);
+			d.add(p1);
+			d.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+			logger.warning("Ha ocurrido al escribir en el PDF");
+		}
 	}
 }

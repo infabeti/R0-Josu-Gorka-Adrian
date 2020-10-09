@@ -53,7 +53,22 @@ public class TestLector {
 		String resultadoEsperado = "Prueba PDF";
 		assertEquals(resultadoEsperado, resultado);
 	}
-
+	
+	@Test
+	public void testEscribirPDF() {
+		lector.escribirPDF("src/Almacen/pruebaTest.pdf", "TESTEANDO METODO");
+		String resultado = lector.leer("src/Almacen/pruebaTest.pdf");
+		String resultadoEsperado = "TESTEANDO METODO";
+		assertEquals(resultado, resultadoEsperado);
+	}
+	
+	@Test
+	public void testEscribirDOCX() {
+		lector.escribirDOCX("src/Almacen/TestDocx.docx", "TESTEANDO METODO");
+		String resultado = lector.leer("src/Almacen/TestDocx.docx");
+		String resultadoEsperado = "TESTEANDO METODO";
+		assertEquals(resultado, resultadoEsperado);
+	}
 	@Test
 	public void testLeerXML() {
 		String ruta = "src/Almacen/prueba3.xml";

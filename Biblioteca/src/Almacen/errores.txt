@@ -4,9 +4,56 @@ log4j:WARN See http://logging.apache.org/log4j/1.2/faq.html#noconfig for more in
 Exception in thread "AWT-EventQueue-0" java.lang.IllegalArgumentException: The document is really a OOXML file
 	at org.apache.poi.hwpf.HWPFDocumentCore.verifyAndBuildPOIFS(HWPFDocumentCore.java:126)
 	at org.apache.poi.hwpf.HWPFDocument.<init>(HWPFDocument.java:165)
+<<<<<<< HEAD
 	at reto.Lector.leerDOC(Lector.java:87)
 	at reto.Lector.leer(Lector.java:29)
 	at reto.VentanaSeleccionArchivo$1.actionPerformed(VentanaSeleccionArchivo.java:69)
+=======
+	at reto.Lector.leerDOC(Lector.java:76)
+	at reto.Lector.escribirDOC(Lector.java:89)
+	at reto.VentanaSeleccionArchivo.main(VentanaSeleccionArchivo.java:24)
+>>>>>>> baae530b005c4c619cd0dd61bdfd1b0e1b8414e7
+<<<<<<< HEAD
+oct. 09, 2020 9:23:22 A. M. reto.Lector leer
+WARNING: Metodo leer fallo, Archivo No encontrado, revise la extension
+log4j:WARN No appenders could be found for logger (org.apache.pdfbox.pdfparser.PDFObjectStreamParser).
+log4j:WARN Please initialize the log4j system properly.
+log4j:WARN See http://logging.apache.org/log4j/1.2/faq.html#noconfig for more info.
+oct. 09, 2020 9:24:21 A. M. reto.Lector leer
+WARNING: Metodo leer fallo, Archivo No encontrado, revise la extension
+log4j:WARN No appenders could be found for logger (org.apache.pdfbox.pdfparser.PDFObjectStreamParser).
+log4j:WARN Please initialize the log4j system properly.
+log4j:WARN See http://logging.apache.org/log4j/1.2/faq.html#noconfig for more info.
+oct. 09, 2020 9:25:20 A. M. reto.Lector leer
+WARNING: Metodo leer fallo, Archivo No encontrado, revise la extension
+log4j:WARN No appenders could be found for logger (org.apache.pdfbox.pdfparser.PDFObjectStreamParser).
+log4j:WARN Please initialize the log4j system properly.
+log4j:WARN See http://logging.apache.org/log4j/1.2/faq.html#noconfig for more info.
+oct. 09, 2020 9:27:28 A. M. reto.Lector leer
+WARNING: Metodo leer fallo, Archivo No encontrado, revise la extension
+log4j:WARN No appenders could be found for logger (org.apache.pdfbox.pdfparser.PDFObjectStreamParser).
+log4j:WARN Please initialize the log4j system properly.
+log4j:WARN See http://logging.apache.org/log4j/1.2/faq.html#noconfig for more info.
+oct. 09, 2020 9:28:31 A. M. reto.Lector leer
+=======
+oct. 09, 2020 9:26:59 A. M. reto.Lector leer
+>>>>>>> 7f54cc6a142da4bcdf1f8daae4216b8e58cba6ce
+WARNING: Metodo leer fallo, Archivo No encontrado, revise la extension
+log4j:WARN No appenders could be found for logger (org.apache.pdfbox.pdfparser.PDFObjectStreamParser).
+log4j:WARN Please initialize the log4j system properly.
+log4j:WARN See http://logging.apache.org/log4j/1.2/faq.html#noconfig for more info.
+Exception in thread "AWT-EventQueue-0" java.lang.IllegalArgumentException: The document is really a OOXML file
+	at org.apache.poi.hwpf.HWPFDocumentCore.verifyAndBuildPOIFS(HWPFDocumentCore.java:126)
+	at org.apache.poi.hwpf.HWPFDocument.<init>(HWPFDocument.java:165)
+<<<<<<< HEAD
+	at reto.Lector.leerDOC(Lector.java:109)
+	at reto.Lector.leer(Lector.java:47)
+=======
+	at reto.Lector.leerDOC(Lector.java:107)
+	at reto.Lector.leer(Lector.java:50)
+>>>>>>> 7f54cc6a142da4bcdf1f8daae4216b8e58cba6ce
+	at reto.VentanaSeleccionArchivo$1.actionPerformed(VentanaSeleccionArchivo.java:72)
+>>>>>>> ba5c629bf95c70ebef7cb895c035ea05d0902d3b
 	at java.desktop/javax.swing.AbstractButton.fireActionPerformed(AbstractButton.java:1967)
 	at java.desktop/javax.swing.AbstractButton$Handler.actionPerformed(AbstractButton.java:2308)
 	at java.desktop/javax.swing.DefaultButtonModel.fireActionPerformed(DefaultButtonModel.java:405)
@@ -42,3 +89,31 @@ Exception in thread "AWT-EventQueue-0" java.lang.IllegalArgumentException: The d
 	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:109)
 	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
 	at java.desktop/java.awt.EventDispatchThread.run(EventDispatchThread.java:90)
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+log4j:WARN No appenders could be found for logger (org.apache.fontbox.ttf.GlyphSubstitutionTable).
+log4j:WARN Please initialize the log4j system properly.
+log4j:WARN See http://logging.apache.org/log4j/1.2/faq.html#noconfig for more info.
+oct. 09, 2020 9:40:14 A. M. reto.Lector leer
+WARNING: Metodo leer fallo, Archivo No encontrado, revise la extension
+log4j:WARN No appenders could be found for logger (org.apache.pdfbox.pdfparser.PDFObjectStreamParser).
+log4j:WARN Please initialize the log4j system properly.
+log4j:WARN See http://logging.apache.org/log4j/1.2/faq.html#noconfig for more info.
+oct. 09, 2020 9:42:01 A. M. reto.Lector leer
+WARNING: Metodo leer fallo, Archivo No encontrado, revise la extension
+log4j:WARN No appenders could be found for logger (org.apache.fontbox.ttf.GlyphSubstitutionTable).
+log4j:WARN Please initialize the log4j system properly.
+log4j:WARN See http://logging.apache.org/log4j/1.2/faq.html#noconfig for more info.
+<<<<<<< HEAD
+log4j:WARN No appenders could be found for logger (org.apache.pdfbox.pdfparser.PDFObjectStreamParser).
+log4j:WARN Please initialize the log4j system properly.
+log4j:WARN See http://logging.apache.org/log4j/1.2/faq.html#noconfig for more info.
+log4j:WARN No appenders could be found for logger (org.apache.fontbox.ttf.GlyphSubstitutionTable).
+log4j:WARN Please initialize the log4j system properly.
+log4j:WARN See http://logging.apache.org/log4j/1.2/faq.html#noconfig for more info.
+=======
+>>>>>>> 7f54cc6a142da4bcdf1f8daae4216b8e58cba6ce
+>>>>>>> 581ff787d1b5c5fe713a9e4182ffa6357eb8acf0
+>>>>>>> ba5c629bf95c70ebef7cb895c035ea05d0902d3b
