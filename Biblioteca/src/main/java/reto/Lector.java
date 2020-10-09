@@ -29,7 +29,7 @@ import org.apache.poi.hwpf.extractor.WordExtractor;
 
 public class Lector {
 	private static Logger logger = Logger.getLogger(reto.Lector.class .getName());
-	
+	File error = new File("src/Errores/errores.txt");
 	public void CargarLogger() {
 		logger.setLevel(Level.INFO);
 		FileHandler fileTxt = null;
@@ -54,7 +54,12 @@ public class Lector {
 				salida = leerPDF(ruta);
 			}else if(ruta.endsWith(".xml")) {
 				salida = leerXML(ruta);
-			}
+			}else {
+				System.out.println("Tipo de Archivo no valido");
+				logger.warning("Metodo leer fallo, Seleccionado tipo de archivo no compatible");
+				}
+			
+				;
 		}else {
 			System.out.println("Archivo No encontrado, revise la extension");
 			logger.warning("Metodo leer fallo, Archivo No encontrado, revise la extension");
@@ -96,7 +101,6 @@ public class Lector {
 	
 	public String leerDOC(String ruta){
 		String entrada = "";	
-		File error = new File("src/Almacen/errores.txt");
 		try {
 			if(!error.exists()) {
 				error.createNewFile();
@@ -123,7 +127,6 @@ public class Lector {
 	
 	public String leerDOCX(String ruta){
 		String entrada = "";
-		File error = new File("src/Almacen/errores.txt");
 		try {
 			if(!error.exists()) {
 				error.createNewFile();
@@ -145,7 +148,6 @@ public class Lector {
 	
 	public String leerPDF(String ruta){
 		String entrada ="";
-		File error = new File("src/Almacen/errores.txt");
 		try {
 			try (PDDocument document = PDDocument.load(new File(ruta))) {
 				if(!error.exists()) {
@@ -172,7 +174,6 @@ public class Lector {
 		org.w3c.dom.Document doc;
 		Node ntemp;
 		File fichero = new File(ruta);
-		File error = new File("src/Almacen/errores.txt");
 		try {
 			if(!error.exists()) {
 				error.createNewFile();
@@ -243,7 +244,7 @@ public class Lector {
 			document.write(fileOutputStream);
 		} catch (IOException e) {
 			e.printStackTrace();
-			logger.warning("Ha ocurrido al escribir en el DOCx");
+			logger.warning("Ha ocurrido al escribir en el DOCX");
 		}  
 		
 	}
@@ -257,7 +258,6 @@ public class Lector {
 			d.add(p1);
 			d.close();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			logger.warning("Ha ocurrido al escribir en el PDF");
 		}
