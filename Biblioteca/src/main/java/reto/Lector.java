@@ -2,6 +2,10 @@ package reto;
 
 import java.io.*;
 import java.util.*;
+import java.util.logging.FileHandler;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
 
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
@@ -21,7 +25,21 @@ import javax.xml.parsers.ParserConfigurationException;
 import org.apache.poi.hwpf.extractor.WordExtractor;
 
 public class Lector {
+	private static Logger logger = Logger.getLogger(reto.Lector.class .getName());
 	
+	public void CargarLogger() {
+		logger.setLevel(Level.INFO);
+		FileHandler fileTxt = null;
+		try {
+			fileTxt = new FileHandler("src/Errores/Logging.txt");
+		} catch (IOException e) {
+			System.out.println("Fallo al cargar logger, revise la extension");
+		}
+		SimpleFormatter formatterTxt = new SimpleFormatter();
+		fileTxt.setFormatter(formatterTxt);
+		logger.addHandler(fileTxt);
+	}
+
 	public String leer(String ruta){
 		String salida = "";
 		if (encontrar(ruta)==true) {
@@ -36,6 +54,7 @@ public class Lector {
 			}
 		}else {
 			System.out.println("Archivo No encontrado, revise la extension");
+			logger.warning("Metodo leer fallo, Archivo No encontrado, revise la extension");
 		}
 		return salida;
 	}
@@ -49,6 +68,7 @@ public class Lector {
 			}
 		}else {
 			System.out.println("Archivo No encontrado, revise la extension");
+			logger.warning("Metodo escribir fallo, Archivo No encontrado, revise la extension");
 		}
 	}
 	
@@ -86,8 +106,10 @@ public class Lector {
 			entrada = we.getText();		
 		}  catch (IOException e) {
 			System.out.println("Error, no se ha encontrado el archivo seleccionado");
+			logger.warning("Error en el metodo leerDOC, no se ha encontrado el archivo seleccionado");
 		}  catch (EmptyFileException e) {
 			System.out.println("Error, El fichero esta vacio");
+			logger.warning("Error en el metodo leerDOC, El fichero esta vacio");
 		}
 		return entrada.trim();
 	}
@@ -111,6 +133,7 @@ public class Lector {
 			entrada = ex.getText();
 		} catch (IOException e) {
 			System.out.println("Error, no se ha encontrado el archivo seleccionado");
+			logger.warning("Fallo en el metodo leerDOCX al intentar leer el DOCX");
 		}			
 		return entrada.trim();
 	}
@@ -133,6 +156,7 @@ public class Lector {
 			}
 		} catch (IOException e) {
 			System.out.println("Error, no se ha encontrado el archivo seleccionado");
+			logger.warning("Fallo en el metodo leerPDF al intentar leer el PDF");
         }
 		return entrada.trim();
 	}
@@ -166,6 +190,7 @@ public class Lector {
 			}
 		}catch(SAXException | IOException | ParserConfigurationException e) {
 			System.out.println("Ha ocurrido un error al leer el XML");
+			logger.warning("Fallo en el metodo leerXML al intentar leer el XML");
 		}
 		
 		num = entrada.split("\r\n").length;
@@ -192,8 +217,8 @@ public class Lector {
 			doc.write(outStream);
 			outStream.close();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+			logger.warning("Ha ocurrido al escribir en el DOC");
 		}
 	}
 
@@ -212,8 +237,8 @@ public class Lector {
  
 			document.write(fileOutputStream);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+			logger.warning("Ha ocurrido al escribir en el DOCx");
 		}  
 		
 	}

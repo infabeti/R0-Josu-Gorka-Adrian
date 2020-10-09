@@ -26,6 +26,7 @@ public class VentanaSeleccionArchivo extends JFrame {
 	
 	public VentanaSeleccionArchivo() {
 		Lector leer = new Lector();
+		leer.CargarLogger();
 		
 		setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
