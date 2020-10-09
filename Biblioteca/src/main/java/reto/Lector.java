@@ -257,6 +257,7 @@ public class Lector {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			logger.warning("Ha ocurrido al escribir en el PDF");
 		}
 	}
 }
