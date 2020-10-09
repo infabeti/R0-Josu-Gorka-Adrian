@@ -35,7 +35,7 @@ public class VentanaSeleccionArchivo extends JFrame {
         setContentPane(contentPane);
         
         textField = new JTextField();
-        textField.setToolTipText("Inserta la ruta del fichero");
+        textField.setToolTipText("Inserta la ruta del fichero, si quieres escribir un texto que se muestre por consola escriba 'estandar' en la ruta");
         textField.setBounds(45, 26, 437, 20);
         contentPane.add(textField);
         textField.setColumns(10);
@@ -47,16 +47,14 @@ public class VentanaSeleccionArchivo extends JFrame {
         JScrollPane scrollPane = new JScrollPane();
         scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-        scrollPane.setBounds(45, 68, 437, 451);
+        scrollPane.setBounds(45, 68, 567, 417);
         contentPane.add(scrollPane);
         
         textArea = new JTextArea();
         scrollPane.setViewportView(textArea);
         textArea.setLineWrap(true);
         
-        btnEscribir = new JButton("Guardar");
-        btnEscribir.setEnabled(false);
-             
+        btnEscribir = new JButton("Guardar");             
         btnEscribir.setBounds(493, 496, 119, 23);
         contentPane.add(btnEscribir);
  
@@ -69,7 +67,6 @@ public class VentanaSeleccionArchivo extends JFrame {
                    textField.setText(archivo.getAbsolutePath());
                    
                    textArea.setText(leer.leer(archivo.getAbsolutePath()));
-                   btnEscribir.setEnabled(true);
                }
            }});
         btnEscribir.addActionListener(new ActionListener() {

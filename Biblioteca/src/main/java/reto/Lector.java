@@ -13,12 +13,12 @@ import org.apache.poi.xwpf.usermodel.XWPFParagraph;
 import org.apache.poi.xwpf.usermodel.XWPFRun;
 import org.w3c.dom.*;
 import org.xml.sax.SAXException;
+import org.apache.poi.hwpf.extractor.WordExtractor;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
-import org.apache.poi.hwpf.extractor.WordExtractor;
 
 public class Lector {
 	
@@ -41,7 +41,10 @@ public class Lector {
 	}
 	
 	public void escribir(String ruta, String texto) {
-		if (encontrar(ruta)==true) {
+		
+		if (ruta.equals("estandar")) {
+			System.out.println(texto);
+		}else if (encontrar(ruta)==true) {
 			if(ruta.endsWith(".doc")) {
 				escribirDOC(ruta, texto);
 			}else if(ruta.endsWith(".docx")) {
