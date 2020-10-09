@@ -68,6 +68,8 @@ public class Lector {
 				escribirDOC(ruta, texto);
 			}else if(ruta.endsWith(".docx")) {
 				escribirDOCX(ruta, texto);
+			}else if(ruta.endsWith(".pdf")) {
+				escribirPDF(ruta, texto);
 			}
 		}else {
 			System.out.println("Archivo No encontrado, revise la extension");
