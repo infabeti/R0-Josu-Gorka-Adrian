@@ -59,3 +59,32 @@ Exception in thread "AWT-EventQueue-0" java.lang.IllegalArgumentException: The d
 	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:109)
 	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
 	at java.desktop/java.awt.EventDispatchThread.run(EventDispatchThread.java:90)
+oct. 09, 2020 9:51:18 A. M. reto.Lector leer
+WARNING: Metodo leer fallo, Archivo No encontrado, revise la extension
+log4j:WARN No appenders could be found for logger (org.apache.fontbox.ttf.GlyphSubstitutionTable).
+log4j:WARN Please initialize the log4j system properly.
+log4j:WARN See http://logging.apache.org/log4j/1.2/faq.html#noconfig for more info.
+log4j:WARN No appenders could be found for logger (org.apache.fontbox.ttf.GlyphSubstitutionTable).
+log4j:WARN Please initialize the log4j system properly.
+log4j:WARN See http://logging.apache.org/log4j/1.2/faq.html#noconfig for more info.
+oct. 09, 2020 9:53:46 A. M. reto.Lector leer
+WARNING: Metodo leer fallo, Archivo No encontrado, revise la extension
+log4j:WARN No appenders could be found for logger (org.apache.fontbox.ttf.GlyphSubstitutionTable).
+log4j:WARN Please initialize the log4j system properly.
+log4j:WARN See http://logging.apache.org/log4j/1.2/faq.html#noconfig for more info.
+oct. 09, 2020 9:54:16 A. M. reto.Lector leer
+WARNING: Metodo leer fallo, Archivo No encontrado, revise la extension
+log4j:WARN No appenders could be found for logger (org.apache.fontbox.ttf.GlyphSubstitutionTable).
+log4j:WARN Please initialize the log4j system properly.
+log4j:WARN See http://logging.apache.org/log4j/1.2/faq.html#noconfig for more info.
+log4j:WARN No appenders could be found for logger (org.apache.fontbox.ttf.GlyphSubstitutionTable).
+log4j:WARN Please initialize the log4j system properly.
+log4j:WARN See http://logging.apache.org/log4j/1.2/faq.html#noconfig for more info.
+log4j:WARN No appenders could be found for logger (org.apache.fontbox.ttf.GlyphSubstitutionTable).
+log4j:WARN Please initialize the log4j system properly.
+log4j:WARN See http://logging.apache.org/log4j/1.2/faq.html#noconfig for more info.
+oct. 09, 2020 9:57:35 A. M. reto.Lector leer
+WARNING: Metodo leer fallo, Archivo No encontrado, revise la extension
+log4j:WARN No appenders could be found for logger (org.apache.fontbox.ttf.GlyphSubstitutionTable).
+log4j:WARN Please initialize the log4j system properly.
+log4j:WARN See http://logging.apache.org/log4j/1.2/faq.html#noconfig for more info.

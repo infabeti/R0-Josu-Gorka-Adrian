@@ -242,7 +242,7 @@ public class Lector {
 			document.write(fileOutputStream);
 		} catch (IOException e) {
 			e.printStackTrace();
-			logger.warning("Ha ocurrido al escribir en el DOCx");
+			logger.warning("Ha ocurrido al escribir en el DOCX");
 		}  
 		
 	}
