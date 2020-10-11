@@ -13,12 +13,24 @@
 			<attribute name="gradle_used_by_scope" value="test"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-14/">
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-14">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.buildship.core.gradleclasspathcontainer"/>
+	<classpathentry kind="lib" path="src/Librerias/iTEXT 7.1.2/barcodes-7.1.2.jar"/>
+	<classpathentry kind="lib" path="src/Librerias/iTEXT 7.1.2/font-asian-7.1.2.jar"/>
+	<classpathentry kind="lib" path="src/Librerias/iTEXT 7.1.2/forms-7.1.2.jar"/>
+	<classpathentry kind="lib" path="src/Librerias/iTEXT 7.1.2/hyph-7.1.2.jar"/>
+	<classpathentry kind="lib" path="src/Librerias/iTEXT 7.1.2/io-7.1.2.jar"/>
+	<classpathentry kind="lib" path="src/Librerias/iTEXT 7.1.2/kernel-7.1.2.jar"/>
+	<classpathentry kind="lib" path="src/Librerias/iTEXT 7.1.2/layout-7.1.2.jar"/>
+	<classpathentry kind="lib" path="src/Librerias/iTEXT 7.1.2/pdfa-7.1.2.jar"/>
+	<classpathentry kind="lib" path="src/Librerias/iTEXT 7.1.2/pdftest-7.1.2.jar"/>
+	<classpathentry kind="lib" path="src/Librerias/iTEXT 7.1.2/sign-7.1.2.jar"/>
+	<classpathentry kind="lib" path="src/Librerias/iTEXT 7.1.2/slf4j-api-1.7.25.jar"/>
+	<classpathentry kind="lib" path="src/Librerias/iTEXT 7.1.2/slf4j-simple-1.7.25.jar"/>
 	<classpathentry kind="lib" path="src/Librerias/poi-bin-4.1.2/poi-4.1.2/lib/activation-1.1.1.jar"/>
 	<classpathentry kind="lib" path="src/Librerias/poi-bin-4.1.2/poi-4.1.2/lib/commons-codec-1.13.jar"/>
 	<classpathentry kind="lib" path="src/Librerias/poi-bin-4.1.2/poi-4.1.2/lib/commons-collections4-4.4.jar"/>
@@ -40,17 +52,5 @@
 	<classpathentry kind="lib" path="src/Librerias/poi-bin-4.1.2/poi-4.1.2/poi-ooxml-schemas-4.1.2.jar"/>
 	<classpathentry kind="lib" path="src/Librerias/poi-bin-4.1.2/poi-4.1.2/poi-scratchpad-4.1.2.jar"/>
 	<classpathentry kind="lib" path="src/Librerias/pdfbox-app-2.0.21.jar"/>
-	<classpathentry kind="lib" path="src/Librerias/iTEXT 7.1.2/barcodes-7.1.2.jar"/>
-	<classpathentry kind="lib" path="src/Librerias/iTEXT 7.1.2/font-asian-7.1.2.jar"/>
-	<classpathentry kind="lib" path="src/Librerias/iTEXT 7.1.2/forms-7.1.2.jar"/>
-	<classpathentry kind="lib" path="src/Librerias/iTEXT 7.1.2/hyph-7.1.2.jar"/>
-	<classpathentry kind="lib" path="src/Librerias/iTEXT 7.1.2/io-7.1.2.jar"/>
-	<classpathentry kind="lib" path="src/Librerias/iTEXT 7.1.2/kernel-7.1.2.jar"/>
-	<classpathentry kind="lib" path="src/Librerias/iTEXT 7.1.2/layout-7.1.2.jar"/>
-	<classpathentry kind="lib" path="src/Librerias/iTEXT 7.1.2/pdfa-7.1.2.jar"/>
-	<classpathentry kind="lib" path="src/Librerias/iTEXT 7.1.2/pdftest-7.1.2.jar"/>
-	<classpathentry kind="lib" path="src/Librerias/iTEXT 7.1.2/sign-7.1.2.jar"/>
-	<classpathentry kind="lib" path="src/Librerias/iTEXT 7.1.2/slf4j-api-1.7.25.jar"/>
-	<classpathentry kind="lib" path="src/Librerias/iTEXT 7.1.2/slf4j-simple-1.7.25.jar"/>
 	<classpathentry kind="output" path="bin/default"/>
 </classpath>

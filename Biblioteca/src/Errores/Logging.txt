@@ -1,0 +1,2 @@
+oct. 11, 2020 7:58:18 P. M. reto.Lector leer
+WARNING: Metodo leer fallo, Seleccionado tipo de archivo no compatible

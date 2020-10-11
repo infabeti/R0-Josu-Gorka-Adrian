@@ -1,35 +1,41 @@
 package reto;
 
-import java.io.*;
-import java.util.*;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.PrintStream;
+import java.util.Scanner;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
-import org.apache.pdfbox.pdmodel.PDDocument;
-import org.apache.pdfbox.text.PDFTextStripper;
-import org.apache.poi.EmptyFileException;
-import org.apache.poi.hwpf.HWPFDocument;
-import org.apache.poi.xwpf.extractor.*;
-import org.apache.poi.xwpf.usermodel.XWPFDocument;
-import org.apache.poi.xwpf.usermodel.XWPFParagraph;
-import org.apache.poi.xwpf.usermodel.XWPFRun;
-import org.w3c.dom.*;
-import org.xml.sax.SAXException;
-import org.apache.poi.hwpf.extractor.WordExtractor;
-
-import com.itextpdf.kernel.pdf.PdfDocument;
-import com.itextpdf.kernel.pdf.PdfWriter;
-
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.text.PDFTextStripper;
+import org.apache.poi.EmptyFileException;
+import org.apache.poi.hwpf.HWPFDocument;
+import org.apache.poi.hwpf.extractor.WordExtractor;
+import org.apache.poi.xwpf.extractor.XWPFWordExtractor;
+import org.apache.poi.xwpf.usermodel.XWPFDocument;
+import org.apache.poi.xwpf.usermodel.XWPFParagraph;
+import org.apache.poi.xwpf.usermodel.XWPFRun;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
+
+import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.kernel.pdf.PdfWriter;
 
 public class Lector {
-	private static Logger logger = Logger.getLogger(reto.Lector.class .getName());
+	private static Logger logger = Logger.getLogger(reto.Lector.class.getName());
 	File error = new File("src/Errores/errores.txt");
+
 	public void CargarLogger() {
 		logger.setLevel(Level.INFO);
 		FileHandler fileTxt = null;
@@ -43,134 +49,132 @@ public class Lector {
 		logger.addHandler(fileTxt);
 	}
 
-	public String leer(String ruta){
+	public String leer(String ruta) {
 		String salida = "";
-		if (encontrar(ruta)==true) {
-			if(ruta.endsWith(".doc")) {
+		if (encontrar(ruta) == true) {
+			if (ruta.endsWith(".doc")) {
 				salida = leerDOC(ruta);
-			}else if(ruta.endsWith(".docx")) {
+			} else if (ruta.endsWith(".docx")) {
 				salida = leerDOCX(ruta);
-			}else if(ruta.endsWith(".pdf")) {
+			} else if (ruta.endsWith(".pdf")) {
 				salida = leerPDF(ruta);
-			}else if(ruta.endsWith(".xml")) {
+			} else if (ruta.endsWith(".xml")) {
 				salida = leerXML(ruta);
-			}else {
-				System.out.println("Tipo de Archivo no valido");
+			} else {
+				salida = ("Tipo de Archivo no valido");
 				logger.warning("Metodo leer fallo, Seleccionado tipo de archivo no compatible");
-				}
-			
-				;
-		}else {
+			}
+
+			;
+		} else {
 			System.out.println("Archivo No encontrado, revise la extension");
 			logger.warning("Metodo leer fallo, Archivo No encontrado, revise la extension");
 		}
 		return salida;
 	}
-	
+
 	public void escribir(String ruta, String texto) {
-		
+
 		if (ruta.equals("estandar")) {
 			System.out.println(texto);
-		}else if (encontrar(ruta)==true) {
-			if(ruta.endsWith(".doc")) {
+		} else if (encontrar(ruta) == true) {
+			if (ruta.endsWith(".doc")) {
 				escribirDOC(ruta, texto);
-			}else if(ruta.endsWith(".docx")) {
+			} else if (ruta.endsWith(".docx")) {
 				escribirDOCX(ruta, texto);
-			}else if(ruta.endsWith(".pdf")) {
+			} else if (ruta.endsWith(".pdf")) {
 				escribirPDF(ruta, texto);
 			}
-		}else {
+		} else {
 			System.out.println("Archivo No encontrado, revise la extension");
 			logger.warning("Metodo escribir fallo, Archivo No encontrado, revise la extension");
 		}
 	}
-	
+
 	public String leerTeclado() {
 		String entrada = "";
 		Scanner sc = new Scanner(System.in);
-		System.out.println("Introduzca la Ruta del fichero que quieres Leer: ");	
+		System.out.println("Introduzca la Ruta del fichero que quieres Leer: ");
 		entrada = sc.next();
 		return entrada;
 	}
-	
+
 	public boolean encontrar(String ruta) {
 		File archivo = new File(ruta);
 		if (!archivo.exists()) {
 			return false;
-		}else {
+		} else {
 			return true;
 		}
 	}
-	
-	public String leerDOC(String ruta){
-		String entrada = "";	
+
+	public String leerDOC(String ruta) {
+		String entrada = "";
 		try {
-			if(!error.exists()) {
+			if (!error.exists()) {
 				error.createNewFile();
 			}
-			PrintStream ps = new PrintStream(new BufferedOutputStream(new FileOutputStream(error,true)),true);
+			PrintStream ps = new PrintStream(new BufferedOutputStream(new FileOutputStream(error, true)), true);
 			System.setErr(ps);
-			
+
 			File fichero = new File(ruta);
 			FileInputStream fis = new FileInputStream(fichero);
 			HWPFDocument hwpfd = new HWPFDocument(fis);
 			WordExtractor we = new WordExtractor(hwpfd);
-			entrada = we.getText();		
-		}  catch (IOException e) {
+			entrada = we.getText();
+		} catch (IOException e) {
 			System.out.println("Error, no se ha encontrado el archivo seleccionado");
 			logger.warning("Error en el metodo leerDOC, no se ha encontrado el archivo seleccionado");
-		}  catch (EmptyFileException e) {
+		} catch (EmptyFileException e) {
 			System.out.println("Error, El fichero esta vacio");
 			logger.warning("Error en el metodo leerDOC, El fichero esta vacio");
 		}
 		return entrada.trim();
 	}
-	
-	
-	
-	public String leerDOCX(String ruta){
+
+	public String leerDOCX(String ruta) {
 		String entrada = "";
 		try {
-			if(!error.exists()) {
+			if (!error.exists()) {
 				error.createNewFile();
 			}
-			PrintStream ps = new PrintStream(new BufferedOutputStream(new FileOutputStream(error,true)),true);
+			PrintStream ps = new PrintStream(new BufferedOutputStream(new FileOutputStream(error, true)), true);
 			System.setErr(ps);
-			
+
 			File fichero = new File(ruta);
 			FileInputStream fis = new FileInputStream(fichero);
-			XWPFDocument documentX = new XWPFDocument(fis);         
+			XWPFDocument documentX = new XWPFDocument(fis);
 			XWPFWordExtractor ex = new XWPFWordExtractor(documentX);
 			entrada = ex.getText();
 		} catch (IOException e) {
 			System.out.println("Error, no se ha encontrado el archivo seleccionado");
 			logger.warning("Fallo en el metodo leerDOCX al intentar leer el DOCX");
-		}			
+		}
 		return entrada.trim();
 	}
-	
-	public String leerPDF(String ruta){
-		String entrada ="";
+
+	public String leerPDF(String ruta) {
+		String entrada = "";
 		try {
 			try (PDDocument document = PDDocument.load(new File(ruta))) {
-				if(!error.exists()) {
+				if (!error.exists()) {
 					error.createNewFile();
 				}
-				PrintStream ps = new PrintStream(new BufferedOutputStream(new FileOutputStream(error,true)),true);
+				PrintStream ps = new PrintStream(new BufferedOutputStream(new FileOutputStream(error, true)), true);
 				System.setErr(ps);
-				
+
 				if (!document.isEncrypted()) {
-            		PDFTextStripper tStripper = new PDFTextStripper();
-            		entrada = tStripper.getText(document);
+					PDFTextStripper tStripper = new PDFTextStripper();
+					entrada = tStripper.getText(document);
 				}
 			}
 		} catch (IOException e) {
 			System.out.println("Error, no se ha encontrado el archivo seleccionado");
 			logger.warning("Fallo en el metodo leerPDF al intentar leer el PDF");
-        }
+		}
 		return entrada.trim();
 	}
-	
+
 	public String leerXML(String ruta) {
 		String entrada = "";
 		int num;
@@ -178,43 +182,43 @@ public class Lector {
 		Node ntemp;
 		File fichero = new File(ruta);
 		try {
-			if(!error.exists()) {
+			if (!error.exists()) {
 				error.createNewFile();
 			}
-			PrintStream ps = new PrintStream(new BufferedOutputStream(new FileOutputStream(error,true)),true);
+			PrintStream ps = new PrintStream(new BufferedOutputStream(new FileOutputStream(error, true)), true);
 			System.setErr(ps);
 
 			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-			factory.setIgnoringComments(true);	
+			factory.setIgnoringComments(true);
 			factory.setIgnoringElementContentWhitespace(true);
 			DocumentBuilder builder = factory.newDocumentBuilder();
 			doc = builder.parse(fichero);
 			Node raiz = doc.getFirstChild();
 			NodeList nodeList = raiz.getChildNodes();
-			for(int i = 0; i < nodeList.getLength(); i++) {
+			for (int i = 0; i < nodeList.getLength(); i++) {
 				ntemp = nodeList.item(i);
-				if(ntemp.getNodeType() == Node.ELEMENT_NODE) {
+				if (ntemp.getNodeType() == Node.ELEMENT_NODE) {
 					entrada += ntemp.getTextContent();
 				}
 			}
-		}catch(SAXException | IOException | ParserConfigurationException e) {
+		} catch (SAXException | IOException | ParserConfigurationException e) {
 			System.out.println("Ha ocurrido un error al leer el XML");
 			logger.warning("Fallo en el metodo leerXML al intentar leer el XML");
 		}
-		
+
 		num = entrada.split("\r\n").length;
 		String[] lineas = new String[num];
-		lineas =  entrada.split("\n");
+		lineas = entrada.split("\n");
 		entrada = "";
-		
+
 		for (int i = 0; i < lineas.length; i++) {
 			lineas[i] = lineas[i].trim();
 			entrada = entrada + lineas[i] + "\r\n";
 		}
-		
+
 		return entrada.trim();
 	}
-	
+
 	public void escribirDOC(String ruta, String contenido) {
 		try {
 			FileOutputStream outStream = new FileOutputStream(ruta);
@@ -238,20 +242,20 @@ public class Lector {
 			document = new XWPFDocument();
 			File file = new File(ruta);
 			fileOutputStream = new FileOutputStream(file);
- 
+
 			// create Paragraph
 			XWPFParagraph paragraph = document.createParagraph();
 			XWPFRun run = paragraph.createRun();
 			run.setText(texto);
- 
+
 			document.write(fileOutputStream);
 		} catch (IOException e) {
 			e.printStackTrace();
 			logger.warning("Ha ocurrido al escribir en el DOCX");
-		}  
-		
+		}
+
 	}
-	
+
 	public void escribirPDF(String ruta, String contenido) {
 		try {
 			PdfWriter writer = new PdfWriter(ruta);
