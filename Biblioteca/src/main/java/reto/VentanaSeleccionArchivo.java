@@ -4,6 +4,8 @@ import javax.swing.JPanel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.util.regex.Pattern;
+
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JScrollPane;
@@ -61,12 +63,17 @@ public class VentanaSeleccionArchivo extends JFrame {
  
         btnSeleccionar.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
+        		String ruta[]=null;
+        		String rutaentera=null;
                JFileChooser jf = new JFileChooser();
                jf.showOpenDialog(null);
                File archivo = jf.getSelectedFile();
                if(archivo != null) {
-                   textField.setText(archivo.getAbsolutePath());
-                   
+            	   rutaentera=archivo.getAbsolutePath();
+            	   System.out.println(rutaentera);
+                   ruta=rutaentera.split(Pattern.quote("\\"));
+                   System.out.println(ruta[ruta.length-1].toString());
+                   textField.setText(ruta[ruta.length-1].toString());
                    textArea.setText(leer.leer(archivo.getAbsolutePath()));
                }
            }});
