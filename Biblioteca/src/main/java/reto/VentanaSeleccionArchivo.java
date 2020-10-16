@@ -12,6 +12,9 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
+import javax.swing.JLabel;
+import java.awt.Font;
+import java.awt.Color;
 
 public class VentanaSeleccionArchivo extends JFrame {
 
@@ -20,6 +23,7 @@ public class VentanaSeleccionArchivo extends JFrame {
 	private JButton btnSeleccionar;
 	JTextArea textArea; 
 	private JButton btnEscribir;
+	private JTextField textOculto;
 	
 	public static void main(String[] args) {
 		VentanaSeleccionArchivo iniciar = new VentanaSeleccionArchivo();
@@ -60,24 +64,45 @@ public class VentanaSeleccionArchivo extends JFrame {
         btnEscribir = new JButton("Guardar");             
         btnEscribir.setBounds(493, 496, 119, 23);
         contentPane.add(btnEscribir);
+        
+        JLabel TipoArchivo = new JLabel("");
+        TipoArchivo.setBounds(45, 496, 181, 23);
+        contentPane.add(TipoArchivo);
+        
+        JLabel Guardado = new JLabel("Guardado Correctamente");
+        Guardado.setForeground(Color.BLUE);
+        Guardado.setFont(new Font("Arial", Font.PLAIN, 11));
+        Guardado.setBounds(361, 496, 131, 23);
+        Guardado.setVisible(false);
+        contentPane.add(Guardado);
+        
+        textOculto = new JTextField();
+        textOculto.setToolTipText("Inserta la ruta del fichero, si quieres escribir un texto que se muestre por consola escriba 'estandar' en la ruta");
+        textOculto.setColumns(10);
+        textOculto.setBounds(45, 28, 437, 20);
+        textOculto.setVisible(false);
+        contentPane.add(textOculto);
  
         btnSeleccionar.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
-        		String ruta[]=null;
-        		String rutamodificada=null;
         		String rutaentera=null;
-               JFileChooser jf = new JFileChooser();
-               jf.showOpenDialog(null);
-               File archivo = jf.getSelectedFile();
-               if(archivo != null) {
-            	   rutaentera=archivo.getAbsolutePath();   
-                   textField.setText(leer.modificarRuta(rutaentera));
+        		String nombre;
+        		JFileChooser jf = new JFileChooser();
+        		jf.showOpenDialog(null);
+        		File archivo = jf.getSelectedFile();
+        		if(archivo != null) {
+            	   rutaentera=archivo.getAbsolutePath();
+            	   nombre=leer.modificarRuta(rutaentera);
+                   textField.setText(nombre);
+                   textOculto.setText(rutaentera);
                    textArea.setText(leer.leer(archivo.getAbsolutePath()));
+                   TipoArchivo.setText("Estas en "+nombre);
                }
            }});
         btnEscribir.addActionListener(new ActionListener() {
            	public void actionPerformed(ActionEvent e) {
-        		leer.escribir(textField.getText(),textArea.getText());
+        		leer.escribir(textOculto.getText(),textArea.getText());
+        		Guardado.setVisible(true);
            	}
         });
 	}
