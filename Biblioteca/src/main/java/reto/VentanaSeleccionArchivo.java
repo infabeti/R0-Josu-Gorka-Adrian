@@ -64,23 +64,20 @@ public class VentanaSeleccionArchivo extends JFrame {
         btnSeleccionar.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		String ruta[]=null;
+        		String rutamodificada=null;
         		String rutaentera=null;
                JFileChooser jf = new JFileChooser();
                jf.showOpenDialog(null);
                File archivo = jf.getSelectedFile();
                if(archivo != null) {
-            	   rutaentera=archivo.getAbsolutePath();
-            	   System.out.println(rutaentera);
-                   ruta=rutaentera.split(Pattern.quote("\\"));
-                   System.out.println(ruta[ruta.length-1].toString());
-                   textField.setText(ruta[ruta.length-1].toString());
+            	   rutaentera=archivo.getAbsolutePath();   
+                   textField.setText(leer.modificarRuta(rutaentera));
                    textArea.setText(leer.leer(archivo.getAbsolutePath()));
                }
            }});
         btnEscribir.addActionListener(new ActionListener() {
            	public void actionPerformed(ActionEvent e) {
         		leer.escribir(textField.getText(),textArea.getText());
-        		
            	}
         });
 	}
