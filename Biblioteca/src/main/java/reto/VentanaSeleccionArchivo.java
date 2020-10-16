@@ -15,6 +15,7 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.Color;
+import java.awt.SystemColor;
 
 public class VentanaSeleccionArchivo extends JFrame {
 
@@ -31,13 +32,15 @@ public class VentanaSeleccionArchivo extends JFrame {
 	}
 	
 	public VentanaSeleccionArchivo() {
+		setResizable(false);
+		setTitle("BIBLIOTECA");
 		Lector leer = new Lector();
 		leer.CargarLogger();
-		
-		setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 658, 570);
         contentPane = new JPanel();
+        contentPane.setBackground(SystemColor.inactiveCaption);
+        contentPane.setForeground(Color.LIGHT_GRAY);
         contentPane.setLayout(null);
         setContentPane(contentPane);
         
@@ -66,7 +69,8 @@ public class VentanaSeleccionArchivo extends JFrame {
         contentPane.add(btnEscribir);
         
         JLabel TipoArchivo = new JLabel("");
-        TipoArchivo.setBounds(45, 496, 181, 23);
+        TipoArchivo.setForeground(Color.RED);
+        TipoArchivo.setBounds(45, 496, 295, 23);
         contentPane.add(TipoArchivo);
         
         JLabel Guardado = new JLabel("Guardado Correctamente");
@@ -79,7 +83,7 @@ public class VentanaSeleccionArchivo extends JFrame {
         textOculto = new JTextField();
         textOculto.setToolTipText("Inserta la ruta del fichero, si quieres escribir un texto que se muestre por consola escriba 'estandar' en la ruta");
         textOculto.setColumns(10);
-        textOculto.setBounds(45, 28, 437, 20);
+        textOculto.setBounds(329, 37, 131, 4);
         textOculto.setVisible(false);
         contentPane.add(textOculto);
  

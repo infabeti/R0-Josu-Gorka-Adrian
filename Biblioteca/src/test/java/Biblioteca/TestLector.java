@@ -86,4 +86,11 @@ public class TestLector {
 				+ "Find succeeding characters\r\n" + "Examp2.EXE\r\n" + "abc\r\n" + "def";
 		assertEquals(resultadoEsperado, resultado);
 	}
+	@Test
+	public void testmodificarRuta() {
+		String ruta = "src/Almacen/Conlinux\\prueba3.xml";
+		String resultado = lector.modificarRuta(ruta);
+		String resultadoEsperado = "prueba3.xml";
+		assertEquals(resultadoEsperado, resultado);
+	}
 }

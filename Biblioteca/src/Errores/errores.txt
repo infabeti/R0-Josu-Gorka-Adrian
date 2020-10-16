@@ -322,3 +322,10 @@ Exception in thread "AWT-EventQueue-0" java.lang.IllegalArgumentException: The d
 	at java.desktop/java.awt.EventDispatchThread.run(EventDispatchThread.java:90)
 oct. 16, 2020 9:26:25 A. M. reto.Lector escribir
 WARNING: Metodo escribir fallo, Archivo No encontrado, revise la extension
+oct. 16, 2020 9:53:54 A. M. reto.Lector leer
+WARNING: Metodo leer fallo, Archivo No encontrado, revise la extension
+oct. 16, 2020 9:53:54 A. M. reto.Lector leer
+WARNING: Metodo leer fallo, Archivo No encontrado, revise la extension
+log4j:WARN No appenders could be found for logger (org.apache.fontbox.ttf.GlyphSubstitutionTable).
+log4j:WARN Please initialize the log4j system properly.
+log4j:WARN See http://logging.apache.org/log4j/1.2/faq.html#noconfig for more info.
