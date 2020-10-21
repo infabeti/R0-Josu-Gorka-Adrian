@@ -20,6 +20,15 @@ import java.util.logging.SimpleFormatter;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.Result;
+import javax.xml.transform.Source;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerConfigurationException;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.TransformerFactoryConfigurationError;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
 
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
@@ -30,6 +39,8 @@ import org.apache.poi.xwpf.extractor.XWPFWordExtractor;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.apache.poi.xwpf.usermodel.XWPFParagraph;
 import org.apache.poi.xwpf.usermodel.XWPFRun;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
@@ -91,6 +102,8 @@ public class Lector {
 				escribirDOCX(ruta, texto);
 			} else if (ruta.endsWith(".pdf")) {
 				escribirPDF(ruta, texto);
+			} else if (ruta.endsWith(".xml")) {
+				escribirXML(ruta, texto);
 			} else if (ruta.endsWith(".html")) {
 				escribirHTML(ruta, texto);
 			}
@@ -187,7 +200,7 @@ public class Lector {
 	public String leerXML(String ruta) {
 		String entrada = "";
 		int num;
-		org.w3c.dom.Document doc;
+		Document doc;
 		Node ntemp;
 		File fichero = new File(ruta);
 		try {
@@ -207,7 +220,11 @@ public class Lector {
 			for (int i = 0; i < nodeList.getLength(); i++) {
 				ntemp = nodeList.item(i);
 				if (ntemp.getNodeType() == Node.ELEMENT_NODE) {
-					entrada += ntemp.getTextContent(); 
+					entrada += ntemp.getNodeName() + "\n";
+					for (int j = 0; j < ntemp.getChildNodes().getLength(); j++) {
+						entrada += ntemp.getChildNodes().item(j).getNodeName() + ": " + ntemp.getChildNodes().item(j).getTextContent() +  "\n";
+					}
+					entrada += "---\n";
 				}
 			}
 		} catch (SAXException | IOException | ParserConfigurationException e) {
@@ -215,9 +232,9 @@ public class Lector {
 			logger.warning("Fallo en el metodo leerXML al intentar leer el XML");
 		}
 
-		num = entrada.split("\r\n").length;
+		num = entrada.split("\n").length;
 		String[] lineas = new String[num];
-		lineas = entrada.split("\n");
+		lineas = entrada.split("\r\n");
 		entrada = "";
 
 		for (int i = 0; i < lineas.length; i++) {
@@ -302,15 +319,87 @@ public class Lector {
 			logger.warning("Ha ocurrido al escribir en el PDF");
 		}
 	}
+	
 	public void escribirHTML(String ruta, String contenido) {
-		  try {
-		        FileWriter fw = new FileWriter(ruta);
-		        BufferedWriter bw = new BufferedWriter(fw);
+		try {
+			FileWriter fw = new FileWriter(ruta);
+		    BufferedWriter bw = new BufferedWriter(fw);
 		        
-		        bw.write(contenido);
-		        bw.close();        
-		    } catch (IOException ex) {
-		    	logger.warning("Excepción de archivo no encontrado" + ex.getMessage());
-		    }
+		    bw.write(contenido);
+		    bw.close();        
+		} catch (IOException ex) {
+		    logger.warning("Excepción de archivo no encontrado" + ex.getMessage());
 		}
+	}
+	
+	public void escribirXML(String ruta, String contenido) {
+		String[] texto = contenido.split("\n");
+		File fichero = new File(ruta);
+		String nodo = texto[0];
+		Boolean contados = false;
+		int cont = 0;
+		int atributos = 0;
+		
+		for (int i = 1; i < texto.length && !contados; i++) {
+			if(texto[i].equals("---")) {
+				contados = true;
+				atributos = cont;
+			}
+			cont++;
+		}
+		
+		try {
+			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+			factory.setIgnoringComments(true);
+			factory.setIgnoringElementContentWhitespace(true);
+			DocumentBuilder builder;
+			
+				builder = factory.newDocumentBuilder();
+			
+			Document doc = builder.parse(fichero);
+			int nodos = 0;
+			
+			for (int i = 0; i < texto.length; i++) {
+				if (texto[i].equals("---")) {
+					
+				}else if(texto[i].equals(nodo)){
+					texto[i] = "---";
+					nodos++;
+				}else {
+					texto[i] = texto[i].split(":")[1].trim();
+				}
+			}
+			cont = 1;
+			for (int i = 0; i < nodos; i++) {
+				if(nodos > doc.getElementsByTagName(nodo).getLength()) {
+					for (int j = 0; j < nodos - doc.getElementsByTagName(nodo).getLength(); j++) {
+						Node nuevoNodo = doc.createElement(nodo);
+						for (int k = 0; k < doc.getElementsByTagName(nodo).item(0).getChildNodes().getLength(); k++) {
+							Node nodoHijo = doc.createElement(doc.getElementsByTagName(nodo).item(0).getChildNodes().item(k).getNodeName());
+							nuevoNodo.appendChild(nodoHijo);
+						}
+						doc.getElementsByTagName(nodo).item(i).getParentNode().appendChild(nuevoNodo);
+					}
+				}
+				for (int j = 0; j < doc.getElementsByTagName(nodo).item(i).getChildNodes().getLength(); j++) {
+					while(texto[cont].equals("---") || texto[cont].equals(nodo)) {
+						cont++;
+					}
+					Element elemento = (Element) doc.getElementsByTagName(nodo).item(i).getChildNodes().item(j);
+					elemento.setTextContent(texto[cont]);
+					cont++;
+				}
+			}
+			
+			Transformer transformer = TransformerFactory.newInstance().newTransformer();
+			Result output = new StreamResult(fichero);
+			Source input = new DOMSource(doc);
+			transformer.transform(input, output);
+			
+		} catch (ParserConfigurationException | SAXException | IOException | TransformerFactoryConfigurationError | TransformerException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		
+	}
 }
