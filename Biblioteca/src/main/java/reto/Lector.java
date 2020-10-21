@@ -7,6 +7,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.util.Scanner;
+import java.util.StringTokenizer;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -146,11 +147,16 @@ public class Lector {
 			XWPFDocument documentX = new XWPFDocument(fis);
 			XWPFWordExtractor ex = new XWPFWordExtractor(documentX);
 			entrada = ex.getText();
+			StringTokenizer st = new StringTokenizer(entrada,".");
+			while (st.hasMoreTokens()) {
+				System.out.println(entrada = entrada +"\n"+ st.nextToken()+".");
+			}
+			
 		} catch (IOException e) {
 			System.out.println("Error, no se ha encontrado el archivo seleccionado");
 			logger.warning("Fallo en el metodo leerDOCX al intentar leer el DOCX");
 		}
-		return entrada.trim();
+		return entrada;
 	}
 
 	public String leerPDF(String ruta) {
