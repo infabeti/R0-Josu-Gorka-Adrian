@@ -70,15 +70,16 @@ public class TestLector {
 
 	@Test
 	public void testEscribirPDF() {
-		lector.escribirPDF("src/Almacen/pruebaTest.pdf", "TESTEANDO METODO");
+		lector.escribir("src/Almacen/pruebaTest.pdf", "TESTEANDO METODO");
 		String resultado = lector.leer("src/Almacen/pruebaTest.pdf");
 		String resultadoEsperado = "TESTEANDO METODO";
 		assertEquals(resultado, resultadoEsperado);
 	}
 
+
 	@Test
 	public void testEscribirDOCX() {
-		lector.escribirDOCX("src/Almacen/TestDocx.docx", "TESTEANDO METODO");
+		lector.escribir("src/Almacen/TestDocx.docx", "TESTEANDO METODO");
 		String resultado = lector.leer("src/Almacen/TestDocx.docx");
 		String resultadoEsperado = "TESTEANDO METODO";
 		assertEquals(resultado, resultadoEsperado);
@@ -86,7 +87,7 @@ public class TestLector {
 	
 	@Test
 	public void testEscribirHTML() {
-		lector.escribirHTML("src/Almacen/TestHtml.html", "Testeando Metodo");
+		lector.escribir("src/Almacen/TestHtml.html", "Testeando Metodo");
 		String resultado = lector.leer("src/Almacen/TestHtml.html");
 		String resultadoEsperado = "Testeando Metodo";
 		assertEquals(resultado, resultadoEsperado);
@@ -99,5 +100,12 @@ public class TestLector {
 		String resultadoEsperado = "Convert number to string\r\n" + "Examp1.EXE\r\n" + "1\r\n" + "One\r\n" + "\r\n"
 				+ "Find succeeding characters\r\n" + "Examp2.EXE\r\n" + "abc\r\n" + "def";
 		assertEquals(resultadoEsperado, resultado);
+	}
+	@Test
+	public void testEscribirEstandar() {
+		lector.escribir("estandar", "estandar");
+		String resultado = "estandar";
+		String resultadoEsperado = "estandar";
+		assertEquals(resultado, resultadoEsperado);
 	}
 }

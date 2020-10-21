@@ -390,3 +390,40 @@ WARNING: Metodo leer fallo, Seleccionado tipo de archivo no compatible
 log4j:WARN No appenders could be found for logger (org.apache.fontbox.ttf.GlyphSubstitutionTable).
 log4j:WARN Please initialize the log4j system properly.
 log4j:WARN See http://logging.apache.org/log4j/1.2/faq.html#noconfig for more info.
+log4j:WARN No appenders could be found for logger (org.apache.fontbox.ttf.GlyphSubstitutionTable).
+log4j:WARN Please initialize the log4j system properly.
+log4j:WARN See http://logging.apache.org/log4j/1.2/faq.html#noconfig for more info.
+oct. 21, 2020 9:30:33 A. M. reto.Lector leer
+WARNING: Metodo leer fallo, Archivo No encontrado, revise la extension
+oct. 21, 2020 9:30:33 A. M. reto.Lector leer
+WARNING: Metodo leer fallo, Seleccionado tipo de archivo no compatible
+log4j:WARN No appenders could be found for logger (org.apache.fontbox.ttf.GlyphSubstitutionTable).
+log4j:WARN Please initialize the log4j system properly.
+log4j:WARN See http://logging.apache.org/log4j/1.2/faq.html#noconfig for more info.
+oct. 21, 2020 9:31:02 A. M. reto.Lector leer
+WARNING: Metodo leer fallo, Archivo No encontrado, revise la extension
+oct. 21, 2020 9:31:02 A. M. reto.Lector leer
+WARNING: Metodo leer fallo, Seleccionado tipo de archivo no compatible
+oct. 21, 2020 9:31:53 A. M. reto.Lector leer
+WARNING: Metodo leer fallo, Archivo No encontrado, revise la extension
+oct. 21, 2020 9:31:53 A. M. reto.Lector leer
+WARNING: Metodo leer fallo, Seleccionado tipo de archivo no compatible
+log4j:WARN No appenders could be found for logger (org.apache.fontbox.ttf.GlyphSubstitutionTable).
+log4j:WARN Please initialize the log4j system properly.
+log4j:WARN See http://logging.apache.org/log4j/1.2/faq.html#noconfig for more info.
+oct. 21, 2020 9:35:18 A. M. reto.Lector escribir
+WARNING: Metodo escribir fallo, Archivo No encontrado, revise la extension
+oct. 21, 2020 9:35:18 A. M. reto.Lector leer
+WARNING: Metodo leer fallo, Archivo No encontrado, revise la extension
+oct. 21, 2020 9:35:18 A. M. reto.Lector leer
+WARNING: Metodo leer fallo, Seleccionado tipo de archivo no compatible
+log4j:WARN No appenders could be found for logger (org.apache.fontbox.ttf.GlyphSubstitutionTable).
+log4j:WARN Please initialize the log4j system properly.
+log4j:WARN See http://logging.apache.org/log4j/1.2/faq.html#noconfig for more info.
+oct. 21, 2020 9:35:52 A. M. reto.Lector leer
+WARNING: Metodo leer fallo, Archivo No encontrado, revise la extension
+oct. 21, 2020 9:35:52 A. M. reto.Lector leer
+WARNING: Metodo leer fallo, Seleccionado tipo de archivo no compatible
+log4j:WARN No appenders could be found for logger (org.apache.fontbox.ttf.GlyphSubstitutionTable).
+log4j:WARN Please initialize the log4j system properly.
+log4j:WARN See http://logging.apache.org/log4j/1.2/faq.html#noconfig for more info.
