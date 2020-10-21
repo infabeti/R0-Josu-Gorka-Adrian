@@ -207,7 +207,7 @@ public class Lector {
 			for (int i = 0; i < nodeList.getLength(); i++) {
 				ntemp = nodeList.item(i);
 				if (ntemp.getNodeType() == Node.ELEMENT_NODE) {
-					entrada += ntemp.getTextContent();
+					entrada += ntemp.getTextContent(); 
 				}
 			}
 		} catch (SAXException | IOException | ParserConfigurationException e) {
