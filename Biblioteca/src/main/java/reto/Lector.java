@@ -1,9 +1,14 @@
 package reto;
 
 import java.io.BufferedOutputStream;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.util.Scanner;
@@ -60,6 +65,8 @@ public class Lector {
 				salida = leerPDF(ruta);
 			} else if (ruta.endsWith(".xml")) {
 				salida = leerXML(ruta);
+			} else if (ruta.endsWith(".html")) {
+					salida = leerHTML(ruta);
 			} else {
 				salida = ("Tipo de Archivo no valido");
 				logger.warning("Metodo leer fallo, Seleccionado tipo de archivo no compatible");
@@ -84,6 +91,8 @@ public class Lector {
 				escribirDOCX(ruta, texto);
 			} else if (ruta.endsWith(".pdf")) {
 				escribirPDF(ruta, texto);
+			} else if (ruta.endsWith(".html")) {
+				escribirHTML(ruta, texto);
 			}
 		} else {
 			System.out.println("Archivo No encontrado, revise la extension");
@@ -219,6 +228,30 @@ public class Lector {
 		return entrada.trim();
 	}
 
+	public String leerHTML(String ruta) {
+		String Escribir = "";
+		String cadena;
+		FileReader fr = null;
+		try { 
+			fr = new FileReader(ruta);
+		} catch (FileNotFoundException e) {
+			logger.warning("Excepción de archivo no encontrado" + e.getMessage());
+			System.out.println("No se ha podido encontrar el archivo. ERROR: " + e.toString());
+		}
+		BufferedReader br = new BufferedReader(fr);
+		
+		try {
+			while ((cadena = br.readLine()) != null) {
+				Escribir += cadena + "\n";
+			}
+			br.close();
+		} catch (IOException e) {
+			logger.warning("Excepción de Entrada/Salida" + e.getMessage());
+			System.out.println("Excepción de Entrada/Salida" + e.getMessage());
+		}	
+		return Escribir.trim();
+	}
+	
 	public void escribirDOC(String ruta, String contenido) {
 		try {
 			FileOutputStream outStream = new FileOutputStream(ruta);
@@ -269,4 +302,15 @@ public class Lector {
 			logger.warning("Ha ocurrido al escribir en el PDF");
 		}
 	}
+	public void escribirHTML(String ruta, String contenido) {
+		  try {
+		        FileWriter fw = new FileWriter(ruta);
+		        BufferedWriter bw = new BufferedWriter(fw);
+		        
+		        bw.write(contenido);
+		        bw.close();        
+		    } catch (IOException ex) {
+		    	logger.warning("Excepción de archivo no encontrado" + ex.getMessage());
+		    }
+		}
 }

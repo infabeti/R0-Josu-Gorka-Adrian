@@ -53,7 +53,13 @@ public class TestLector {
 		String resultadoEsperado = "HOLA BUENAS";
 		assertEquals(resultadoEsperado, resultado);
 	}
-
+	@Test
+	public void testLeerHTML() {
+		String ruta = "src/Almacen/prueba.html";
+		String resultado = lector.leer(ruta);
+		String resultadoEsperado = "Prueba HTML";
+		assertEquals(resultadoEsperado, resultado);
+	}
 	@Test
 	public void testLeerNoValido() {
 		String ruta = "src/Almacen/DiagramaSprint1.dia";
@@ -75,6 +81,14 @@ public class TestLector {
 		lector.escribirDOCX("src/Almacen/TestDocx.docx", "TESTEANDO METODO");
 		String resultado = lector.leer("src/Almacen/TestDocx.docx");
 		String resultadoEsperado = "TESTEANDO METODO";
+		assertEquals(resultado, resultadoEsperado);
+	}
+	
+	@Test
+	public void testEscribirHTML() {
+		lector.escribirHTML("src/Almacen/TestHtml.html", "Testeando Metodo");
+		String resultado = lector.leer("src/Almacen/TestHtml.html");
+		String resultadoEsperado = "Testeando Metodo";
 		assertEquals(resultado, resultadoEsperado);
 	}
 
