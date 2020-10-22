@@ -7,11 +7,13 @@ import java.io.ByteArrayInputStream;
 
 import org.junit.Test;
 
+import reto.Escritor;
 import reto.Lector;
 
 public class TestLector {
 
 	Lector lector = new Lector();
+	Escritor escritor = new Escritor();
 
 	@Test
 	public void testMainIncorrecto() {
@@ -86,7 +88,7 @@ public class TestLector {
 
 	@Test
 	public void testEscribirPDF() {
-		lector.escribir("src/Almacen/pruebaTest.pdf", "TESTEANDO METODO");
+		escritor.escribir("src/Almacen/pruebaTest.pdf", "TESTEANDO METODO");
 		String resultado = lector.leer("src/Almacen/pruebaTest.pdf");
 		String resultadoEsperado = "TESTEANDO METODO";
 		assertEquals(resultado, resultadoEsperado);
@@ -94,7 +96,7 @@ public class TestLector {
 
 	@Test
 	public void testEscribirDOCX() {
-		lector.escribir("src/Almacen/TestDocx.docx", "TESTEANDO METODO");
+		escritor.escribir("src/Almacen/TestDocx.docx", "TESTEANDO METODO");
 		String resultado = lector.leer("src/Almacen/TestDocx.docx");
 		String resultadoEsperado = "TESTEANDO METODO";
 		assertEquals(resultado, resultadoEsperado);
@@ -105,7 +107,7 @@ public class TestLector {
 		String resultadoEsperado = lector.leer("src/Almacen/prueba3.xml") + "\n" + "Test\n"
 				+ "Name: Convert number to string\n" + "CommandLine: Examp1.EXE\n" + "Input: 1\n" + "Output: One\n"
 				+ "---";
-		lector.escribir("src/Almacen/prueba3.xml",
+		escritor.escribir("src/Almacen/prueba3.xml",
 				lector.leer("src/Almacen/prueba3.xml") + "\n" + "Test\n" + "Name: Convert number to string\n"
 						+ "CommandLine: Examp1.EXE\n" + "Input: 1\n" + "Output: One\n" + "---");
 		String resultado = lector.leer("src/Almacen/prueba3.xml");
@@ -114,7 +116,7 @@ public class TestLector {
 
 	@Test
 	public void testEscribirHTML() {
-		lector.escribir("src/Almacen/TestHtml.html", "Testeando Metodo");
+		escritor.escribir("src/Almacen/TestHtml.html", "Testeando Metodo");
 		String resultado = lector.leer("src/Almacen/TestHtml.html");
 		String resultadoEsperado = "Testeando Metodo";
 		assertEquals(resultado, resultadoEsperado);
@@ -122,7 +124,7 @@ public class TestLector {
 
 	@Test
 	public void testEscribirEstandar() {
-		lector.escribir("estandar", "estandar");
+		escritor.escribir("estandar", "estandar");
 		String resultado = "estandar";
 		String resultadoEsperado = "estandar";
 		assertEquals(resultado, resultadoEsperado);
