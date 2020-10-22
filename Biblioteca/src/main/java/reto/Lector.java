@@ -135,6 +135,9 @@ public class Lector {
 
 	public String leerDOCX(String ruta) {
 		String entrada = "";
+		String salida = "";
+		String salidaMod = "";
+
 		try {
 			if (!error.exists()) {
 				error.createNewFile();
@@ -147,16 +150,19 @@ public class Lector {
 			XWPFDocument documentX = new XWPFDocument(fis);
 			XWPFWordExtractor ex = new XWPFWordExtractor(documentX);
 			entrada = ex.getText();
-			StringTokenizer st = new StringTokenizer(entrada,".");
+			StringTokenizer st = new StringTokenizer(entrada, ".");
 			while (st.hasMoreTokens()) {
-				System.out.println(entrada = entrada +"\n"+ st.nextToken()+".");
+				salida = salida + st.nextToken() + "\n\n";
+
 			}
-			
+
+			salida = salida.replace(":", "\n");
+
 		} catch (IOException e) {
 			System.out.println("Error, no se ha encontrado el archivo seleccionado");
 			logger.warning("Fallo en el metodo leerDOCX al intentar leer el DOCX");
 		}
-		return entrada;
+		return salida;
 	}
 
 	public String leerPDF(String ruta) {
@@ -275,15 +281,16 @@ public class Lector {
 			logger.warning("Ha ocurrido al escribir en el PDF");
 		}
 	}
+
 	public String modificarRuta(String Ruta) {
-		String ruta[]=null;
+		String ruta[] = null;
 		String Nombre;
-		String rutamodificada=null;
- 	   	rutamodificada=Ruta.replace("\\", ",").replace("/", ",");
-        ruta=rutamodificada.split(",");
-        Nombre=ruta[ruta.length-1].toString();
+		String rutamodificada = null;
+		rutamodificada = Ruta.replace("\\", ",").replace("/", ",");
+		ruta = rutamodificada.split(",");
+		Nombre = ruta[ruta.length - 1].toString();
 		return Nombre;
-	
+
 	}
 
 }
