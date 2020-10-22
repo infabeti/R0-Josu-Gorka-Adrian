@@ -381,8 +381,9 @@ public class Lector {
 
 		} catch (ParserConfigurationException | SAXException | IOException | TransformerFactoryConfigurationError
 				| TransformerException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println("Ha ocurrido un error al escribir en el XML");
+			logger.warning("Ha ocurrido un error al escribir en el XML" + e.getMessage());
 		}
 
 	}
