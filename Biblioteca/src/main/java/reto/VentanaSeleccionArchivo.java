@@ -21,9 +21,8 @@ public class VentanaSeleccionArchivo extends JFrame {
 	JTextArea textArea;
 	private JButton btnEscribir;
 
-	public static void main(String[] args) {
-		VentanaSeleccionArchivo iniciar = new VentanaSeleccionArchivo();
-		iniciar.setVisible(true);
+	public void iniciarVentana() {
+		setVisible(true);
 	}
 
 	public VentanaSeleccionArchivo() {
