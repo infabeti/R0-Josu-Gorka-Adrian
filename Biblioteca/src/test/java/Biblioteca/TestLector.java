@@ -53,6 +53,21 @@ public class TestLector {
 		String resultadoEsperado = "HOLA BUENAS";
 		assertEquals(resultadoEsperado, resultado);
 	}
+
+	@Test
+	public void testLeerXML() {
+		String ruta = "src/Almacen/Libros.xml";
+		String resultado = lector.leer(ruta);
+		String resultadoEsperado = "Book\n" + "Author: Garghentini, Davide\n" + "Title: XML Developer's Guide\n"
+				+ "Genre: Computer\n" + "Price: 44.95\n" + "PublishDate: 2000-10-01\n"
+				+ "Description: An in-depth look at creating applications with XML.\n" + "---\n" + "Book\n"
+				+ "Author: Garcia, Debra\n" + "Title: Midnight Rain\n" + "Genre: Fantasy\n" + "Price: 5.95\n"
+				+ "PublishDate: 2000-12-16\n"
+				+ "Description: A former architect battles corporate zombies, an evil sorceress, and her own childhood to become queen of the world.\n"
+				+ "---";
+		assertEquals(resultadoEsperado, resultado);
+	}
+
 	@Test
 	public void testLeerHTML() {
 		String ruta = "src/Almacen/prueba.html";
@@ -60,6 +75,7 @@ public class TestLector {
 		String resultadoEsperado = "Prueba HTML";
 		assertEquals(resultadoEsperado, resultado);
 	}
+
 	@Test
 	public void testLeerNoValido() {
 		String ruta = "src/Almacen/DiagramaSprint1.dia";
@@ -76,7 +92,6 @@ public class TestLector {
 		assertEquals(resultado, resultadoEsperado);
 	}
 
-
 	@Test
 	public void testEscribirDOCX() {
 		lector.escribir("src/Almacen/TestDocx.docx", "TESTEANDO METODO");
@@ -84,7 +99,19 @@ public class TestLector {
 		String resultadoEsperado = "TESTEANDO METODO";
 		assertEquals(resultado, resultadoEsperado);
 	}
-	
+
+	@Test
+	public void testEscribirXML() {
+		String resultadoEsperado = lector.leer("src/Almacen/prueba3.xml") + "\n" + "Test\n"
+				+ "Name: Convert number to string\n" + "CommandLine: Examp1.EXE\n" + "Input: 1\n" + "Output: One\n"
+				+ "---";
+		lector.escribir("src/Almacen/prueba3.xml",
+				lector.leer("src/Almacen/prueba3.xml") + "\n" + "Test\n" + "Name: Convert number to string\n"
+						+ "CommandLine: Examp1.EXE\n" + "Input: 1\n" + "Output: One\n" + "---");
+		String resultado = lector.leer("src/Almacen/prueba3.xml");
+		assertEquals(resultado, resultadoEsperado);
+	}
+
 	@Test
 	public void testEscribirHTML() {
 		lector.escribir("src/Almacen/TestHtml.html", "Testeando Metodo");
@@ -94,18 +121,11 @@ public class TestLector {
 	}
 
 	@Test
-	public void testLeerXML() {
-		String ruta = "src/Almacen/prueba3.xml";
-		String resultado = lector.leer(ruta);
-		String resultadoEsperado = "Convert number to string\r\n" + "Examp1.EXE\r\n" + "1\r\n" + "One\r\n" + "\r\n"
-				+ "Find succeeding characters\r\n" + "Examp2.EXE\r\n" + "abc\r\n" + "def";
-		assertEquals(resultadoEsperado, resultado);
-	}
-	@Test
 	public void testEscribirEstandar() {
 		lector.escribir("estandar", "estandar");
 		String resultado = "estandar";
 		String resultadoEsperado = "estandar";
 		assertEquals(resultado, resultadoEsperado);
 	}
+
 }
