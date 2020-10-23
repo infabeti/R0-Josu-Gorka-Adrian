@@ -52,7 +52,7 @@ public class TestLector {
 	public void testLeerPDF() {
 		String ruta = "src/Almacen/prueba4.pdf";
 		String resultado = lector.leer(ruta);
-		String resultadoEsperado = "HOLA BUENAS";
+		String resultadoEsperado = "HOLA BUENAS Tardes";
 		assertEquals(resultadoEsperado, resultado);
 	}
 
