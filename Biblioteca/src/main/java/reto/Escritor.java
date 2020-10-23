@@ -61,7 +61,6 @@ public class Escritor {
 			File file = new File(ruta);
 			fileOutputStream = new FileOutputStream(file);
 
-			// create Paragraph
 			XWPFParagraph paragraph = document.createParagraph();
 			XWPFRun run = paragraph.createRun();
 			run.setText(texto);

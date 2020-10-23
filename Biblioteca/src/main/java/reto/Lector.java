@@ -94,7 +94,6 @@ public class Lector {
 	public String leerDOCX(String ruta) {
 		String entrada = "";
 		String salida = "";
-		String salidaMod = "";
 
 		try {
 			if (!error.exists()) {
