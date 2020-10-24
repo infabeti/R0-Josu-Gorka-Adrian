@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.StringTokenizer;
 
 public class leerHTML {
 
@@ -12,6 +13,7 @@ public class leerHTML {
 		Errores log = new Errores();
 
 		String Escribir = "";
+		String salida = "";
 		String cadena;
 		FileReader fr = null;
 		try {
@@ -30,11 +32,21 @@ public class leerHTML {
 				Escribir += cadena + "\n";
 			}
 			br.close();
+			String sinEsp = "";
+			StringTokenizer ste = new StringTokenizer(Escribir, "\n");
+			while (ste.hasMoreTokens()) {
+				sinEsp = sinEsp + ste.nextToken();
+			}
+			StringTokenizer st = new StringTokenizer(sinEsp, ">");
+			while (st.hasMoreTokens()) {
+				salida = salida + st.nextToken() + ">\n";
+			}
+			salida = salida.substring(0, salida.length() - 1);
 		} catch (IOException e) {
 			log.logger.warning("Excepción de Entrada/Salida" + e.getMessage());
 			System.out.println("Excepción de Entrada/Salida" + e.getMessage());
 		}
-		return Escribir.trim();
+		return salida.trim();
 	}
 
 }

@@ -40,6 +40,8 @@ public class leerDOCX {
 
 			salida = salida.replace(":", "\n");
 
+			salida = salida.substring(0, salida.length() - 3);
+
 		} catch (IOException e) {
 			System.out.println("Error, no se ha encontrado el archivo seleccionado");
 			log.logger.warning("Fallo en el metodo leerDOCX al intentar leer el DOCX");

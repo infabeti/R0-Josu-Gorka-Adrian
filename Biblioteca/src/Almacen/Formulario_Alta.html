@@ -1,83 +1,31 @@
 <html>
-    <head>
-        <script type="text/javascript" defer src="Formulario_Alta.js"></script>
-        <meta charset="UTF-8">
-    </head>
-
-    <body>
-        <form>
-            <h2>Formulario para dar de alta</h2>
-            <ul>
-                <li type="disc">Datos *</li>
-                    <input name="Nombre" id="Nombre"/><label>Nombre</label>
-                    <input name="1apellido" id="1apellido"/><label>Primer Apellido</label>
-                    <input name="2apellido" id="2apellido"/><label>Segundo Apellido</label>
-                    <input name="3apellido" id="3apellido"/><label>Tercer Apellido</label>
-                <P>OBLIGATORIO. Rellenar los 3 campos</P>
-
-                <li type="disc">NIF *</li>
-                    <input name="NIF" id="NIF" placeholder="12345678-L"/><label>NIF valido</label>
-                <P>Formato 8 cifras + Letras</P>
-
-                <li type="disc">Direccion *</li>
-                <input name="Dirección" id="Dirección" /><label>Calle,número,-piso-puerta</label>
-                <input name="Codigo_Postal" id="Codigo_Postal" /><label>Codigo postal(cinco cifras)</label>
-                <input name="Poblacion" id="Poblacion" /><label>Poblacion</label>
-              
-                <select name="Territorio" id="Territorio">
-                    <option value="Bizkaia">Bizkaia</option>
-                    <option value="Vizcaya">Vizcaya</option>
-                </select><label>Territorio histórico</label>
-
-                <select name="Estado" id="Estado">
-                    <option value="País_Vasco">País Vasco</option>
-                    <option value="Vasconia">Vasconia</option>
-                    <option value="Euskal_Herria">Euskal Herria</option>
-                </select><label>Estado</label>
-                <P>OBLIGATORIO. Rellenar todos los campos</P>
-
-                <li type="disc">Email *</li>
-                    <input name="Email" id="Email" type="email"/>
-                    <P>Formato: itza@itza.luzapena</P>
-
-                <li type="disc">Telefono *</li>
-                    <input name="Fijo" id="Fijo"/><label>Fijo</label>
-                    <input name="Movil" id="Movil"/><label>Movil</label>
-                    <P>Sin espacios</P>
-
-                <h2>Reserva</h2> 
-                <li type="disc">Condiciones *</li>
-                    <input name="Adultos" id="Adultos"/><label>Adultos (<10 eta >1)</10></label>
-                    <input name="Niños/as" id="Niños/as"/><label>Niños/as (<13)</label>
-                    <input name="días" id="días"/><label>Número de días</label>
-                <P>Obligatorio rellenar para realizar reserva</P>
-
-                <li type="disc">Tipo de alojamiento</li>
-                    <input type="radio" id="alojamiento" value="alojamiento" name="RadioButton" checked="">Solo alojamiento</input>
-                    <input type="radio" id="Mpensión" value="Mpensión" name="RadioButton">Media pensión</input>
-                    <input type="radio" id="CPensión" value="CPensión" name="RadioButton">Pensión completa</input>
-                    <input type="radio" id="Todo" value="Todo" name="RadioButton">Todo incluido</input>
-                <P>Elegir el tipo de reserva</P>
-                
-                <li type="disc">
-                    <button type="button" onclick="Calcular()">Calcular</button>
-                </li>
-            <div id="Precio" >
-                <h2>Pago</h2> 
-                <li type="disc">Total</li>
-                <input name="Total_sin_IVA" id="Total_sin_IVA" readonly="readonly"/><label>Total sin IVA</label>
-                <input name="IVA" id="IVA" readonly="readonly"/><label>
-                <li type="disc">
-                    <button type="button" onclick="Factura()">Factura</button>
-                </li>
-            </div>
-            <div id="dat">
-                <h2>Datos</h2> 
-                <li type="disc"><p id="Datos_Personales"></p></li>
-                <h2>Pago</h2> 
-                <li type="disc"><p id="Factura_Total"></p></li>
-            </div>
-            </ul>
-        </form>
-    </body>
+<head>
+<script type="text/javascript" defer src="Formulario_Alta.js">
+</script>
+<meta charset="UTF-8">
+</head>
+<body>
+<form>
+<h2>
+Formulario para dar de alta</h2>
+<ul>
+<li type="disc">
+Datos *</li>
+<input name="Nombre" id="Nombre"/>
+<label>
+Nombre</label>
+<input name="1apellido" id="1apellido"/>
+<label>
+Primer Apellido</label>
+<input name="2apellido" id="2apellido"/>
+<label>
+Segundo Apellido</label>
+<input name="3apellido" id="3apellido"/>
+<label>
+Tercer Apellido</label>
+<P>
+OBLIGATORIO. Rellenar Los 3 Campos</P>
+</ul>
+</form>
+</body>
 </html>
