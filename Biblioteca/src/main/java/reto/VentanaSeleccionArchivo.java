@@ -25,6 +25,7 @@ public class VentanaSeleccionArchivo extends JFrame {
 	JTextArea textArea;
 	private JButton btnEscribir;
 	private JTextField textOculto;
+	JButton btnVHtml;
 
 	public void iniciarVentana() {
 		setVisible(true);
@@ -41,7 +42,7 @@ public class VentanaSeleccionArchivo extends JFrame {
 		setTitle("BIBLIOTECA");
 		log.CargarLogger();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 658, 570);
+		setBounds(100, 100, 658, 578);
 		contentPane = new JPanel();
 		contentPane.setBackground(SystemColor.inactiveCaption);
 		contentPane.setForeground(Color.LIGHT_GRAY);
@@ -93,8 +94,23 @@ public class VentanaSeleccionArchivo extends JFrame {
 		textOculto.setVisible(false);
 		contentPane.add(textOculto);
 
+		btnVHtml = new JButton("Vista Previa");
+		btnVHtml.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				VisualizarHtml html = new VisualizarHtml();
+				html.conexionhtml(textOculto.getText());
+				html.setVisible(true);
+			}
+		});
+		btnVHtml.setVisible(false);
+		btnVHtml.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnVHtml.setBackground(new Color(255, 182, 193));
+		btnVHtml.setBounds(270, 515, 105, 23);
+		contentPane.add(btnVHtml);
+
 		btnSeleccionar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				btnVHtml.setVisible(false);
 				String rutaentera = null;
 				String nombre;
 				JFileChooser jf = new JFileChooser();
@@ -114,6 +130,9 @@ public class VentanaSeleccionArchivo extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				escribir.escribir(textOculto.getText(), textArea.getText());
 				Guardado.setVisible(true);
+				if (textOculto.getText().endsWith(".html")) {
+					btnVHtml.setVisible(true);
+				}
 			}
 		});
 	}
