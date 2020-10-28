@@ -12,17 +12,16 @@ import org.apache.pdfbox.text.PDFTextStripper;
 
 public class leerPDF {
 	public String leerPDF(String ruta) {
-		File error = new File("src/Errores/errores.txt");
 		Errores log = new Errores();
 
 		String entrada = "";
 		String salida = "";
 		try {
 			try (PDDocument document = PDDocument.load(new File(ruta))) {
-				if (!error.exists()) {
-					error.createNewFile();
+				if (!log.FicheroErrores().exists()) {
+					log.FicheroErrores().createNewFile();
 				}
-				PrintStream ps = new PrintStream(new BufferedOutputStream(new FileOutputStream(error, true)), true);
+				PrintStream ps = new PrintStream(new BufferedOutputStream(new FileOutputStream(log.FicheroErrores(), true)), true);
 				System.setErr(ps);
 
 				if (!document.isEncrypted()) {

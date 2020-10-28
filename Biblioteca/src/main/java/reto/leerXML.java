@@ -16,7 +16,6 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 public class leerXML {
-	File error = new File("src/Errores/errores.txt");
 	Errores log = new Errores();
 
 	public String leerXML(String ruta) {
@@ -26,10 +25,11 @@ public class leerXML {
 		Node ntemp;
 		File fichero = new File(ruta);
 		try {
-			if (!error.exists()) {
-				error.createNewFile();
+			if (!log.FicheroErrores().exists()) {
+				log.FicheroErrores().createNewFile();
 			}
-			PrintStream ps = new PrintStream(new BufferedOutputStream(new FileOutputStream(error, true)), true);
+			PrintStream ps = new PrintStream(new BufferedOutputStream(new FileOutputStream(log.FicheroErrores(), true)),
+					true);
 			System.setErr(ps);
 
 			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();

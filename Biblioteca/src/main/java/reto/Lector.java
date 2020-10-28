@@ -1,10 +1,8 @@
 package reto;
 
-import java.io.File;
 import java.util.Scanner;
 
 public class Lector {
-	File error = new File("src/Errores/errores.txt");
 	Errores log = new Errores();
 
 	public String leer(String ruta) {

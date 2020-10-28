@@ -14,17 +14,17 @@ import org.apache.poi.xwpf.usermodel.XWPFDocument;
 public class leerDOCX {
 
 	public String leerDOCX(String ruta) {
-		File error = new File("src/Errores/errores.txt");
 		Errores log = new Errores();
 
 		String entrada = "";
 		String salida = "";
 
 		try {
-			if (!error.exists()) {
-				error.createNewFile();
+			if (!log.FicheroErrores().exists()) {
+				log.FicheroErrores().createNewFile();
 			}
-			PrintStream ps = new PrintStream(new BufferedOutputStream(new FileOutputStream(error, true)), true);
+			PrintStream ps = new PrintStream(new BufferedOutputStream(new FileOutputStream(log.FicheroErrores(), true)),
+					true);
 			System.setErr(ps);
 
 			File fichero = new File(ruta);

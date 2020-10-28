@@ -10,14 +10,13 @@ import org.apache.poi.xwpf.usermodel.XWPFRun;
 
 public class escribirDOCX {
 	public void escribirDOCX(String ruta, String texto) {
-		File error = new File("src/Errores/errores.txt");
 		Errores log = new Errores();
 
 		XWPFDocument document = null;
 		FileOutputStream fileOutputStream = null;
 		try {
-			if (!error.exists()) {
-				error.createNewFile();
+			if (!log.FicheroErrores().exists()) {
+				log.FicheroErrores().createNewFile();
 			}
 			document = new XWPFDocument();
 			File file = new File(ruta);

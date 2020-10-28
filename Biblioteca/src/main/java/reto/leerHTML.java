@@ -1,7 +1,6 @@
 package reto;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.StringTokenizer;
@@ -9,7 +8,6 @@ import java.util.StringTokenizer;
 public class leerHTML {
 
 	public String leerHTML(String ruta) {
-		File error = new File("src/Errores/errores.txt");
 		Errores log = new Errores();
 
 		String Escribir = "";
@@ -17,8 +15,8 @@ public class leerHTML {
 		String cadena;
 		FileReader fr = null;
 		try {
-			if (!error.exists()) {
-				error.createNewFile();
+			if (!log.FicheroErrores().exists()) {
+				log.FicheroErrores().createNewFile();
 			}
 			fr = new FileReader(ruta);
 		} catch (IOException e) {

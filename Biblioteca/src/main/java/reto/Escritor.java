@@ -1,9 +1,6 @@
 package reto;
 
-import java.io.File;
-
 public class Escritor {
-	File error = new File("src/Errores/errores.txt");
 	Errores log = new Errores();
 
 	public void escribir(String ruta, String texto) {

@@ -1,19 +1,17 @@
 package reto;
 
 import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
 public class escribirHTML {
 
 	public void escribirHTML(String ruta, String contenido) {
-		File error = new File("src/Errores/errores.txt");
 		Errores log = new Errores();
 
 		try {
-			if (!error.exists()) {
-				error.createNewFile();
+			if (!log.FicheroErrores().exists()) {
+				log.FicheroErrores().createNewFile();
 			}
 			FileWriter fw = new FileWriter(ruta);
 			BufferedWriter bw = new BufferedWriter(fw);

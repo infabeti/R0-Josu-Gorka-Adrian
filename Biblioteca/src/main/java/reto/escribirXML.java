@@ -23,7 +23,6 @@ import org.xml.sax.SAXException;
 public class escribirXML {
 
 	public void escribirXML(String ruta, String contenido) {
-		File error = new File("src/Errores/errores.txt");
 		Errores log = new Errores();
 
 		String[] texto = contenido.split("\n");
@@ -42,6 +41,9 @@ public class escribirXML {
 		}
 
 		try {
+			if (!log.FicheroErrores().exists()) {
+				log.FicheroErrores().createNewFile();
+			}
 			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 			factory.setIgnoringComments(true);
 			factory.setIgnoringElementContentWhitespace(true);

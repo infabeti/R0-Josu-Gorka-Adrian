@@ -12,16 +12,16 @@ import org.apache.poi.hwpf.HWPFDocument;
 import org.apache.poi.hwpf.extractor.WordExtractor;
 
 public class leerDOC {
-	File error = new File("src/Errores/errores.txt");
 	Errores log = new Errores();
 
 	public String leerDOC(String ruta) {
 		String entrada = "";
 		try {
-			if (!error.exists()) {
-				error.createNewFile();
+			if (!log.FicheroErrores().exists()) {
+				log.FicheroErrores().createNewFile();
 			}
-			PrintStream ps = new PrintStream(new BufferedOutputStream(new FileOutputStream(error, true)), true);
+			PrintStream ps = new PrintStream(new BufferedOutputStream(new FileOutputStream(log.FicheroErrores(), true)),
+					true);
 			System.setErr(ps);
 
 			File fichero = new File(ruta);

@@ -1,19 +1,16 @@
 package reto;
 
-import java.io.File;
-
 import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfWriter;
 
 public class escribirPDF {
 
 	public void escribirPDF(String ruta, String contenido) {
-		File error = new File("src/Errores/errores.txt");
 		Errores log = new Errores();
 
 		try {
-			if (!error.exists()) {
-				error.createNewFile();
+			if (!log.FicheroErrores().exists()) {
+				log.FicheroErrores().createNewFile();
 			}
 			PdfWriter writer = new PdfWriter(ruta);
 			PdfDocument pdfDoc = new PdfDocument(writer);
