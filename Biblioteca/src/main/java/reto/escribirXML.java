@@ -30,14 +30,10 @@ public class escribirXML {
 		String nodo = texto[0];
 		Boolean contados = false;
 		int cont = 0;
-		int atributos = 0;
-
 		for (int i = 1; i < texto.length && !contados; i++) {
 			if (texto[i].equals("---")) {
 				contados = true;
-				atributos = cont;
 			}
-			cont++;
 		}
 
 		try {

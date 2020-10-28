@@ -16,27 +16,32 @@ public class leerPDF {
 
 		String entrada = "";
 		String salida = "";
-		try {
-			try (PDDocument document = PDDocument.load(new File(ruta))) {
-				if (!log.FicheroErrores().exists()) {
-					log.FicheroErrores().createNewFile();
-				}
-				PrintStream ps = new PrintStream(new BufferedOutputStream(new FileOutputStream(log.FicheroErrores(), true)), true);
-				System.setErr(ps);
-
-				if (!document.isEncrypted()) {
-					PDFTextStripper tStripper = new PDFTextStripper();
-					entrada = tStripper.getText(document);
-				}
-
-				StringTokenizer st = new StringTokenizer(entrada, ".");
-				while (st.hasMoreTokens()) {
-					salida = salida + st.nextToken() + "\n\n";
-
-				}
-
-				salida = salida.replace(":", "\n");
+		try (PDDocument document = PDDocument.load(new File(ruta))) {
+			if (!log.FicheroErrores().exists()) {
+				log.FicheroErrores().createNewFile();
 			}
+			PrintStream ps = new PrintStream(new BufferedOutputStream(new FileOutputStream(log.FicheroErrores(), true)),
+					true);
+			System.setErr(ps);
+
+			if (!document.isEncrypted()) {
+				PDFTextStripper tStripper = new PDFTextStripper();
+				entrada = tStripper.getText(document);
+			}
+			String sinEsp = "";
+			StringTokenizer ste = new StringTokenizer(entrada, "\n");
+			while (ste.hasMoreTokens()) {
+				sinEsp = sinEsp + ste.nextToken();
+			}
+			StringTokenizer st = new StringTokenizer(sinEsp, ".");
+			while (st.hasMoreTokens()) {
+				salida = salida + st.nextToken() + ".\n";
+
+			}
+
+			salida = salida.replace(":", "\n");
+
+			salida = salida.substring(0, salida.length() - 2);
 		} catch (IOException e) {
 			System.out.println("Error, no se ha encontrado el archivo seleccionado");
 			log.logger.warning("Fallo en el metodo leerPDF al intentar leer el PDF");

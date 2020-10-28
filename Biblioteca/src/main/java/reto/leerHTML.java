@@ -19,13 +19,8 @@ public class leerHTML {
 				log.FicheroErrores().createNewFile();
 			}
 			fr = new FileReader(ruta);
-		} catch (IOException e) {
-			log.logger.warning("Excepción de archivo no encontrado" + e.getMessage());
-			System.out.println("No se ha podido encontrar el archivo. ERROR: " + e.toString());
-		}
-		BufferedReader br = new BufferedReader(fr);
 
-		try {
+			BufferedReader br = new BufferedReader(fr);
 			while ((cadena = br.readLine()) != null) {
 				Escribir += cadena + "\n";
 			}
