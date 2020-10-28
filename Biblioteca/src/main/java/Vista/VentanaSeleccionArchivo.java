@@ -17,6 +17,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
 
+import reto.ConexionHTML;
 import reto.Errores;
 import reto.Escritor;
 import reto.Lector;
@@ -103,9 +104,8 @@ public class VentanaSeleccionArchivo extends JFrame {
 		btnVHtml = new JButton("Vista Previa");
 		btnVHtml.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				VisualizarHtml html = new VisualizarHtml();
+				ConexionHTML html = new ConexionHTML();
 				html.conexionhtml(textOculto.getText());
-				html.setVisible(true);
 			}
 		});
 		btnVHtml.setVisible(false);

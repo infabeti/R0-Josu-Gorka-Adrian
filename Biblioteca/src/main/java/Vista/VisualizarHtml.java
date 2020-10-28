@@ -1,7 +1,5 @@
 package Vista;
 
-import java.io.File;
-
 import javax.swing.JEditorPane;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -13,7 +11,7 @@ import reto.Errores;
 public class VisualizarHtml extends JFrame {
 
 	private JPanel contentPane;
-	private JEditorPane editorPane;
+	public JEditorPane editorPane;
 	Errores log = new Errores();
 
 	public VisualizarHtml() {
@@ -34,14 +32,4 @@ public class VisualizarHtml extends JFrame {
 		scrollPane.setViewportView(editorPane);
 	}
 
-	public void conexionhtml(String ruta) {
-		File rec = new File(ruta);
-		editorPane.setEditable(false);
-		try {
-			editorPane.setPage(rec.toURI().toURL());
-		} catch (Exception e) {
-			log.logger.warning("Error al visualizar el HTML " + e.getMessage());
-			System.out.println("Error al visualizar el HTML " + e.getMessage());
-		}
-	}
 }
