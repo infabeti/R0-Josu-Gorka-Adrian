@@ -1,4 +1,4 @@
-package reto;
+package Vista;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -16,6 +16,11 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
+
+import reto.Errores;
+import reto.Escritor;
+import reto.Lector;
+import reto.ModificarRuta;
 
 public class VentanaSeleccionArchivo extends JFrame {
 

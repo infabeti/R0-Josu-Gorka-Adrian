@@ -1,4 +1,4 @@
-package reto;
+package Vista;
 
 import java.io.File;
 
@@ -7,6 +7,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
+
+import reto.Errores;
 
 public class VisualizarHtml extends JFrame {
 
