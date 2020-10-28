@@ -23,8 +23,8 @@ import org.xml.sax.SAXException;
 public class escribirXML {
 
 	public void escribirXML(String ruta, String contenido) {
+		File error = new File("src/Errores/errores.txt");
 		Errores log = new Errores();
-
 		String[] texto = contenido.split("\n");
 		File fichero = new File(ruta);
 		String nodo = texto[0];
@@ -41,16 +41,11 @@ public class escribirXML {
 		}
 
 		try {
-			if (!log.FicheroErrores().exists()) {
-				log.FicheroErrores().createNewFile();
-			}
 			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 			factory.setIgnoringComments(true);
 			factory.setIgnoringElementContentWhitespace(true);
 			DocumentBuilder builder;
-
 			builder = factory.newDocumentBuilder();
-
 			Document doc = builder.parse(fichero);
 			int nodos = 0;
 
@@ -65,26 +60,10 @@ public class escribirXML {
 				}
 			}
 			cont = 1;
+
 			for (int i = 0; i < nodos; i++) {
-				if (nodos > doc.getElementsByTagName(nodo).getLength()) {
-					for (int j = 0; j < nodos - doc.getElementsByTagName(nodo).getLength(); j++) {
-						Node nuevoNodo = doc.createElement(nodo);
-						for (int k = 0; k < doc.getElementsByTagName(nodo).item(0).getChildNodes().getLength(); k++) {
-							Node nodoHijo = doc.createElement(
-									doc.getElementsByTagName(nodo).item(0).getChildNodes().item(k).getNodeName());
-							nuevoNodo.appendChild(nodoHijo);
-						}
-						doc.getElementsByTagName(nodo).item(i).getParentNode().appendChild(nuevoNodo);
-					}
-				}
-				for (int j = 0; j < doc.getElementsByTagName(nodo).item(i).getChildNodes().getLength(); j++) {
-					while (texto[cont].equals("---") || texto[cont].equals(nodo)) {
-						cont++;
-					}
-					Element elemento = (Element) doc.getElementsByTagName(nodo).item(i).getChildNodes().item(j);
-					elemento.setTextContent(texto[cont]);
-					cont++;
-				}
+				aniadirNodos(nodos, nodo, doc, i);
+				cont = reemplazarTexto(nodos, texto, doc, nodo, i, cont);
 			}
 
 			Transformer transformer = TransformerFactory.newInstance().newTransformer();
@@ -98,5 +77,31 @@ public class escribirXML {
 			System.out.println("Ha ocurrido un error al escribir en el XML");
 			log.logger.warning("Ha ocurrido un error al escribir en el XML" + e.getMessage());
 		}
+	}
+
+	public void aniadirNodos(int numNodos, String nomNodo, Document doc, int contBucle) {
+		if (numNodos > doc.getElementsByTagName(nomNodo).getLength()) {
+			for (int j = 0; j < numNodos - doc.getElementsByTagName(nomNodo).getLength(); j++) {
+				Node nuevoNodo = doc.createElement(nomNodo);
+				for (int k = 0; k < doc.getElementsByTagName(nomNodo).item(0).getChildNodes().getLength(); k++) {
+					Node nodoHijo = doc.createElement(
+							doc.getElementsByTagName(nomNodo).item(0).getChildNodes().item(k).getNodeName());
+					nuevoNodo.appendChild(nodoHijo);
+				}
+				doc.getElementsByTagName(nomNodo).item(contBucle).getParentNode().appendChild(nuevoNodo);
+			}
+		}
+	}
+
+	public int reemplazarTexto(int numNodos, String[] texto, Document doc, String nomNodo, int contBucle, int cont) {
+		for (int j = 0; j < doc.getElementsByTagName(nomNodo).item(contBucle).getChildNodes().getLength(); j++) {
+			while (texto[cont].equals("---") || texto[cont].equals(nomNodo)) {
+				cont++;
+			}
+			Element elemento = (Element) doc.getElementsByTagName(nomNodo).item(contBucle).getChildNodes().item(j);
+			elemento.setTextContent(texto[cont]);
+			cont++;
+		}
+		return cont;
 	}
 }
