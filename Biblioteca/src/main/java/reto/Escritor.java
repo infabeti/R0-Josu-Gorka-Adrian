@@ -12,11 +12,11 @@ public class Escritor {
 		escribirXML xml = new escribirXML();
 		escribirHTML html = new escribirHTML();
 
-		Comprobar comprobar = new Comprobar();
+		Comprobar existeArchivo = new Comprobar();
 
 		if (ruta.equals("estandar")) {
 			System.out.println(texto);
-		} else if (comprobar.encontrar(ruta) == true) {
+		} else if (existeArchivo.encontrar(ruta) == true) {
 			if (ruta.endsWith(".docx")) {
 				docx.escribirDOCX(ruta, texto);
 			} else if (ruta.endsWith(".pdf")) {

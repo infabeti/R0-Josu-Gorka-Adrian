@@ -14,9 +14,9 @@ public class Lector {
 		leerXML xml = new leerXML();
 		leerHTML html = new leerHTML();
 
-		Comprobar comprobar = new Comprobar();
+		Comprobar existeArchivo = new Comprobar();
 		String salida = "";
-		if (comprobar.encontrar(ruta) == true) {
+		if (existeArchivo.encontrar(ruta) == true) {
 			if (ruta.endsWith(".doc")) {
 				salida = doc.leerDOC(ruta);
 			} else if (ruta.endsWith(".docx")) {
@@ -46,17 +46,6 @@ public class Lector {
 		System.out.println("Introduzca la Ruta del fichero que quieres Leer: ");
 		entrada = sc.next();
 		return entrada;
-	}
-
-	public String modificarRuta(String Ruta) {
-		String ruta[] = null;
-		String Nombre;
-		String rutamodificada = null;
-		rutamodificada = Ruta.replace("\\", ",").replace("/", ",");
-		ruta = rutamodificada.split(",");
-		Nombre = ruta[ruta.length - 1].toString();
-		return Nombre;
-
 	}
 
 }

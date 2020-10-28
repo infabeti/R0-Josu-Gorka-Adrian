@@ -36,6 +36,7 @@ public class VentanaSeleccionArchivo extends JFrame {
 		Errores log = new Errores();
 		Lector leer = new Lector();
 		Escritor escribir = new Escritor();
+		ModificarRuta modificarRuta = new ModificarRuta();
 		log.CargarLogger();
 
 		setResizable(false);
@@ -118,7 +119,7 @@ public class VentanaSeleccionArchivo extends JFrame {
 				File archivo = jf.getSelectedFile();
 				if (archivo != null) {
 					rutaentera = archivo.getAbsolutePath();
-					nombre = leer.modificarRuta(rutaentera);
+					nombre = modificarRuta.modificarRuta(rutaentera);
 					textField.setText(nombre);
 					textOculto.setText(rutaentera);
 					textArea.setText(leer.leer(archivo.getAbsolutePath()));

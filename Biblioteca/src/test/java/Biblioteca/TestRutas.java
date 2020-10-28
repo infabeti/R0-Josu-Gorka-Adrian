@@ -6,10 +6,12 @@ import static org.junit.Assert.assertNotEquals;
 import org.junit.Test;
 
 import reto.Lector;
+import reto.ModificarRuta;
 
 public class TestRutas {
 
 	Lector lector = new Lector();
+	ModificarRuta modificarRuta = new ModificarRuta();
 
 	@Test
 	public void testMainIncorrecto() {
@@ -22,7 +24,7 @@ public class TestRutas {
 	@Test
 	public void testmodificarRuta() {
 		String ruta = "src/Almacen/Conlinux\\prueba3.xml";
-		String resultado = lector.modificarRuta(ruta);
+		String resultado = modificarRuta.modificarRuta(ruta);
 		String resultadoEsperado = "prueba3.xml";
 		assertEquals(resultadoEsperado, resultado);
 	}
