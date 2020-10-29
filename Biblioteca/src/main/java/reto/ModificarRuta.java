@@ -2,7 +2,7 @@ package reto;
 
 public class ModificarRuta {
 
-	public String modificarRuta(String Ruta) {
+	public String acortarRuta(String Ruta) {
 		String ruta[] = null;
 		String Nombre;
 		String rutamodificada = null;

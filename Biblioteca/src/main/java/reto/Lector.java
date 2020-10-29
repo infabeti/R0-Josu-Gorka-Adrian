@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Lector {
 	Errores log = new Errores();
 
-	public String leer(String ruta) {
+	public String comprobarExtension(String ruta) {
 		leerDOC doc = new leerDOC();
 		leerDOCX docx = new leerDOCX();
 		leerPDF pdf = new leerPDF();

@@ -3,7 +3,7 @@ package reto;
 public class Escritor {
 	Errores log = new Errores();
 
-	public void escribir(String ruta, String texto) {
+	public void escribirArchivo(String ruta, String texto) {
 		escribirDOCX docx = new escribirDOCX();
 		escribirPDF pdf = new escribirPDF();
 		escribirXML xml = new escribirXML();

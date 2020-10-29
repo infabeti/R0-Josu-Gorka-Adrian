@@ -30,8 +30,8 @@ public class VentanaSeleccionArchivo extends JFrame {
 	private JButton btnSeleccionar;
 	JTextArea textArea;
 	private JButton btnEscribir;
-	private JTextField textOculto;
 	JButton btnVHtml;
+	String rutaentera;
 
 	public void iniciarVentana() {
 		setVisible(true);
@@ -93,19 +93,11 @@ public class VentanaSeleccionArchivo extends JFrame {
 		Guardado.setVisible(false);
 		contentPane.add(Guardado);
 
-		textOculto = new JTextField();
-		textOculto.setToolTipText(
-				"Inserta la ruta del fichero, si quieres escribir un texto que se muestre por consola escriba 'estandar' en la ruta");
-		textOculto.setColumns(10);
-		textOculto.setBounds(329, 37, 131, 4);
-		textOculto.setVisible(false);
-		contentPane.add(textOculto);
-
 		btnVHtml = new JButton("Vista Previa");
 		btnVHtml.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				ConexionHTML html = new ConexionHTML();
-				html.conexionhtml(textOculto.getText());
+				html.conexionhtml(rutaentera);
 			}
 		});
 		btnVHtml.setVisible(false);
@@ -121,20 +113,19 @@ public class VentanaSeleccionArchivo extends JFrame {
 				File archivo = explorador.seleccionarArchivo();
 
 				if (archivo != null) {
-					String rutaentera = archivo.getAbsolutePath();
-					String nombre = modificarRuta.modificarRuta(rutaentera);
-					textField.setText(nombre);
-					textOculto.setText(rutaentera);
-					textArea.setText(leer.leer(archivo.getAbsolutePath()));
+					rutaentera = archivo.getAbsolutePath();
+					String nombre = modificarRuta.acortarRuta(rutaentera);
+					textField.setText(modificarRuta.acortarRuta(rutaentera));
+					textArea.setText(leer.comprobarExtension(rutaentera));
 					TipoArchivo.setText("Estas en " + nombre);
 				}
 			}
 		});
 		btnEscribir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				escribir.escribir(textOculto.getText(), textArea.getText());
+				escribir.escribirArchivo(rutaentera, textArea.getText());
 				Guardado.setVisible(true);
-				if (textOculto.getText().endsWith(".html")) {
+				if (rutaentera.endsWith(".html")) {
 					btnVHtml.setVisible(true);
 				}
 			}

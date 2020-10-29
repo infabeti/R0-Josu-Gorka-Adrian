@@ -16,7 +16,7 @@ public class TestRutas {
 	@Test
 	public void testMainIncorrecto() {
 		String ruta = "src/Almacen/prueba7.doc";
-		String resultado = lector.leer(ruta);
+		String resultado = lector.comprobarExtension(ruta);
 		String resultadoEsperado = "Prueba incorrecto";
 		assertNotEquals(resultadoEsperado, resultado);
 	}
@@ -24,7 +24,7 @@ public class TestRutas {
 	@Test
 	public void testmodificarRuta() {
 		String ruta = "src/Almacen/Conlinux\\prueba3.xml";
-		String resultado = modificarRuta.modificarRuta(ruta);
+		String resultado = modificarRuta.acortarRuta(ruta);
 		String resultadoEsperado = "prueba3.xml";
 		assertEquals(resultadoEsperado, resultado);
 	}
