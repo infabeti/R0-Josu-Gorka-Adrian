@@ -8,7 +8,6 @@ import java.awt.event.ActionListener;
 import java.io.File;
 
 import javax.swing.JButton;
-import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -20,6 +19,7 @@ import javax.swing.ScrollPaneConstants;
 import reto.ConexionHTML;
 import reto.Errores;
 import reto.Escritor;
+import reto.ExploradorArchivos;
 import reto.Lector;
 import reto.ModificarRuta;
 
@@ -117,14 +117,12 @@ public class VentanaSeleccionArchivo extends JFrame {
 		btnSeleccionar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				btnVHtml.setVisible(false);
-				String rutaentera = null;
-				String nombre;
-				JFileChooser jf = new JFileChooser();
-				jf.showOpenDialog(null);
-				File archivo = jf.getSelectedFile();
+				ExploradorArchivos explorador = new ExploradorArchivos();
+				File archivo = explorador.seleccionarArchivo();
+
 				if (archivo != null) {
-					rutaentera = archivo.getAbsolutePath();
-					nombre = modificarRuta.modificarRuta(rutaentera);
+					String rutaentera = archivo.getAbsolutePath();
+					String nombre = modificarRuta.modificarRuta(rutaentera);
 					textField.setText(nombre);
 					textOculto.setText(rutaentera);
 					textArea.setText(leer.leer(archivo.getAbsolutePath()));
