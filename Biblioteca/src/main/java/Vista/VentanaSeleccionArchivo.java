@@ -5,7 +5,6 @@ import java.awt.Font;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -110,10 +109,9 @@ public class VentanaSeleccionArchivo extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				btnVHtml.setVisible(false);
 				ExploradorArchivos explorador = new ExploradorArchivos();
-				File archivo = explorador.seleccionarArchivo();
+				rutaentera = explorador.seleccionarArchivo();
 
-				if (archivo != null) {
-					rutaentera = archivo.getAbsolutePath();
+				if (rutaentera != null) {
 					String nombre = modificarRuta.acortarRuta(rutaentera);
 					textField.setText(nombre);
 					textArea.setText(leer.comprobarExtension(rutaentera));
