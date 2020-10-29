@@ -115,7 +115,7 @@ public class VentanaSeleccionArchivo extends JFrame {
 				if (archivo != null) {
 					rutaentera = archivo.getAbsolutePath();
 					String nombre = modificarRuta.acortarRuta(rutaentera);
-					textField.setText(modificarRuta.acortarRuta(rutaentera));
+					textField.setText(nombre);
 					textArea.setText(leer.comprobarExtension(rutaentera));
 					TipoArchivo.setText("Estas en " + nombre);
 				}
