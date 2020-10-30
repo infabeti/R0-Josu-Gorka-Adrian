@@ -12,7 +12,7 @@ public class Escritor {
 		Comprobar existeArchivo = new Comprobar();
 
 		if (ruta.equals("estandar")) {
-			System.out.println(texto);
+			System.out.print(texto);
 		} else if (existeArchivo.encontrar(ruta) == true) {
 			if (ruta.endsWith(".docx")) {
 				docx.escribirDOCX(ruta, texto);

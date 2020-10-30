@@ -52,5 +52,6 @@
 	<classpathentry kind="lib" path="src/Librerias/poi-bin-4.1.2/poi-4.1.2/poi-ooxml-schemas-4.1.2.jar"/>
 	<classpathentry kind="lib" path="src/Librerias/poi-bin-4.1.2/poi-4.1.2/poi-scratchpad-4.1.2.jar"/>
 	<classpathentry kind="lib" path="src/Librerias/pdfbox-app-2.0.21.jar"/>
+	<classpathentry kind="lib" path="src/Librerias/system-rules-1.19.0.jar"/>
 	<classpathentry kind="output" path="bin/default"/>
 </classpath>

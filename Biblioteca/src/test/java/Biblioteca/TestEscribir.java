@@ -2,7 +2,9 @@ package Biblioteca;
 
 import static org.junit.Assert.assertEquals;
 
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.contrib.java.lang.system.SystemOutRule;
 
 import reto.Escritor;
 import reto.Lector;
@@ -49,12 +51,14 @@ public class TestEscribir {
 		assertEquals(resultado, resultadoEsperado);
 	}
 
+	@Rule
+	public final SystemOutRule systemOutRule = new SystemOutRule().enableLog();
+
 	@Test
 	public void testEscribirEstandar() {
-		escritor.escribirArchivo("estandar", "estandar");
-		String resultado = "estandar";
-		String resultadoEsperado = "estandar";
-		assertEquals(resultado, resultadoEsperado);
+		escritor.escribirArchivo("estandar", "Prueba");
+		String resultadoEsperado = systemOutRule.getLog();
+		assertEquals("Prueba", resultadoEsperado);
 	}
 
 }
