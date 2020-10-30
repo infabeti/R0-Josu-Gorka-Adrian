@@ -24,6 +24,8 @@ public class leerXML {
 		Document doc;
 		Node ntemp;
 		File fichero = new File(ruta);
+
+		Boolean fallos = false;
 		try {
 			if (!log.FicheroErrores().exists()) {
 				log.FicheroErrores().createNewFile();
@@ -51,20 +53,21 @@ public class leerXML {
 				}
 			}
 		} catch (SAXException | IOException | ParserConfigurationException e) {
+			fallos = true;
 			System.out.println("Ha ocurrido un error al leer el XML");
 			log.logger.warning("Fallo en el metodo leerXML al intentar leer el XML");
 		}
+		if (fallos == false) {
+			num = entrada.split("\n").length;
+			String[] lineas = new String[num];
+			lineas = entrada.split("\r\n");
+			entrada = "";
 
-		num = entrada.split("\n").length;
-		String[] lineas = new String[num];
-		lineas = entrada.split("\r\n");
-		entrada = "";
-
-		for (int i = 0; i < lineas.length; i++) {
-			lineas[i] = lineas[i].trim();
-			entrada = entrada + lineas[i] + "\r\n";
+			for (int i = 0; i < lineas.length; i++) {
+				lineas[i] = lineas[i].trim();
+				entrada = entrada + lineas[i] + "\r\n";
+			}
 		}
-
 		return entrada.trim();
 	}
 }

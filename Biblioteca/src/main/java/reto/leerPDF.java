@@ -16,6 +16,7 @@ public class leerPDF {
 
 		String entrada = "";
 		String salida = "";
+		Boolean fallos = false;
 		try (PDDocument document = PDDocument.load(new File(ruta))) {
 			if (!log.FicheroErrores().exists()) {
 				log.FicheroErrores().createNewFile();
@@ -28,6 +29,13 @@ public class leerPDF {
 				PDFTextStripper tStripper = new PDFTextStripper();
 				entrada = tStripper.getText(document);
 			}
+
+		} catch (IOException e) {
+			fallos = true;
+			System.out.println("Error, no se ha encontrado el archivo seleccionado");
+			log.logger.warning("Fallo en el metodo leerPDF al intentar leer el PDF");
+		}
+		if (fallos == false) {
 			String sinEsp = "";
 			StringTokenizer ste = new StringTokenizer(entrada, "\n");
 			while (ste.hasMoreTokens()) {
@@ -42,9 +50,6 @@ public class leerPDF {
 			salida = salida.replace(":", "\n");
 
 			salida = salida.substring(0, salida.length() - 2);
-		} catch (IOException e) {
-			System.out.println("Error, no se ha encontrado el archivo seleccionado");
-			log.logger.warning("Fallo en el metodo leerPDF al intentar leer el PDF");
 		}
 		return salida.trim();
 	}

@@ -9,7 +9,7 @@ public class leerHTML {
 
 	public String leerHTML(String ruta) {
 		Errores log = new Errores();
-
+		Boolean fallos = false;
 		String Escribir = "";
 		String salida = "";
 		String cadena;
@@ -25,6 +25,13 @@ public class leerHTML {
 				Escribir += cadena + "\n";
 			}
 			br.close();
+
+		} catch (IOException e) {
+			fallos = true;
+			log.logger.warning("Excepción de Entrada/Salida" + e.getMessage());
+			System.out.println("Excepción de Entrada/Salida" + e.getMessage());
+		}
+		if (fallos == false) {
 			String sinEsp = "";
 			StringTokenizer ste = new StringTokenizer(Escribir, "\n");
 			while (ste.hasMoreTokens()) {
@@ -35,9 +42,6 @@ public class leerHTML {
 				salida = salida + st.nextToken() + ">\n";
 			}
 			salida = salida.substring(0, salida.length() - 1);
-		} catch (IOException e) {
-			log.logger.warning("Excepción de Entrada/Salida" + e.getMessage());
-			System.out.println("Excepción de Entrada/Salida" + e.getMessage());
 		}
 		return salida.trim();
 	}
