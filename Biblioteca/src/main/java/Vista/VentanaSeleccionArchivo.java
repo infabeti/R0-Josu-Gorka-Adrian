@@ -1,17 +1,26 @@
-package reto;
+package Vista;
 
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
 
 import javax.swing.JButton;
-import javax.swing.JFileChooser;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
+
+import reto.ConexionHTML;
+import reto.Errores;
+import reto.Escritor;
+import reto.ExploradorArchivos;
+import reto.Lector;
+import reto.ModificarRuta;
 
 public class VentanaSeleccionArchivo extends JFrame {
 
@@ -20,21 +29,29 @@ public class VentanaSeleccionArchivo extends JFrame {
 	private JButton btnSeleccionar;
 	JTextArea textArea;
 	private JButton btnEscribir;
+	JButton btnVHtml;
+	String rutaentera;
 
 	public void iniciarVentana() {
 		setVisible(true);
+
 	}
 
 	public VentanaSeleccionArchivo() {
 		Errores log = new Errores();
 		Lector leer = new Lector();
 		Escritor escribir = new Escritor();
+		ModificarRuta modificarRuta = new ModificarRuta();
 		log.CargarLogger();
 
 		setResizable(false);
+		setTitle("BIBLIOTECA");
+		log.CargarLogger();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 658, 570);
+		setBounds(100, 100, 658, 578);
 		contentPane = new JPanel();
+		contentPane.setBackground(SystemColor.inactiveCaption);
+		contentPane.setForeground(Color.LIGHT_GRAY);
 		contentPane.setLayout(null);
 		setContentPane(contentPane);
 
@@ -63,21 +80,52 @@ public class VentanaSeleccionArchivo extends JFrame {
 		btnEscribir.setBounds(493, 496, 119, 23);
 		contentPane.add(btnEscribir);
 
+		JLabel TipoArchivo = new JLabel("");
+		TipoArchivo.setForeground(Color.RED);
+		TipoArchivo.setBounds(45, 496, 295, 23);
+		contentPane.add(TipoArchivo);
+
+		JLabel Guardado = new JLabel("Guardado Correctamente");
+		Guardado.setForeground(Color.BLUE);
+		Guardado.setFont(new Font("Arial", Font.PLAIN, 11));
+		Guardado.setBounds(361, 496, 131, 23);
+		Guardado.setVisible(false);
+		contentPane.add(Guardado);
+
+		btnVHtml = new JButton("Vista Previa");
+		btnVHtml.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				ConexionHTML html = new ConexionHTML();
+				html.conexionhtml(rutaentera);
+			}
+		});
+		btnVHtml.setVisible(false);
+		btnVHtml.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnVHtml.setBackground(new Color(255, 182, 193));
+		btnVHtml.setBounds(270, 515, 105, 23);
+		contentPane.add(btnVHtml);
+
 		btnSeleccionar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				JFileChooser jf = new JFileChooser();
-				jf.showOpenDialog(null);
-				File archivo = jf.getSelectedFile();
-				if (archivo != null) {
-					textField.setText(archivo.getAbsolutePath());
-					textArea.setText(leer.leer(archivo.getAbsolutePath()));
+				btnVHtml.setVisible(false);
+				ExploradorArchivos explorador = new ExploradorArchivos();
+				rutaentera = explorador.seleccionarArchivo();
+
+				if (rutaentera != null) {
+					String nombre = modificarRuta.acortarRuta(rutaentera);
+					textField.setText(nombre);
+					textArea.setText(leer.comprobarExtension(rutaentera));
+					TipoArchivo.setText("Estas en " + nombre);
 				}
 			}
 		});
 		btnEscribir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				escribir.escribir(textField.getText(), textArea.getText());
-
+				escribir.escribirArchivo(rutaentera, textArea.getText());
+				Guardado.setVisible(true);
+				if (rutaentera.endsWith(".html")) {
+					btnVHtml.setVisible(true);
+				}
 			}
 		});
 	}
