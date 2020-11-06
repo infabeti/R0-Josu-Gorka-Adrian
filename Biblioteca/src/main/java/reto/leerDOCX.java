@@ -32,21 +32,13 @@ public class leerDOCX {
 			XWPFDocument documentX = new XWPFDocument(fis);
 			XWPFWordExtractor ex = new XWPFWordExtractor(documentX);
 			entrada = ex.getText();
-			StringTokenizer st = new StringTokenizer(entrada, ".");
-			while (st.hasMoreTokens()) {
-				salida = salida + st.nextToken() + "\n\n";
-
-			}
-
-			salida = salida.replace(":", "\n");
-
-			salida = salida.substring(0, salida.length() - 3);
 
 		} catch (IOException e) {
 			fallos = true;
 			System.out.println("Error, no se ha encontrado el archivo seleccionado");
 			log.logger.warning("Fallo en el metodo leerDOCX al intentar leer el DOCX");
 		}
+
 		if (fallos == false) {
 			StringTokenizer st = new StringTokenizer(entrada, ".");
 			while (st.hasMoreTokens()) {
@@ -58,7 +50,7 @@ public class leerDOCX {
 
 			salida = salida.substring(0, salida.length() - 3);
 		}
-
+		System.out.println(salida);
 		return salida;
 	}
 }
