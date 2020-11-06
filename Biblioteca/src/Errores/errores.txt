@@ -1280,3 +1280,6 @@ log4j:WARN Please initialize the log4j system properly.
 log4j:WARN See http://logging.apache.org/log4j/1.2/faq.html#noconfig for more info.
 oct. 30, 2020 9:22:32 A. M. reto.Lector comprobarExtension
 WARNING: Metodo leer fallo, Archivo No encontrado, revise la extension
+log4j:WARN No appenders could be found for logger (org.apache.fontbox.ttf.GlyphSubstitutionTable).
+log4j:WARN Please initialize the log4j system properly.
+log4j:WARN See http://logging.apache.org/log4j/1.2/faq.html#noconfig for more info.

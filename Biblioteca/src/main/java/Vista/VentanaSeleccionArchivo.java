@@ -21,6 +21,7 @@ import reto.Escritor;
 import reto.ExploradorArchivos;
 import reto.Lector;
 import reto.ModificarRuta;
+import reto.ValidarTexto;
 
 public class VentanaSeleccionArchivo extends JFrame {
 
@@ -121,8 +122,18 @@ public class VentanaSeleccionArchivo extends JFrame {
 		});
 		btnEscribir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				escribir.escribirArchivo(rutaentera, textArea.getText());
-				Guardado.setVisible(true);
+				ValidarTexto validar = new ValidarTexto(rutaentera, textArea.getText());
+				if (!validar.aplicarExpresion()) {
+					Guardado.setText("Guardado Correctamente");
+					Guardado.setForeground(Color.BLUE);
+					escribir.escribirArchivo(rutaentera, textArea.getText());
+					Guardado.setVisible(true);
+				} else {
+					Guardado.setText("Error al validar el texto");
+					Guardado.setForeground(Color.RED);
+					Guardado.setVisible(true);
+				}
+
 				if (rutaentera.endsWith(".html")) {
 					btnVHtml.setVisible(true);
 				}
