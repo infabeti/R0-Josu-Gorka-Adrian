@@ -38,6 +38,7 @@ public class leerDOCX {
 			System.out.println("Error, no se ha encontrado el archivo seleccionado");
 			log.logger.warning("Fallo en el metodo leerDOCX al intentar leer el DOCX");
 		}
+
 		if (fallos == false) {
 			StringTokenizer st = new StringTokenizer(entrada, ".");
 			while (st.hasMoreTokens()) {
@@ -49,7 +50,7 @@ public class leerDOCX {
 
 			salida = salida.substring(0, salida.length() - 3);
 		}
-
+		System.out.println(salida);
 		return salida;
 	}
 }
