@@ -11,8 +11,9 @@ public class ValidarTexto {
 	}
 
 	public Boolean aplicarExpresion() {
+		ExpresionesRegulares e = new ExpresionesRegulares();
 		if (ruta.endsWith(".docx") || ruta.endsWith(".pdf")) {
-			if (texto.matches(".*[@|·#¬&*Ç¨´].*")) {
+			if (e.encontrarCaracter("@|·#¬&*Ç¨´", this.texto)) {
 				return true;
 			} else {
 				return false;

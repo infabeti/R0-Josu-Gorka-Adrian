@@ -86,12 +86,12 @@ public class VentanaSeleccionArchivo extends JFrame {
 		TipoArchivo.setBounds(45, 496, 295, 23);
 		contentPane.add(TipoArchivo);
 
-		JLabel Guardado = new JLabel("Guardado Correctamente");
-		Guardado.setForeground(Color.BLUE);
-		Guardado.setFont(new Font("Arial", Font.PLAIN, 11));
-		Guardado.setBounds(361, 496, 131, 23);
-		Guardado.setVisible(false);
-		contentPane.add(Guardado);
+		JLabel guardado = new JLabel("Guardado Correctamente");
+		guardado.setForeground(Color.BLUE);
+		guardado.setFont(new Font("Arial", Font.PLAIN, 11));
+		guardado.setBounds(361, 496, 131, 23);
+		guardado.setVisible(false);
+		contentPane.add(guardado);
 
 		btnVHtml = new JButton("Vista Previa");
 		btnVHtml.addActionListener(new ActionListener() {
@@ -120,18 +120,19 @@ public class VentanaSeleccionArchivo extends JFrame {
 				}
 			}
 		});
+
 		btnEscribir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ValidarTexto validar = new ValidarTexto(rutaentera, textArea.getText());
 				if (!validar.aplicarExpresion()) {
-					Guardado.setText("Guardado Correctamente");
-					Guardado.setForeground(Color.BLUE);
+					guardado.setText("Guardado Correctamente");
+					guardado.setForeground(Color.BLUE);
 					escribir.escribirArchivo(rutaentera, textArea.getText());
-					Guardado.setVisible(true);
+					guardado.setVisible(true);
 				} else {
-					Guardado.setText("Error al validar el texto");
-					Guardado.setForeground(Color.RED);
-					Guardado.setVisible(true);
+					guardado.setText("Error al validar el texto");
+					guardado.setForeground(Color.RED);
+					guardado.setVisible(true);
 				}
 
 				if (rutaentera.endsWith(".html")) {
