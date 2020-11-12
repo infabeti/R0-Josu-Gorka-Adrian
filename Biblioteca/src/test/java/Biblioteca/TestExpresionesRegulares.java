@@ -33,7 +33,7 @@ public class TestExpresionesRegulares {
 
 	@Test
 	public void testExpresiones_HTMLTrue() {
-		String texto = "<dír>";
+		String texto = "Test<dáéúíÁÉÚÓÍór>Test";
 
 		boolean resultadoEsperado = expresionReg.Expresiones_Html(texto);
 
