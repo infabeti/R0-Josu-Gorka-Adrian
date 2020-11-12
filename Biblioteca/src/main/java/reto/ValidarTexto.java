@@ -21,7 +21,7 @@ public class ValidarTexto {
 		} else if (ruta.endsWith(".xml")) {
 			return false;
 		} else if (ruta.endsWith(".html")) {
-			return false;
+			return e.Expresiones_Html(texto);
 		} else {
 			return false;
 		}

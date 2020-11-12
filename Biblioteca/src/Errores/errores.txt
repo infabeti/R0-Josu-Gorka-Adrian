@@ -305,3 +305,17 @@ java.io.FileNotFoundException: src\Almacen\TestDocx.docx (El proceso no tiene ac
 	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:210)
 nov. 06, 2020 9:08:16 A. M. reto.escribirDOCX escribirDOCX
 WARNING: Ha ocurrido al escribir en el DOCX
+nov. 11, 2020 9:33:13 A. M. reto.Lector comprobarExtension
+WARNING: Metodo leer fallo, Seleccionado tipo de archivo no compatible
+log4j:WARN No appenders could be found for logger (org.apache.fontbox.ttf.GlyphSubstitutionTable).
+log4j:WARN Please initialize the log4j system properly.
+log4j:WARN See http://logging.apache.org/log4j/1.2/faq.html#noconfig for more info.
+nov. 11, 2020 9:33:14 A. M. reto.Lector comprobarExtension
+WARNING: Metodo leer fallo, Archivo No encontrado, revise la extension
+nov. 11, 2020 9:35:16 A. M. reto.Lector comprobarExtension
+WARNING: Metodo leer fallo, Seleccionado tipo de archivo no compatible
+log4j:WARN No appenders could be found for logger (org.apache.fontbox.ttf.GlyphSubstitutionTable).
+log4j:WARN Please initialize the log4j system properly.
+log4j:WARN See http://logging.apache.org/log4j/1.2/faq.html#noconfig for more info.
+nov. 11, 2020 9:35:17 A. M. reto.Lector comprobarExtension
+WARNING: Metodo leer fallo, Archivo No encontrado, revise la extension
