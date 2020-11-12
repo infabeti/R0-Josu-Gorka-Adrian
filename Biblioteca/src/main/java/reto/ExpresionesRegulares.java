@@ -1,5 +1,7 @@
 package reto;
 
+import Vista.VisualizarExpresiones;
+
 public class ExpresionesRegulares {
 
 	public Boolean encontrarCaracter(String patron, String texto) {
@@ -41,12 +43,15 @@ public class ExpresionesRegulares {
 				i = x;
 			}
 			if (cogerpalabra == true) {
-				ObtencionPalabrasMal = ObtencionPalabrasMal + acumuladorCaracteres + " ";
+				ObtencionPalabrasMal = ObtencionPalabrasMal + acumuladorCaracteres + "\n";
 			}
 			i++;
 		}
 		if (ExpresionCorrecta == true) {
-			System.out.println("Las Llaves que estan mal son estas: " + ObtencionPalabrasMal);
+			VisualizarExpresiones ventana = new VisualizarExpresiones();
+			ventana.lblArchivo.setText("HTML");
+			ventana.textArea.setText(ObtencionPalabrasMal);
+			ventana.setVisible(true);
 		}
 		return ExpresionCorrecta;
 	}
