@@ -19,7 +19,11 @@ public class ValidarTexto {
 				return false;
 			}
 		} else if (ruta.endsWith(".xml")) {
-			return false;
+			if (e.encontrarCaracter("<>", this.texto)) {
+				return true;
+			} else {
+				return false;
+			}
 		} else if (ruta.endsWith(".html")) {
 			return e.Expresiones_Html(texto);
 		} else {
