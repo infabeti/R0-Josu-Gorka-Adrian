@@ -6,49 +6,84 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
 import reto.ExpresionesRegulares;
+import reto.ValidarTexto;
 
 public class TestExpresionesRegulares {
 
 	ExpresionesRegulares expresionReg = new ExpresionesRegulares();
 
 	@Test
-	public void testEncontrarCaracterTrue() {
-		String patron = "<>";
-		String texto = "<Book>";
-
-		boolean resultadoEsperado = expresionReg.encontrarCaracter(patron, texto);
-
-		assertTrue(resultadoEsperado);
+	public void testValidarTextoDOCXFalse() {
+		Boolean resultado;
+		ValidarTexto validar = new ValidarTexto("src/Almacen/TestDocx.docx", "TESTEANDO METODO");
+		resultado = validar.aplicarExpresion();
+		assertFalse(resultado);
 	}
 
 	@Test
-	public void testEncontrarCaracterFalse() {
-		String patron = "<>";
-		String texto = "Book";
-
-		boolean resultadoEsperado = expresionReg.encontrarCaracter(patron, texto);
-
-		assertFalse(resultadoEsperado);
+	public void testValidarTextoDOCXTrue() {
+		Boolean resultado;
+		ValidarTexto validar = new ValidarTexto("src/Almacen/TestDocx.docx", "TESTEANDO METODO@|");
+		resultado = validar.aplicarExpresion();
+		assertTrue(resultado);
 	}
 
 	@Test
-	public void testExpresiones_HTMLTrue() {
-		String texto = "Test<dáéúíÁÉÚÓÍór>Test";
-
-		boolean resultadoEsperado = expresionReg.Expresiones_Html(texto);
-
-		assertTrue(resultadoEsperado);
-
+	public void testValidarTextoPDFFalse() {
+		Boolean resultado;
+		ValidarTexto validar = new ValidarTexto("src/Almacen/pruebaTest.pdf", "TESTEANDO METODO");
+		resultado = validar.aplicarExpresion();
+		assertFalse(resultado);
 	}
 
 	@Test
-	public void testExpresiones_HTMLFalse() {
-		String texto = "<dir>";
+	public void testValidarTextoPDFTrue() {
+		Boolean resultado;
+		ValidarTexto validar = new ValidarTexto("src/Almacen/pruebaTest.pdf", "TESTEANDO METODO@|");
+		resultado = validar.aplicarExpresion();
+		assertTrue(resultado);
+	}
 
-		boolean resultadoEsperado = expresionReg.Expresiones_Html(texto);
+	@Test
+	public void testValidarTextoXMLFalse() {
+		Boolean resultado;
+		ValidarTexto validar = new ValidarTexto("src/Almacen/TestLeerXML.xml",
+				"Book\n" + "Author: Garghentini, Davide\n" + "---");
+		resultado = validar.aplicarExpresion();
+		assertFalse(resultado);
+	}
 
-		assertFalse(resultadoEsperado);
+	@Test
+	public void testValidarTextoXMLTrue() {
+		Boolean resultado;
+		ValidarTexto validar = new ValidarTexto("src/Almacen/TestLeerXML.xml",
+				"Book\n" + "Author: Garghentini,< Davide\n" + "---");
+		resultado = validar.aplicarExpresion();
+		assertTrue(resultado);
+	}
 
+	@Test
+	public void testValidarTextoHTMLFalse() {
+		Boolean resultado;
+		ValidarTexto validar = new ValidarTexto("src/Almacen/prueba.html", "<Prueba HTML>");
+		resultado = validar.aplicarExpresion();
+		assertFalse(resultado);
+	}
+
+	@Test
+	public void testValidarTextoHTMLTrue() {
+		Boolean resultado;
+		ValidarTexto validar = new ValidarTexto("src/Almacen/prueba.html", "Texto <Testeando Metodo áéíóúÁÉÍÓÚ>");
+		resultado = validar.aplicarExpresion();
+		assertTrue(resultado);
+	}
+
+	@Test
+	public void testValidarTextoIncorrecto() {
+		Boolean resultado;
+		ValidarTexto validar = new ValidarTexto("src/Almacen/DiagramaSprint1.dia", "Hola");
+		resultado = validar.aplicarExpresion();
+		assertFalse(resultado);
 	}
 
 }
