@@ -13,17 +13,9 @@ public class ValidarTexto {
 	public Boolean aplicarExpresion() {
 		ExpresionesRegulares e = new ExpresionesRegulares();
 		if (ruta.endsWith(".docx") || ruta.endsWith(".pdf")) {
-			if (e.encontrarCaracter("@|·#¬&*Ç¨´", this.texto)) {
-				return true;
-			} else {
-				return false;
-			}
+			return e.encontrarCaracter("@|·#¬&*Ç¨´", this.texto);
 		} else if (ruta.endsWith(".xml")) {
-			if (e.encontrarCaracter("<>", this.texto)) {
-				return true;
-			} else {
-				return false;
-			}
+			return e.encontrarCaracter("<>", this.texto);
 		} else if (ruta.endsWith(".html")) {
 			return e.Expresiones_Html(texto);
 		} else {
