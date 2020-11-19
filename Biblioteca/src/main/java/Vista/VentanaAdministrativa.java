@@ -2,6 +2,8 @@ package Vista;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -20,6 +22,13 @@ public class VentanaAdministrativa extends JFrame {
 	private JTextField textPropietario;
 	private JTextField textPropietarioNuevo;
 	private JCheckBox chckbxEdtarTamano;
+	private JLabel lblKbnew;
+	private JCheckBox chckbxEditarPropietario;
+	private JLabel lblNuevoPropietario;
+	private JCheckBox chckbxEditarPermisos;
+	private JCheckBox chckbxLectura;
+	private JCheckBox chckbxEscritura;
+	private JCheckBox chckbxEjecucion;
 
 	public void iniciarVentana() {
 		setVisible(true);
@@ -71,7 +80,19 @@ public class VentanaAdministrativa extends JFrame {
 
 		chckbxEdtarTamano = new JCheckBox("Editar Tama\u00F1o");
 		chckbxEdtarTamano.setBounds(10, 129, 141, 23);
+		chckbxEdtarTamano.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				if (chckbxEdtarTamano.isSelected()) {
+					textTamanoNuevo.setVisible(true);
+					lblKbnew.setVisible(true);
+				} else {
+					textTamanoNuevo.setVisible(false);
+					lblKbnew.setVisible(false);
+				}
 
+			}
+		});
 		contentPane.add(chckbxEdtarTamano);
 
 		textTamanoNuevo = new JTextField();
@@ -80,7 +101,7 @@ public class VentanaAdministrativa extends JFrame {
 		textTamanoNuevo.setBounds(190, 130, 104, 20);
 		contentPane.add(textTamanoNuevo);
 
-		JLabel lblKbnew = new JLabel("KB");
+		lblKbnew = new JLabel("KB");
 		lblKbnew.setVisible(false);
 		lblKbnew.setFont(new Font("Tahoma", Font.BOLD, 15));
 		lblKbnew.setBounds(304, 128, 43, 19);
@@ -91,7 +112,20 @@ public class VentanaAdministrativa extends JFrame {
 		lblPropietarioDelFichero.setBounds(10, 204, 170, 19);
 		contentPane.add(lblPropietarioDelFichero);
 
-		JCheckBox chckbxEditarPropietario = new JCheckBox("Editar Propietario");
+		chckbxEditarPropietario = new JCheckBox("Editar Propietario");
+		chckbxEditarPropietario.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				if (chckbxEditarPropietario.isSelected()) {
+					textPropietarioNuevo.setVisible(true);
+					lblNuevoPropietario.setVisible(true);
+				} else {
+					textPropietarioNuevo.setVisible(false);
+					lblNuevoPropietario.setVisible(false);
+				}
+
+			}
+		});
 		chckbxEditarPropietario.setBounds(10, 240, 150, 23);
 		contentPane.add(chckbxEditarPropietario);
 
@@ -114,7 +148,7 @@ public class VentanaAdministrativa extends JFrame {
 		lblPropietario.setBounds(304, 208, 104, 19);
 		contentPane.add(lblPropietario);
 
-		JLabel lblNuevoPropietario = new JLabel("Nuevo Propietario");
+		lblNuevoPropietario = new JLabel("Nuevo Propietario");
 		lblNuevoPropietario.setVisible(false);
 		lblNuevoPropietario.setFont(new Font("Tahoma", Font.BOLD, 15));
 		lblNuevoPropietario.setBounds(304, 244, 161, 19);
@@ -125,26 +159,41 @@ public class VentanaAdministrativa extends JFrame {
 		lblPermisosDelFichero.setBounds(588, 70, 181, 19);
 		contentPane.add(lblPermisosDelFichero);
 
-		JCheckBox chckbxEditarPermisos = new JCheckBox("Editar Permisos");
-		chckbxEditarPermisos.setBounds(566, 129, 111, 23);
+		chckbxEditarPermisos = new JCheckBox("Editar Permisos");
+		chckbxEditarPermisos.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				if (chckbxEditarPermisos.isSelected()) {
+					chckbxLectura.setEnabled(true);
+					chckbxEscritura.setEnabled(true);
+					chckbxEjecucion.setEnabled(true);
+				} else {
+					chckbxLectura.setEnabled(false);
+					chckbxEscritura.setEnabled(false);
+					chckbxEjecucion.setEnabled(false);
+				}
+
+			}
+		});
+		chckbxEditarPermisos.setBounds(566, 129, 134, 23);
 		contentPane.add(chckbxEditarPermisos);
 
-		JCheckBox chckbxLectura = new JCheckBox("LECTURA");
+		chckbxLectura = new JCheckBox("LECTURA");
 		chckbxLectura.setEnabled(false);
 		chckbxLectura.setForeground(Color.BLACK);
 		chckbxLectura.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		chckbxLectura.setBounds(702, 98, 129, 23);
 		contentPane.add(chckbxLectura);
 
-		JCheckBox chckbxEditarPropietario_1_1 = new JCheckBox("ESCRITURA");
-		chckbxEditarPropietario_1_1.setEnabled(false);
-		chckbxEditarPropietario_1_1.setBounds(702, 129, 129, 23);
-		contentPane.add(chckbxEditarPropietario_1_1);
+		chckbxEscritura = new JCheckBox("ESCRITURA");
+		chckbxEscritura.setEnabled(false);
+		chckbxEscritura.setBounds(702, 129, 129, 23);
+		contentPane.add(chckbxEscritura);
 
-		JCheckBox chckbxEditarPropietario_1_1_1 = new JCheckBox("EJECUCION");
-		chckbxEditarPropietario_1_1_1.setEnabled(false);
-		chckbxEditarPropietario_1_1_1.setBounds(702, 169, 129, 23);
-		contentPane.add(chckbxEditarPropietario_1_1_1);
+		chckbxEjecucion = new JCheckBox("EJECUCION");
+		chckbxEjecucion.setEnabled(false);
+		chckbxEjecucion.setBounds(702, 169, 129, 23);
+		contentPane.add(chckbxEjecucion);
 
 		JButton btnNewButton = new JButton("Guardar");
 		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 11));

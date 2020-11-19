@@ -1,6 +1,5 @@
 package Vista;
 
-import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,6 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 
 public class VentanaSeleccion extends JFrame {
@@ -25,7 +25,7 @@ public class VentanaSeleccion extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 517, 300);
 		contentPane = new JPanel();
-		contentPane.setBackground(new Color(154, 205, 50));
+		contentPane.setBackground(UIManager.getColor("InternalFrame.activeTitleBackground"));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
