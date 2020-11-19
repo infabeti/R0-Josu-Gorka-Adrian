@@ -13,6 +13,12 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import reto.ExploradorArchivos;
+import reto.ModificarRuta;
+import reto.Permisos;
+import reto.Propietario;
+import reto.TamanoArchivo;
+
 public class VentanaAdministrativa extends JFrame {
 
 	private JPanel contentPane;
@@ -29,6 +35,10 @@ public class VentanaAdministrativa extends JFrame {
 	private JCheckBox chckbxLectura;
 	private JCheckBox chckbxEscritura;
 	private JCheckBox chckbxEjecucion;
+	private String rutaentera;
+	private Permisos SeleccionPermisos;
+	private TamanoArchivo Tamaño;
+	private Propietario propieada;
 
 	public void iniciarVentana() {
 		setVisible(true);
@@ -58,6 +68,23 @@ public class VentanaAdministrativa extends JFrame {
 		textBuscar.setColumns(10);
 
 		JButton btnBuscar = new JButton("Buscar");
+		btnBuscar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				ModificarRuta modificarRuta = new ModificarRuta();
+				ExploradorArchivos explorador = new ExploradorArchivos();
+				rutaentera = explorador.seleccionarArchivo();
+				if (rutaentera != null) {
+					String nombre = modificarRuta.acortarRuta(rutaentera);
+					textBuscar.setText(nombre);
+					SeleccionPermisos = new Permisos(chckbxLectura, chckbxEscritura, chckbxEjecucion);
+					SeleccionPermisos.BuscarPermisos(rutaentera);
+					Tamaño = new TamanoArchivo(textTamano);
+					Tamaño.BuscarTamaño(rutaentera);
+					propieada = new Propietario(textPropietario);
+					propieada.BuscarPropietario(rutaentera);
+				}
+			}
+		});
 		btnBuscar.setBounds(335, 52, 89, 23);
 		contentPane.add(btnBuscar);
 
@@ -73,10 +100,10 @@ public class VentanaAdministrativa extends JFrame {
 		lblTamaoDelFichero.setBounds(10, 98, 170, 19);
 		contentPane.add(lblTamaoDelFichero);
 
-		JLabel lblKb = new JLabel("KB");
-		lblKb.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lblKb.setBounds(304, 98, 43, 19);
-		contentPane.add(lblKb);
+		JLabel lblByte = new JLabel("bytes");
+		lblByte.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblByte.setBounds(304, 98, 66, 19);
+		contentPane.add(lblByte);
 
 		chckbxEdtarTamano = new JCheckBox("Editar Tama\u00F1o");
 		chckbxEdtarTamano.setBounds(10, 129, 141, 23);
@@ -101,15 +128,15 @@ public class VentanaAdministrativa extends JFrame {
 		textTamanoNuevo.setBounds(190, 130, 104, 20);
 		contentPane.add(textTamanoNuevo);
 
-		lblKbnew = new JLabel("KB");
+		lblKbnew = new JLabel("bytes");
 		lblKbnew.setVisible(false);
 		lblKbnew.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lblKbnew.setBounds(304, 128, 43, 19);
+		lblKbnew.setBounds(304, 128, 66, 19);
 		contentPane.add(lblKbnew);
 
 		JLabel lblPropietarioDelFichero = new JLabel("Propietario Del Fichero:");
 		lblPropietarioDelFichero.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lblPropietarioDelFichero.setBounds(10, 204, 170, 19);
+		lblPropietarioDelFichero.setBounds(10, 204, 213, 19);
 		contentPane.add(lblPropietarioDelFichero);
 
 		chckbxEditarPropietario = new JCheckBox("Editar Propietario");
@@ -133,25 +160,25 @@ public class VentanaAdministrativa extends JFrame {
 		textPropietario.setEditable(false);
 		textPropietario.setColumns(10);
 		textPropietario.setBackground(Color.WHITE);
-		textPropietario.setBounds(190, 205, 104, 20);
+		textPropietario.setBounds(221, 205, 220, 20);
 		contentPane.add(textPropietario);
 
 		textPropietarioNuevo = new JTextField();
 		textPropietarioNuevo.setColumns(10);
 		textPropietarioNuevo.setVisible(false);
 		textPropietarioNuevo.setBackground(Color.WHITE);
-		textPropietarioNuevo.setBounds(190, 241, 104, 20);
+		textPropietarioNuevo.setBounds(221, 234, 104, 20);
 		contentPane.add(textPropietarioNuevo);
 
 		JLabel lblPropietario = new JLabel("Propietario");
 		lblPropietario.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lblPropietario.setBounds(304, 208, 104, 19);
+		lblPropietario.setBounds(451, 204, 104, 19);
 		contentPane.add(lblPropietario);
 
 		lblNuevoPropietario = new JLabel("Nuevo Propietario");
 		lblNuevoPropietario.setVisible(false);
 		lblNuevoPropietario.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lblNuevoPropietario.setBounds(304, 244, 161, 19);
+		lblNuevoPropietario.setBounds(335, 240, 161, 19);
 		contentPane.add(lblNuevoPropietario);
 
 		JLabel lblPermisosDelFichero = new JLabel("Permisos Del Fichero:");
@@ -196,6 +223,12 @@ public class VentanaAdministrativa extends JFrame {
 		contentPane.add(chckbxEjecucion);
 
 		JButton btnNewButton = new JButton("Guardar");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				SeleccionPermisos = new Permisos(chckbxLectura, chckbxEscritura, chckbxEjecucion);
+				SeleccionPermisos.ColocarPermisos(rutaentera);
+			}
+		});
 		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnNewButton.setBounds(619, 255, 150, 23);
 		contentPane.add(btnNewButton);
