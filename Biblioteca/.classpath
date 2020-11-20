@@ -18,7 +18,6 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="con" path="org.eclipse.buildship.core.gradleclasspathcontainer"/>
 	<classpathentry kind="lib" path="src/Librerias/iTEXT 7.1.2/barcodes-7.1.2.jar"/>
 	<classpathentry kind="lib" path="src/Librerias/iTEXT 7.1.2/font-asian-7.1.2.jar"/>
 	<classpathentry kind="lib" path="src/Librerias/iTEXT 7.1.2/forms-7.1.2.jar"/>

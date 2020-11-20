@@ -21,6 +21,7 @@ import reto.Escritor;
 import reto.ExploradorArchivos;
 import reto.Lector;
 import reto.ModificarRuta;
+import reto.ValidarTexto;
 
 public class VentanaSeleccionArchivo extends JFrame {
 
@@ -29,8 +30,10 @@ public class VentanaSeleccionArchivo extends JFrame {
 	private JButton btnSeleccionar;
 	JTextArea textArea;
 	private JButton btnEscribir;
+	private JButton btnGuardarComo;
 	JButton btnVHtml;
 	String rutaentera;
+	private JButton btnVolver;
 
 	public void iniciarVentana() {
 		setVisible(true);
@@ -48,7 +51,9 @@ public class VentanaSeleccionArchivo extends JFrame {
 		setTitle("BIBLIOTECA");
 		log.CargarLogger();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 658, 578);
+
+		setBounds(100, 100, 700, 650);
+
 		contentPane = new JPanel();
 		contentPane.setBackground(SystemColor.inactiveCaption);
 		contentPane.setForeground(Color.LIGHT_GRAY);
@@ -58,18 +63,18 @@ public class VentanaSeleccionArchivo extends JFrame {
 		textField = new JTextField();
 		textField.setToolTipText(
 				"Inserta la ruta del fichero, si quieres escribir un texto que se muestre por consola escriba 'estandar' en la ruta");
-		textField.setBounds(45, 26, 437, 20);
+		textField.setBounds(45, 26, 475, 20);
 		contentPane.add(textField);
 		textField.setColumns(10);
 
 		btnSeleccionar = new JButton("Abrir");
-		btnSeleccionar.setBounds(493, 25, 119, 23);
+		btnSeleccionar.setBounds(525, 25, 119, 23);
 		contentPane.add(btnSeleccionar);
 
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		scrollPane.setBounds(45, 68, 567, 417);
+		scrollPane.setBounds(45, 68, 600, 450);
 		contentPane.add(scrollPane);
 
 		textArea = new JTextArea();
@@ -77,20 +82,24 @@ public class VentanaSeleccionArchivo extends JFrame {
 		textArea.setLineWrap(true);
 
 		btnEscribir = new JButton("Guardar");
-		btnEscribir.setBounds(493, 496, 119, 23);
+		btnEscribir.setBounds(525, 525, 119, 23);
 		contentPane.add(btnEscribir);
+
+		btnGuardarComo = new JButton("Guardar como");
+		btnGuardarComo.setBounds(525, 565, 119, 23);
+		contentPane.add(btnGuardarComo);
 
 		JLabel TipoArchivo = new JLabel("");
 		TipoArchivo.setForeground(Color.RED);
-		TipoArchivo.setBounds(45, 496, 295, 23);
+		TipoArchivo.setBounds(45, 525, 295, 23);
 		contentPane.add(TipoArchivo);
 
-		JLabel Guardado = new JLabel("Guardado Correctamente");
-		Guardado.setForeground(Color.BLUE);
-		Guardado.setFont(new Font("Arial", Font.PLAIN, 11));
-		Guardado.setBounds(361, 496, 131, 23);
-		Guardado.setVisible(false);
-		contentPane.add(Guardado);
+		JLabel guardado = new JLabel("Guardado Correctamente");
+		guardado.setForeground(Color.BLUE);
+		guardado.setFont(new Font("Arial", Font.PLAIN, 11));
+		guardado.setBounds(390, 525, 131, 23);
+		guardado.setVisible(false);
+		contentPane.add(guardado);
 
 		btnVHtml = new JButton("Vista Previa");
 		btnVHtml.addActionListener(new ActionListener() {
@@ -104,6 +113,17 @@ public class VentanaSeleccionArchivo extends JFrame {
 		btnVHtml.setBackground(new Color(255, 182, 193));
 		btnVHtml.setBounds(270, 515, 105, 23);
 		contentPane.add(btnVHtml);
+
+		btnVolver = new JButton("VOLVER");
+		btnVolver.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				VentanaSeleccion Volver = new VentanaSeleccion();
+				Volver.iniciarVentana();
+				dispose();
+			}
+		});
+		btnVolver.setBounds(45, 550, 119, 23);
+		contentPane.add(btnVolver);
 
 		btnSeleccionar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -119,10 +139,43 @@ public class VentanaSeleccionArchivo extends JFrame {
 				}
 			}
 		});
+
 		btnEscribir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				escribir.escribirArchivo(rutaentera, textArea.getText());
-				Guardado.setVisible(true);
+				ValidarTexto validar = new ValidarTexto(rutaentera, textArea.getText());
+				if (!validar.aplicarExpresion()) {
+					guardado.setText("Guardado Correctamente");
+					guardado.setForeground(Color.BLUE);
+					escribir.escribirArchivo(rutaentera, textArea.getText());
+					guardado.setVisible(true);
+				} else {
+					guardado.setText("Error al validar el texto");
+					guardado.setForeground(Color.RED);
+					guardado.setVisible(true);
+				}
+
+				if (rutaentera.endsWith(".html")) {
+					btnVHtml.setVisible(true);
+				}
+			}
+		});
+
+		btnGuardarComo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ExploradorArchivos explorador = new ExploradorArchivos();
+				ValidarTexto validar = new ValidarTexto(rutaentera, textArea.getText());
+				if (!validar.aplicarExpresion()) {
+					guardado.setText("Guardado Correctamente");
+					guardado.setForeground(Color.BLUE);
+					escribir.escribirArchivo(rutaentera, textArea.getText());
+					guardado.setVisible(true);
+					explorador.guardarArchivo(rutaentera);
+				} else {
+					guardado.setText("Error al validar el texto");
+					guardado.setForeground(Color.RED);
+					guardado.setVisible(true);
+				}
+
 				if (rutaentera.endsWith(".html")) {
 					btnVHtml.setVisible(true);
 				}
