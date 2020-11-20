@@ -33,6 +33,7 @@ public class VentanaSeleccionArchivo extends JFrame {
 	private JButton btnGuardarComo;
 	JButton btnVHtml;
 	String rutaentera;
+	private JButton btnVolver;
 
 	public void iniciarVentana() {
 		setVisible(true);
@@ -50,7 +51,9 @@ public class VentanaSeleccionArchivo extends JFrame {
 		setTitle("BIBLIOTECA");
 		log.CargarLogger();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
 		setBounds(100, 100, 700, 650);
+
 		contentPane = new JPanel();
 		contentPane.setBackground(SystemColor.inactiveCaption);
 		contentPane.setForeground(Color.LIGHT_GRAY);
@@ -110,6 +113,17 @@ public class VentanaSeleccionArchivo extends JFrame {
 		btnVHtml.setBackground(new Color(255, 182, 193));
 		btnVHtml.setBounds(270, 515, 105, 23);
 		contentPane.add(btnVHtml);
+
+		btnVolver = new JButton("VOLVER");
+		btnVolver.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				VentanaSeleccion Volver = new VentanaSeleccion();
+				Volver.iniciarVentana();
+				dispose();
+			}
+		});
+		btnVolver.setBounds(45, 550, 119, 23);
+		contentPane.add(btnVolver);
 
 		btnSeleccionar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

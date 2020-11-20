@@ -35,7 +35,7 @@ public class VentanaSeleccion extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				VentanaSeleccionArchivo iniciar = new VentanaSeleccionArchivo();
 				iniciar.iniciarVentana();
-
+				dispose();
 			}
 		});
 		btnNewButton.setBounds(340, 166, 118, 23);
@@ -46,6 +46,7 @@ public class VentanaSeleccion extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				VentanaAdministrativa iniciar = new VentanaAdministrativa();
 				iniciar.iniciarVentana();
+				dispose();
 			}
 		});
 		btnPulseAqui.setBounds(32, 166, 131, 23);

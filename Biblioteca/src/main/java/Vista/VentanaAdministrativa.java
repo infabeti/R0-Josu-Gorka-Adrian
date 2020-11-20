@@ -230,8 +230,20 @@ public class VentanaAdministrativa extends JFrame {
 			}
 		});
 		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnNewButton.setBounds(619, 255, 150, 23);
+		btnNewButton.setBounds(668, 219, 150, 23);
 		contentPane.add(btnNewButton);
+
+		JButton btnVolver = new JButton("Volver");
+		btnVolver.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				VentanaSeleccion Volver = new VentanaSeleccion();
+				Volver.iniciarVentana();
+				dispose();
+			}
+		});
+		btnVolver.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnVolver.setBounds(668, 282, 150, 23);
+		contentPane.add(btnVolver);
 
 	}
 }
