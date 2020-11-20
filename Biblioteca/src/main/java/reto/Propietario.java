@@ -26,4 +26,11 @@ public class Propietario {
 			e.printStackTrace();
 		}
 	}
+
+	public void AgregarPropietario(String ruta, String Propietario) throws IOException, InterruptedException {
+		String Comando = "chown " + Propietario + " " + ruta;
+		Process pb = Runtime.getRuntime().exec(Comando);
+		pb.waitFor();
+	}
+
 }

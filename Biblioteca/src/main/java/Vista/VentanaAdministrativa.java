@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -227,6 +228,15 @@ public class VentanaAdministrativa extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				SeleccionPermisos = new Permisos(chckbxLectura, chckbxEscritura, chckbxEjecucion);
 				SeleccionPermisos.ColocarPermisos(rutaentera);
+
+				String propietario = lblNuevoPropietario.getText();
+				try {
+					propieada.AgregarPropietario(rutaentera, propietario);
+				} catch (IOException e) {
+					e.printStackTrace();
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
 			}
 		});
 		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 11));
